@@ -66,7 +66,7 @@ public:
         
         if( bRender || bSnap ){
             Surface16u sur( mFbo.getTexture() );
-            string frame_name = "f_" + toString( mFrame ) + ".tif";
+            string frame_name = "f_" + toString( mFrame ) + ".png";
             writeImage( mRenderPath/frame_name,  sur);
             cout << "Render Image : " << mFrame << endl;
             mFrame++;

@@ -1,0 +1,28 @@
+#pragma once
+
+#include "cinder/gl/Texture.h"
+#include "CinderOpenCv.h"
+
+using namespace std;
+using namespace ci;
+
+class ContourMap{
+    
+public:
+    
+    
+    ContourMap();
+    
+    void setImage( ci::Surface32f sur, bool convert2gray, cv::Size blurSize );
+    void addContour( float threshold );
+    void drawContourGroup( int whichThreshold );
+    void drawContourAll();
+    
+    cv::Mat input;
+    cv::Mat thresh;
+    typedef vector<cv::Point> Contour;              // 1 contour
+    typedef vector<Contour> ContourGroup;           // 1 group of same threshold
+    typedef vector<ContourGroup> ContourMapData;    // Countour Map data separated with threashold
+    ContourMapData mCMapData;
+
+};

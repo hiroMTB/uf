@@ -17,6 +17,7 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		6A02D8CB1AEBD2DE0031BAEE /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */; };
+		6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AC60E011AF39A9D00345E26 /* ContourMap.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,8 @@
 		6A02D8CC1AEBD32D0031BAEE /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCamera.h; path = ../src/MyCamera.h; sourceTree = "<group>"; };
 		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
+		6AC60E011AF39A9D00345E26 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
+		6AC60E021AF39A9D00345E26 /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* contour_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contour_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF6A16AF68948639A699138 /* contour_1App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = contour_1App.cpp; path = ../src/contour_1App.cpp; sourceTree = "<group>"; };
 		EAE45B7DE5D144039E8BB941 /* contour_1_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = contour_1_Prefix.pch; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 			children = (
 				6AC60DFD1AF393F700345E26 /* ufUtil.h */,
 				6A371B861AE5149700BAE4E4 /* Exporter.h */,
+				6AC60E011AF39A9D00345E26 /* ContourMap.cpp */,
+				6AC60E021AF39A9D00345E26 /* ContourMap.h */,
 			);
 			name = module;
 			path = ../../module;
@@ -245,6 +250,7 @@
 			files = (
 				6A02D8CB1AEBD2DE0031BAEE /* MyCamera.cpp in Sources */,
 				13F4CB1A47D64E98988CAEE5 /* contour_1App.cpp in Sources */,
+				6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
