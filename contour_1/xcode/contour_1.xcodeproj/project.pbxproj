@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		13F4CB1A47D64E98988CAEE5 /* contour_1App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* contour_1App.cpp */; };
+		35ED53BC23FD4E4F9784F2CB /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1DDEBF530A454F469E4E87B8 /* CinderApp.icns */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		6A02D8CB1AEBD2DE0031BAEE /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		00B784AF0FF439BC000DE1D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		08F93EAE4679458E9C1DE6E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FD9B3433C854A8C8DEFA9E2 /* CinderOpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CinderOpenCV.h; path = ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/CinderOpenCV.h; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		1DDEBF530A454F469E4E87B8 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4CD544EB18254237B23ACE89 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyCamera.cpp; path = ../src/MyCamera.cpp; sourceTree = "<group>"; };
+		6A02D8CC1AEBD32D0031BAEE /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCamera.h; path = ../src/MyCamera.h; sourceTree = "<group>"; };
+		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
+		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* contour_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contour_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF6A16AF68948639A699138 /* contour_1App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = contour_1App.cpp; path = ../src/contour_1App.cpp; sourceTree = "<group>"; };
+		EAE45B7DE5D144039E8BB941 /* contour_1_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = contour_1_Prefix.pch; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
+				5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */,
+				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
+				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				7BE6AECDDC2F497AB8A20C33 /* OpenCV */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				6A371B821AE5149700BAE4E4 /* module */,
+				AEF6A16AF68948639A699138 /* contour_1App.cpp */,
+				6A02D8CC1AEBD32D0031BAEE /* MyCamera.h */,
+				6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		087619DF8A0D4DCDB5A08542 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0FD9B3433C854A8C8DEFA9E2 /* CinderOpenCV.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00B784AF0FF439BC000DE1D7 /* Accelerate.framework */,
+				00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */,
+				00B784B10FF439BC000DE1D7 /* AudioUnit.framework */,
+				00B784B20FF439BC000DE1D7 /* CoreAudio.framework */,
+				5323E6B50EAFCA7E003A9687 /* QTKit.framework */,
+				5323E6B10EAFCA74003A9687 /* CoreVideo.framework */,
+				0091D8F80E81B9330029341E /* OpenGL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* contour_1.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* contour_1 */ = {
+			isa = PBXGroup;
+			children = (
+				01B97315FEAEA392516A2CEA /* Blocks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = contour_1;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				4CD544EB18254237B23ACE89 /* Resources.h */,
+				EAE45B7DE5D144039E8BB941 /* contour_1_Prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1DDEBF530A454F469E4E87B8 /* CinderApp.icns */,
+				08F93EAE4679458E9C1DE6E6 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A371B821AE5149700BAE4E4 /* module */ = {
+			isa = PBXGroup;
+			children = (
+				6AC60DFD1AF393F700345E26 /* ufUtil.h */,
+				6A371B861AE5149700BAE4E4 /* Exporter.h */,
+			);
+			name = module;
+			path = ../../module;
+			sourceTree = "<group>";
+		};
+		7BE6AECDDC2F497AB8A20C33 /* OpenCV */ = {
+			isa = PBXGroup;
+			children = (
+				087619DF8A0D4DCDB5A08542 /* include */,
+			);
+			name = OpenCV;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* contour_1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "contour_1" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = contour_1;
+			productInstallPath = "$(HOME)/Applications";
+			productName = contour_1;
+			productReference = 8D1107320486CEB800E47090 /* contour_1.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "contour_1" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* contour_1 */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* contour_1 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35ED53BC23FD4E4F9784F2CB /* CinderApp.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A02D8CB1AEBD2DE0031BAEE /* MyCamera.cpp in Sources */,
+				13F4CB1A47D64E98988CAEE5 /* contour_1App.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = contour_1_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_calib3d.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_contrib.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_core.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_features2d.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_flann.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_gpu.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_imgproc.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_legacy.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ml.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_nonfree.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_objdetect.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ocl.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_photo.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_stitching.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_superres.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ts.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_video.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_videostab.a,
+				);
+				PRODUCT_NAME = contour_1;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = contour_1_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"\"$(CINDER_PATH)/lib/libcinder.a\"",
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_calib3d.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_contrib.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_core.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_features2d.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_flann.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_gpu.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_imgproc.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_legacy.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ml.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_nonfree.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_objdetect.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ocl.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_photo.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_stitching.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_superres.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ts.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_video.a,
+					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_videostab.a,
+				);
+				PRODUCT_NAME = contour_1;
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = i386;
+				CINDER_PATH = ../../../../../../Documents/cinder/cinder_0.8.6_mac;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/opencv2";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = i386;
+				CINDER_PATH = ../../../../../../Documents/cinder/cinder_0.8.6_mac;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/opencv2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "contour_1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "contour_1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
