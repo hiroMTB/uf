@@ -17,6 +17,7 @@ public:
     void addContour( float threshold );
     void drawContourGroup( int whichThreshold );
     void drawContourAll();
+    void exportContour( string path, string fileType );
     
     cv::Mat input;
     cv::Mat thresh;

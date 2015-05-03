@@ -15,7 +15,7 @@
 #include "MyCamera.h"
 #include "ContourMap.h"
 
-#define RENDER
+//#define RENDER
 
 using namespace ci;
 using namespace ci::app;
@@ -46,7 +46,6 @@ public:
 
     int n_threshold;
     
-    
     Perlin mPln;
 };
 
@@ -58,7 +57,7 @@ void cApp::setup(){
     n_threshold = 0;
     setWindowPos(0, 0);
     setWindowSize(mWin_w, mWin_h);
-    mExp.setup( mWin_w, mWin_h, 100, GL_RGB, uf::getRenderPath(), 0);
+    mExp.setup( mWin_w, mWin_h, 3001, GL_RGB, uf::getRenderPath(), 0);
     
     // load image
     vector<Surface32f> surs;
@@ -72,15 +71,13 @@ void cApp::setup(){
     for ( auto & s : surs ) {
         ContourMap cm;
         cm.setImage( s, true, cv::Size(1,1) );
-        cm.addContour(0.05);
-        cm.addContour(0.1);
-        cm.addContour(0.2);
-        cm.addContour(0.25);
-        cm.addContour(0.3);
-        cm.addContour(0.4);
-        cm.addContour(0.6);
+
+        for( int i=1; i<=20; i++ ){
+            cm.addContour(0.05*i);
+        }
         mCMaps.push_back(cm);
     }
+    
     surs.clear();
 
     // Camera
@@ -111,11 +108,23 @@ void cApp::draw(){
         gl::setMatrices( mCam );
         gl::pushMatrices();
         gl::rotate( mObjOrientation );
-
-        //uf::drawCoordinate();
-        
         gl::translate( -5200, 0 ,0);
-    
+        
+        int mapId = -1;
+        for( auto & map : mCMaps ){
+            mapId++;
+            gl::translate( 1500, 0, 0 );
+            for( int i=0; i<map.mCMapData.size(); i++ ){
+                gl::pushMatrices();
+                gl::translate( 0, 0, i*3 );
+                gl::color(mapId*0.2, 0.5+i*0.02, i*0.05);
+                map.drawContourGroup(i);
+                gl::popMatrices();
+            }
+        }
+        
+//#define SCAN
+#ifdef SCAN
         float frame = getElapsedFrames();
         float scanSpeed = 10;
         
@@ -143,7 +152,9 @@ void cApp::draw(){
                             glColor4f(1.0-i*0.01, i*0.1+mapId*0.01, i*0.1+j*0.001, k*0.1);
                             gl::vertex( fromOcv(p) );
                             scanPoint = fromOcv(p);
-                            p.y += mPln.fBm(i, j, frame*0.001)*10.0;
+                            
+                            if( frame > 500 )
+                                p.y += mPln.fBm(i, j, frame*0.01)*5.0;
                         }else{
                             break;
                         }
@@ -161,7 +172,9 @@ void cApp::draw(){
                 }
             }
         }
+#endif
         gl::popMatrices();
+        
     } mExp.end();
     
     gl::color( Colorf::white() );
@@ -186,6 +199,10 @@ void cApp::keyDown( KeyEvent event ) {
         case 't':
             n_threshold++;
             n_threshold %= 8;
+            break;
+            
+        case 'e':
+            mCMaps[0].exportContour( "test_out", "eps" );
             break;
             
     }

@@ -17,6 +17,7 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		6A02D8CB1AEBD2DE0031BAEE /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */; };
+		6A1508151AF527330051C042 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A1508141AF527330051C042 /* Cairo.cpp */; };
 		6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AC60E011AF39A9D00345E26 /* ContourMap.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -38,10 +39,15 @@
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyCamera.cpp; path = ../src/MyCamera.cpp; sourceTree = "<group>"; };
 		6A02D8CC1AEBD32D0031BAEE /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCamera.h; path = ../src/MyCamera.h; sourceTree = "<group>"; };
+		6A1508141AF527330051C042 /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
+		6A1508181AF527450051C042 /* Cairo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cairo.h; path = ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; };
 		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AC60E011AF39A9D00345E26 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
 		6AC60E021AF39A9D00345E26 /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
+		6AC60E181AF3CC7600345E26 /* contour_1 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "contour_1 copy-Info.plist"; path = "/Users/mtb/Desktop/Unfold/dev/uf/contour_1/xcode/contour_1 copy-Info.plist"; sourceTree = "<absolute>"; };
+		6AC60E2D1AF3CCFA00345E26 /* contour_1 copy 2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "contour_1 copy 2-Info.plist"; path = "/Users/mtb/Desktop/Unfold/dev/uf/contour_1/xcode/contour_1 copy 2-Info.plist"; sourceTree = "<absolute>"; };
+		6AC60E421AF3CF3D00345E26 /* contour_1 copy 2 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "contour_1 copy 2 copy-Info.plist"; path = "/Users/mtb/Desktop/Unfold/dev/uf/contour_1/xcode/contour_1 copy 2 copy-Info.plist"; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* contour_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contour_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF6A16AF68948639A699138 /* contour_1App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = contour_1App.cpp; path = ../src/contour_1App.cpp; sourceTree = "<group>"; };
 		EAE45B7DE5D144039E8BB941 /* contour_1_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = contour_1_Prefix.pch; sourceTree = "<group>"; };
@@ -69,6 +75,7 @@
 		01B97315FEAEA392516A2CEA /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
+				6A1508131AF527200051C042 /* Cairo */,
 				7BE6AECDDC2F497AB8A20C33 /* OpenCV */,
 			);
 			name = Blocks;
@@ -134,6 +141,9 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				6AC60E181AF3CC7600345E26 /* contour_1 copy-Info.plist */,
+				6AC60E2D1AF3CCFA00345E26 /* contour_1 copy 2-Info.plist */,
+				6AC60E421AF3CF3D00345E26 /* contour_1 copy 2 copy-Info.plist */,
 			);
 			name = contour_1;
 			sourceTree = "<group>";
@@ -163,6 +173,15 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A1508131AF527200051C042 /* Cairo */ = {
+			isa = PBXGroup;
+			children = (
+				6A1508141AF527330051C042 /* Cairo.cpp */,
+				6A1508181AF527450051C042 /* Cairo.h */,
+			);
+			name = Cairo;
 			sourceTree = "<group>";
 		};
 		6A371B821AE5149700BAE4E4 /* module */ = {
@@ -248,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A1508151AF527330051C042 /* Cairo.cpp in Sources */,
 				6A02D8CB1AEBD2DE0031BAEE /* MyCamera.cpp in Sources */,
 				13F4CB1A47D64E98988CAEE5 /* contour_1App.cpp in Sources */,
 				6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */,
@@ -273,31 +293,39 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/boost\"",
+					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_calib3d.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_contrib.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_core.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_features2d.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_flann.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_gpu.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_imgproc.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_legacy.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ml.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_nonfree.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_objdetect.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ocl.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_photo.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_stitching.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_superres.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ts.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_video.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_videostab.a,
+					"$(CINDER_PATH)/lib/libcinder_d.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_calib3d.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_contrib.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_core.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_features2d.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_flann.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_gpu.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_imgproc.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_legacy.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_ml.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_nonfree.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_objdetect.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_ocl.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_photo.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_stitching.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_superres.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_ts.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_video.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_videostab.a",
+					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/libpng16.a",
+					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/libpixman-1.a",
+					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/libcairo.a",
 				);
 				PRODUCT_NAME = contour_1;
 				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/blocks/Cairo/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -319,32 +347,40 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/boost\"",
+					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"\"$(CINDER_PATH)/lib/libcinder.a\"",
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_calib3d.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_contrib.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_core.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_features2d.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_flann.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_gpu.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_imgproc.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_legacy.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ml.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_nonfree.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_objdetect.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ocl.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_photo.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_stitching.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_superres.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ts.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_video.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_videostab.a,
+					"$(CINDER_PATH)/lib/libcinder.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_calib3d.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_contrib.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_core.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_features2d.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_flann.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_gpu.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_imgproc.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_legacy.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_ml.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_nonfree.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_objdetect.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_ocl.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_photo.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_stitching.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_superres.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_ts.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_video.a",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/libopencv_videostab.a",
+					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/libcairo.a",
+					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/libpixman-1.a",
+					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/libpng16.a",
 				);
 				PRODUCT_NAME = contour_1;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/blocks/Cairo/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -362,7 +398,7 @@
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/opencv2";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2";
 			};
 			name = Debug;
 		};
@@ -379,7 +415,7 @@
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/opencv2";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2";
 			};
 			name = Release;
 		};
