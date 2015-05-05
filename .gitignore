@@ -87,3 +87,6 @@ _settings.xml
 *.icns
 
 *.psd
+*.eps
+*.svg
+*.pdf
