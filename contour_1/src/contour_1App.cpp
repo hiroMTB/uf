@@ -40,6 +40,7 @@ public:
     params::InterfaceGlRef mParams;
     Quatf mObjOrientation;
     
+    
     MyCamera mCam;
     
     vector<ContourMap> mCMaps;
@@ -63,17 +64,17 @@ void cApp::setup(){
     vector<Surface32f> surs;
 //    surs.push_back( Surface32f( loadImage((loadAsset("vela_orient_blue_pac70_signal.tiff")))) );
     surs.push_back( Surface32f( loadImage((loadAsset("1.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("2.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("3.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("4.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("5.tif")))) );
+//    surs.push_back( Surface32f( loadImage((loadAsset("2.tif")))) );
+//    surs.push_back( Surface32f( loadImage((loadAsset("3.tif")))) );
+//    surs.push_back( Surface32f( loadImage((loadAsset("4.tif")))) );
+//    surs.push_back( Surface32f( loadImage((loadAsset("5.tif")))) );
 
     for ( auto & s : surs ) {
         ContourMap cm;
-        cm.setImage( s, true, cv::Size(1,1) );
+        cm.setImage( s, true, cv::Size(3,3) );
 
-        for( int i=1; i<=20; i++ ){
-            cm.addContour(0.05*i);
+        for( int i=1; i<=5; i++ ){
+            cm.addContour(0.1*i);
         }
         mCMaps.push_back(cm);
     }
@@ -85,6 +86,7 @@ void cApp::setup(){
    	mCam.lookAt( Vec3f( 0, 0, 4000 ), Vec3f::zero() );
     mCam.setNearClip(1);
     mCam.setFarClip(100000);
+
     mCam.setup();
     
     // Interface
@@ -202,7 +204,9 @@ void cApp::keyDown( KeyEvent event ) {
             break;
             
         case 'e':
-            mCMaps[0].exportContour( "test_out", "eps" );
+            string epsPath = "../../../out/eps/";
+            createDirectories( epsPath );
+            mCMaps[0].exportContour( epsPath+"contour", "eps" );
             break;
             
     }

@@ -16,8 +16,8 @@
 		35ED53BC23FD4E4F9784F2CB /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1DDEBF530A454F469E4E87B8 /* CinderApp.icns */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		6A02D8CB1AEBD2DE0031BAEE /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */; };
 		6A1508151AF527330051C042 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A1508141AF527330051C042 /* Cairo.cpp */; };
+		6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */; };
 		6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AC60E011AF39A9D00345E26 /* ContourMap.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -37,11 +37,11 @@
 		4CD544EB18254237B23ACE89 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
-		6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MyCamera.cpp; path = ../src/MyCamera.cpp; sourceTree = "<group>"; };
-		6A02D8CC1AEBD32D0031BAEE /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCamera.h; path = ../src/MyCamera.h; sourceTree = "<group>"; };
 		6A1508141AF527330051C042 /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		6A1508181AF527450051C042 /* Cairo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cairo.h; path = ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; };
 		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
+		6A53448F1AF7ABF800EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
+		6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AC60E011AF39A9D00345E26 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
 		6AC60E021AF39A9D00345E26 /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
@@ -86,8 +86,6 @@
 			children = (
 				6A371B821AE5149700BAE4E4 /* module */,
 				AEF6A16AF68948639A699138 /* contour_1App.cpp */,
-				6A02D8CC1AEBD32D0031BAEE /* MyCamera.h */,
-				6A02D8C91AEBD2DE0031BAEE /* MyCamera.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -187,6 +185,8 @@
 		6A371B821AE5149700BAE4E4 /* module */ = {
 			isa = PBXGroup;
 			children = (
+				6A53448F1AF7ABF800EB5383 /* MyCamera.h */,
+				6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */,
 				6AC60DFD1AF393F700345E26 /* ufUtil.h */,
 				6A371B861AE5149700BAE4E4 /* Exporter.h */,
 				6AC60E011AF39A9D00345E26 /* ContourMap.cpp */,
@@ -268,8 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A1508151AF527330051C042 /* Cairo.cpp in Sources */,
-				6A02D8CB1AEBD2DE0031BAEE /* MyCamera.cpp in Sources */,
 				13F4CB1A47D64E98988CAEE5 /* contour_1App.cpp in Sources */,
+				6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */,
 				6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,8 +23,7 @@ void ContourMap::setImage(ci::Surface32f sur, bool convert2gray=true, cv::Size b
 }
 
 void ContourMap::addContour( float threshold ){
-    ContourGroup vec;
-    vector<cv::Point> points;
+    ContourGroup cg;
     
     /* 
      *      findContour pre process
@@ -35,14 +34,42 @@ void ContourMap::addContour( float threshold ){
      */
     
     cv::threshold( input, thresh, threshold, 1.0, CV_THRESH_BINARY );
+
+#define OUTPUT_THRESH_IMG
+#ifdef OUTPUT_THRESH_IMG
+    
+    Surface32f thresh_sur = fromOcv( thresh );
+    createDirectories( "../../../out/threshold" );
+    writeImage( "../../../out/threshold/" + (toString(threshold)+".png"), thresh_sur );
+    
+#endif
     thresh.convertTo(thresh, CV_32SC1);
     
     if( thresh.type() == CV_32SC1 ){
-        cv::findContours( thresh, vec, CV_RETR_CCOMP, CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
-        mCMapData.push_back( vec );
+        vector<cv::Vec4i> hierarchy;
+        cv::findContours( thresh, cg, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
+
+        ContourGroup::iterator itr = cg.begin();
+        vector<cv::Vec4i>::iterator itrh = hierarchy.begin();
+        for( ; itr!=cg.end(); ){
+
+            // look for outer contour
+            if ( (*itrh)[2] == -1 ){
+                itr = cg.erase(itr);
+                itrh = hierarchy.erase(itrh);
+            }else{
+                ++itr;
+                ++itrh;
+            }
+        }
+        
+        mCMapData.push_back( cg );
     }else{
         cout << "error : wrong image format " << endl;
     }
+    
+
+    
 }
 
 void ContourMap::drawContourAll(){
@@ -71,7 +98,7 @@ void ContourMap::drawContourGroup( int whichThreshold ){
 }
 
 
-void ContourMap::exportContour( string path, string fileType="svg" ){
+void ContourMap::exportContour( string path, string fileType="eps" ){
  
     int w = 3000;
     int h = 3000;
@@ -79,27 +106,32 @@ void ContourMap::exportContour( string path, string fileType="svg" ){
     for ( auto & cg : mCMapData ){
         int nMap = &cg - &mCMapData[0];
  
-        string fileName = path + "_" + toString(nMap);
+        string pathn = path + "_" + toString(nMap);
         cairo::Context ctx;
         if( fileType == "svg" ){
-            ctx = cairo::Context( cairo::SurfaceSvg( getHomeDirectory() / (fileName+=".svg"), w, h ) );
+            ctx = cairo::Context( cairo::SurfaceSvg( fs::path(pathn+=".svg"), w, h ) );
         }else if( fileType == "eps" ){
-            ctx = cairo::Context( cairo::SurfaceEps( getHomeDirectory() / (fileName+=".eps"), w, h ) );
+            ctx = cairo::Context( cairo::SurfaceEps( fs::path(pathn+=".eps"), w, h ) );
         }else if( fileType == "pdf" ){
-            ctx = cairo::Context( cairo::SurfacePdf( getHomeDirectory() / (fileName+=".pdf"), w, h ) );
+            ctx = cairo::Context( cairo::SurfacePdf( fs::path(pathn+=".pdf"), w, h ) );
         }else{
             cout << "Error : exportContour, strange fileType of " << fileType << endl;
             return;
         }
         
-        cout << "exportContour : " << fileName << endl;
+        cout << "exportContour : " << pathn << endl;
+
+        ctx.setSource( ColorAf(1,1,1,1) );
+        ctx.paint();
+        ctx.stroke();
         
         ctx.setSource( ColorAf(0,0,0,1) );
         ctx.setLineWidth(1);
         for( auto & c : cg ){
             ctx.newPath();
-            for( auto & p : c )
+            for( auto & p : c ){
                 ctx.lineTo( p.x, p.y );
+            }
             ctx.closePath();
             ctx.stroke();
         }

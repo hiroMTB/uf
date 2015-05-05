@@ -51,6 +51,10 @@ namespace uf {
         return expandPath("../../../_render/")/getTimeStamp();
     }
     
+    fs::path getProjectPath(){
+        return expandPath("../../../");
+    }
+    
     float distanceToLine(Ray ray, Vec3f point){
         return cross(ray.getDirection(), point - ray.getOrigin()).length();
     }
