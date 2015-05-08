@@ -31,7 +31,7 @@ class contour_0App : public AppNative {
     typedef vector<Contour> ContourGroup;
     ContourGroup cg;
     
-    vector<cv::Vec4i> hierarchy;
+
 };
 
 void contour_0App::setup(){
@@ -44,59 +44,74 @@ void contour_0App::setup(){
     cam.setPerspective( 60.0f, getWindowAspectRatio(), 1.0f, 10000.0f );
     mMayaCam.setCurrentCam( cam );
     
-    float threshlod = 0.1;
     
     // CONTOUR
-    Surface32f sur( loadImage((loadAsset("1.tif"))) );
+    Surface32f sur( loadImage((loadAsset("vela_orient_red_pacs160_signal_full.tiff"))) );
     gl::Texture mTex = gl::Texture( sur );
     input = toOcv( sur );
     cv::cvtColor( input, input, CV_RGB2GRAY );
-    cv::blur( input, input, cv::Size(2,2) );
-    cv::threshold( input, thresh, threshlod, 1.0, CV_THRESH_BINARY );
+    //cv::blur( input, input, cv::Size(2,2) );
 
-    cv::Mat thresh32sc1;
-    thresh.convertTo(thresh32sc1, CV_32SC1 );
-    cv::findContours( thresh32sc1.clone(), cg, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
-    
-    // export thresh image
-    //Surface32f thresh_sur = fromOcv( thresh );
-    //writeImage( "../../../out/" + (toString(threshlod)+".png"), thresh_sur );
-    
-    // Export eps
-    cairo::Context ctx;
-    ctx = cairo::Context( cairo::SurfaceEps( fs::path("../../../out/tests.eps"), 3000, 3000 ) );
-    ctx.setSource( ColorAf(1,1,1,1) );
-    ctx.paint();
-    ctx.stroke();
-    
-    ctx.setLineWidth(1);
-    for( int i=0; i<cg.size(); i++){
-      //if( i%2==1)  continue;
-        bool haveParent = hierarchy[i][2] < 0;
-        bool haveChild = hierarchy[i][3] < 0;
+    float threshold = 0;
+    for( int j=0; j<40; j++){
+        vector<cv::Vec4i> hierarchy;
         
-        if( haveParent && haveChild )
-            ctx.setSource( Colorf(0.5,0.5,0.5) );
-        else if( haveParent && !haveChild ){
-            ctx.setSource( Colorf(1,0,0) );
-            //continue;
-        }else if( !haveParent && haveChild ){
-            ctx.setSource( Colorf(0,0,1) );
-            //continue;
-        }else if( !haveParent && !haveChild ){
-            ctx.setSource( Colorf(0,0,0) );
-        }else {
-            ctx.setSource( Colorf(1,0,0.3) );
-        }
-            
-        ctx.newPath();
-        for( auto & p : cg[i] ){
-            ctx.lineTo( p.x, p.y );
-        }
-        ctx.closePath();
+        threshold = j*0.001 + 0.01f;
+        
+        cv::threshold( input, thresh, threshold, 1.0, CV_THRESH_BINARY );
+        
+        cv::Mat thresh32sc1;
+        thresh.convertTo(thresh32sc1, CV_32SC1 );
+        cv::findContours( thresh32sc1.clone(), cg, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
+        
+        // export thresh image
+        //Surface32f thresh_sur = fromOcv( thresh );
+        //writeImage( "../../../out/" + (to_string(threshold)+".png"), thresh_sur );
+        
+        // Export eps
+        cairo::Context ctx;
+        ctx = cairo::Context( cairo::SurfaceSvg( fs::path("../../../out/contour_" + to_string(threshold) + ".svg"), 3000, 3000 ) );
+        //ctx = cairo::Context( cairo::SurfacePdf( fs::path("../../../out/contour_" + to_string(threshold) + ".pdf"), 3000, 3000 ) );
+        
+        ctx.setLineWidth(1);
+        ctx.setSource( ColorAf(0,0,1,1) );
+        ctx.rectangle(10, 10, 3000-20, 3000-20);
         ctx.stroke();
-    }
 
+        ctx.setSource( ColorAf(0,0,0,1) );
+        ctx.newPath();
+        for( int i=0; i<cg.size(); i++){
+            if( i%2==1)  continue;
+            bool haveParent = hierarchy[i][2] < 0;
+            bool haveChild = hierarchy[i][3] < 0;
+            
+//            if( haveParent && haveChild )
+//                ctx.setSource( Colorf(0.5,0.5,0.5) );
+//            else if( haveParent && !haveChild ){
+//                ctx.setSource( Colorf(1,0,0) );
+//                //continue;
+//            }else if( !haveParent && haveChild ){
+//                ctx.setSource( Colorf(0,0,1) );
+//                //continue;
+//            }else if( !haveParent && !haveChild ){
+//                ctx.setSource( Colorf(0,0,0) );
+//            }else {
+//                ctx.setSource( Colorf(1,0,0.3) );
+//            }
+            
+            ctx.newSubPath();
+            if( cg[i].size() >=5 ){
+                for( auto & p : cg[i] ){
+                    ctx.lineTo( p.x, p.y );
+                }
+            }
+            ctx.closePath();
+            //ctx.stroke();
+
+        }
+        ctx.stroke();
+
+    }
     
 }
 
@@ -118,11 +133,11 @@ void contour_0App::draw(){
     for( int i=0; i<cg.size(); i++ ){
         Contour & c = cg[i];
         
-        if( hierarchy[i][2] == -1 ){
-            gl::color(1, 0, 0);
-        }else if( hierarchy[i][3] == -1 ){
-            gl::color(0, 1, 0);
-        }
+//        if( hierarchy[i][2] == -1 ){
+//            gl::color(1, 0, 0);
+//        }else if( hierarchy[i][3] == -1 ){
+//            gl::color(0, 1, 0);
+//        }
         
         for( int j=0; j<c.size(); j++){
             gl::vertex( fromOcv(c[j]) );
