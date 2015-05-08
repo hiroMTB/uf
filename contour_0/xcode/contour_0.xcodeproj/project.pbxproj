@@ -321,30 +321,9 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_LDFLAGS = (
-					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/lib/macosx/libcairo.a,
-					"\"../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/lib/macosx/libpixman-1.a\"",
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/lib/macosx/libpng16.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_calib3d.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_contrib.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_core.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_features2d.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_flann.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_gpu.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_imgproc.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_legacy.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ml.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_nonfree.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_objdetect.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ocl.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_photo.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_stitching.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_superres.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ts.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_video.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_videostab.a,
-				);
+				LD_GENERATE_MAP_FILE = NO;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = contour_0;
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
@@ -370,30 +349,9 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_LDFLAGS = (
-					"\"$(CINDER_PATH)/lib/libcinder.a\"",
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/lib/macosx/libcairo.a,
-					"\"../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/lib/macosx/libpixman-1.a\"",
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/lib/macosx/libpng16.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_calib3d.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_contrib.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_core.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_features2d.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_flann.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_gpu.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_imgproc.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_legacy.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ml.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_nonfree.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_objdetect.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ocl.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_photo.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_stitching.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_superres.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_ts.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_video.a,
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/lib/macosx/libopencv_videostab.a,
-				);
+				LD_GENERATE_MAP_FILE = NO;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = contour_0;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
@@ -415,7 +373,37 @@
 					"\"$(CINDER_PATH)/boost\"",
 					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include/macosx,
 				);
+				LD_MAP_FILE_PATH = "$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
+				LIBRARY_SEARCH_PATHS = (
+					"$(CINDER_PATH)/lib/",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/",
+					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"-lcinder_d",
+					"-lcairo",
+					"-lpixman-1",
+					"-lpng16",
+					"-lopencv_calib3d",
+					"-lopencv_contrib",
+					"-lopencv_core",
+					"-lopencv_features2d",
+					"-lopencv_flann",
+					"-lopencv_gpu",
+					"-lopencv_imgproc",
+					"-lopencv_legacy",
+					"-lopencv_ml",
+					"-lopencv_nonfree",
+					"-lopencv_objdetect",
+					"-opencv_ocl",
+					"-lopencv_photo",
+					"-lopencv_stitching",
+					"-lopencv_superres",
+					"-lopencv_ts",
+					"-lopencv_video",
+					"-lopencv_videostab",
+				);
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/opencv2";
 			};
@@ -435,7 +423,36 @@
 					"\"$(CINDER_PATH)/boost\"",
 					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include/macosx,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(CINDER_PATH)/lib/",
+					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/",
+					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"-lcinder",
+					"-lcairo",
+					"-lpixman-1",
+					"-lpng16",
+					"-lopencv_calib3d",
+					"-lopencv_contrib",
+					"-lopencv_core",
+					"-lopencv_features2d",
+					"-lopencv_flann",
+					"-lopencv_gpu",
+					"-lopencv_imgproc",
+					"-lopencv_legacy",
+					"-lopencv_ml",
+					"-lopencv_nonfree",
+					"-lopencv_objdetect",
+					"-opencv_ocl",
+					"-lopencv_photo",
+					"-lopencv_stitching",
+					"-lopencv_superres",
+					"-lopencv_ts",
+					"-lopencv_video",
+					"-lopencv_videostab",
+				);
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/opencv2";
 			};
