@@ -53,7 +53,7 @@ public:
 void cApp::setup(){
     
     mPln.setSeed(123);
-    mPln.setOctaves(4);
+    mPln.setOctaves(3);
     
     n_threshold = 0;
     setWindowPos(0, 0);
@@ -64,21 +64,47 @@ void cApp::setup(){
     vector<Surface32f> surs;
 //    surs.push_back( Surface32f( loadImage((loadAsset("vela_orient_blue_pac70_signal.tiff")))) );
     surs.push_back( Surface32f( loadImage((loadAsset("1.tif")))) );
-//    surs.push_back( Surface32f( loadImage((loadAsset("2.tif")))) );
-//    surs.push_back( Surface32f( loadImage((loadAsset("3.tif")))) );
-//    surs.push_back( Surface32f( loadImage((loadAsset("4.tif")))) );
-//    surs.push_back( Surface32f( loadImage((loadAsset("5.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("2.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("3.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("4.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("5.tif")))) );
 
     for ( auto & s : surs ) {
         ContourMap cm;
-        cm.setImage( s, true, cv::Size(3,3) );
-
-        for( int i=1; i<=5; i++ ){
-            cm.addContour(0.1*i);
-        }
+        cm.setImage( s, true, cv::Size(2,2) );
         mCMaps.push_back(cm);
     }
     
+    mCMaps[0].addContour(0.05);
+    mCMaps[0].addContour(0.08);
+    mCMaps[0].addContour(0.1);
+    mCMaps[0].addContour(0.13);
+    mCMaps[0].addContour(0.17);
+    
+    mCMaps[1].addContour(0.1);
+    mCMaps[1].addContour(0.14);
+    mCMaps[1].addContour(0.18);
+    mCMaps[1].addContour(0.21);
+    mCMaps[1].addContour(0.25);
+
+    mCMaps[2].addContour(0.1);
+    mCMaps[2].addContour(0.12);
+    mCMaps[2].addContour(0.14);
+    mCMaps[2].addContour(0.16);
+    mCMaps[2].addContour(0.19);
+
+    mCMaps[3].addContour(0.12);
+    mCMaps[3].addContour(0.13);
+    mCMaps[3].addContour(0.14);
+    mCMaps[3].addContour(0.16);
+    mCMaps[3].addContour(0.18);
+    
+    mCMaps[4].addContour(0.3);
+    mCMaps[4].addContour(0.302);
+    mCMaps[4].addContour(0.308);
+    mCMaps[4].addContour(0.313);
+    mCMaps[4].addContour(0.32);
+
     surs.clear();
 
     // Camera
@@ -113,24 +139,24 @@ void cApp::draw(){
         gl::translate( -5200, 0 ,0);
         
         int mapId = -1;
-        for( auto & map : mCMaps ){
-            mapId++;
-            gl::translate( 1500, 0, 0 );
-            for( int i=0; i<map.mCMapData.size(); i++ ){
-                gl::pushMatrices();
-                gl::translate( 0, 0, i*3 );
-                gl::color(mapId*0.2, 0.5+i*0.02, i*0.05);
-                map.drawContourGroup(i);
-                gl::popMatrices();
-            }
-        }
+
+//        for( auto & map : mCMaps ){
+//            mapId++;
+//            gl::translate( 1500, 0, 0 );
+//            for( int i=0; i<map.mCMapData.size(); i++ ){
+//                gl::pushMatrices();
+//                gl::translate( 0, 0, i*3 );
+//                gl::color(mapId*0.2, 0.5+i*0.02, i*0.05);
+//                map.drawContourGroup(i);
+//                gl::popMatrices();
+//            }
+//        }
         
-//#define SCAN
+#define SCAN
 #ifdef SCAN
         float frame = getElapsedFrames();
-        float scanSpeed = 10;
+        float scanSpeed = 5;
         
-        int mapId = -1;
         for( auto & map : mCMaps ){
             mapId++;
             gl::translate( 1500, 0, 0 );
@@ -155,8 +181,10 @@ void cApp::draw(){
                             gl::vertex( fromOcv(p) );
                             scanPoint = fromOcv(p);
                             
-                            if( frame > 500 )
-                                p.y += mPln.fBm(i, j, frame*0.01)*5.0;
+                            if( frame > 300 ){
+                                p.x += mPln.fBm(mapId*0.2, i*0.5, frame*0.005)*5.0;
+                                p.y += mPln.fBm(mapId*0.2, j*0.5, frame*0.005)*5.0;
+                            }
                         }else{
                             break;
                         }

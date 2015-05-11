@@ -50,18 +50,61 @@ void ContourMap::addContour( float threshold ){
         cv::findContours( thresh, cg, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
 
         ContourGroup::iterator itr = cg.begin();
-        vector<cv::Vec4i>::iterator itrh = hierarchy.begin();
-        for( ; itr!=cg.end(); ){
 
-            // look for outer contour
-            if ( (*itrh)[2] == -1 ){
-                itr = cg.erase(itr);
-                itrh = hierarchy.erase(itrh);
-            }else{
-                ++itr;
-                ++itrh;
+        /*
+         *  Filterling Contour to aboid double line
+         *
+         *
+         */
+        int filterType = 0;
+        switch (filterType) {
+
+            // remove odd contour
+            case 0:
+                for(int i=0; itr!=cg.end(); i++){
+                    if( i%2==1 )
+                        itr = cg.erase(itr);
+                    else
+                        ++itr;
+                }
+                break;
+                
+            // remove outer contour
+            case 1:
+            {
+                vector<cv::Vec4i>::iterator itrh = hierarchy.begin();
+                for( ; itr!=cg.end(); ){
+                    // look for outer contour
+                    if ( (*itrh)[2] == -1 ){
+                        itr = cg.erase(itr);
+                        itrh = hierarchy.erase(itrh);
+                    }else{
+                        ++itr;
+                        ++itrh;
+                    }
+                }
             }
+                break;
+
+            // remove inner contour
+            case 2:
+            {
+                vector<cv::Vec4i>::iterator itrh = hierarchy.begin();
+                for( ; itr!=cg.end(); ){
+                    // look for outer contour
+                    if ( (*itrh)[3] == -1 ){
+                        itr = cg.erase(itr);
+                        itrh = hierarchy.erase(itrh);
+                    }else{
+                        ++itr;
+                        ++itrh;
+                    }
+                }
+            }
+                break;
+
         }
+        
         
         mCMapData.push_back( cg );
     }else{
