@@ -14,9 +14,9 @@
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		5C52DCB08E264CDD91B67B83 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC835B0C31447F7AA14A22B /* Cairo.cpp */; };
 		6A5344981AF7AC0500EB5383 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5344921AF7AC0500EB5383 /* ContourMap.cpp */; };
 		6A5344991AF7AC0500EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5344951AF7AC0500EB5383 /* MyCamera.cpp */; };
+		6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EFB181B06111200E7ECF9 /* Cairo.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		AC6EE218F84E465AB185AC14 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8231FF410486449B8270DC76 /* CinderApp.icns */; };
 		CEE482CA843A4CB2A21A75E7 /* contour_0App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444894A18C4C457A91266DCA /* contour_0App.cpp */; };
@@ -31,9 +31,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		3FEF55647A6441F2823BD5D3 /* Cairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Cairo.h; path = ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; };
 		444894A18C4C457A91266DCA /* contour_0App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = contour_0App.cpp; path = ../src/contour_0App.cpp; sourceTree = "<group>"; };
-		4BEF787AA9004B32B5115213 /* CinderOpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CinderOpenCV.h; path = ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/CinderOpenCV.h; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		6A5344921AF7AC0500EB5383 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
@@ -42,11 +40,11 @@
 		6A5344951AF7AC0500EB5383 /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
 		6A5344961AF7AC0500EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
 		6A5344971AF7AC0500EB5383 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
+		6A7EFB181B06111200E7ECF9 /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		7419AF42BDB541BBAB80559D /* contour_0_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = contour_0_Prefix.pch; sourceTree = "<group>"; };
 		8231FF410486449B8270DC76 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* contour_0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contour_0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CFCBE1AFA244A19A93A224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AC835B0C31447F7AA14A22B /* Cairo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = Cairo.cpp; path = ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		9CCB6B55DF404029A57E740A /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,8 +70,7 @@
 		01B97315FEAEA392516A2CEA /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				A6ED4F40B23846F895126FE4 /* Cairo */,
-				6059BE9F03E3468F9206B91F /* OpenCV */,
+				6AA336581B060EB100C7B4E2 /* Cairo */,
 			);
 			name = Blocks;
 			sourceTree = "<group>";
@@ -159,30 +156,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3CF08BFE0D5941DEA3F125F7 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				4BEF787AA9004B32B5115213 /* CinderOpenCV.h */,
-			);
-			name = include;
-			sourceTree = "<group>";
-		};
-		508C22E23C324284B4AD2C8E /* src */ = {
-			isa = PBXGroup;
-			children = (
-				9AC835B0C31447F7AA14A22B /* Cairo.cpp */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		6059BE9F03E3468F9206B91F /* OpenCV */ = {
-			isa = PBXGroup;
-			children = (
-				3CF08BFE0D5941DEA3F125F7 /* include */,
-			);
-			name = OpenCV;
-			sourceTree = "<group>";
-		};
 		6A5344911AF7AC0500EB5383 /* module */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,37 +170,12 @@
 			path = ../../module;
 			sourceTree = "<group>";
 		};
-		9F521147E02B40FD9D2FB398 /* cairo */ = {
+		6AA336581B060EB100C7B4E2 /* Cairo */ = {
 			isa = PBXGroup;
 			children = (
-				3FEF55647A6441F2823BD5D3 /* Cairo.h */,
-			);
-			name = cairo;
-			sourceTree = "<group>";
-		};
-		A6ED4F40B23846F895126FE4 /* Cairo */ = {
-			isa = PBXGroup;
-			children = (
-				508C22E23C324284B4AD2C8E /* src */,
-				CC12C8BE432D45C9963E1796 /* include */,
+				6A7EFB181B06111200E7ECF9 /* Cairo.cpp */,
 			);
 			name = Cairo;
-			sourceTree = "<group>";
-		};
-		CC12C8BE432D45C9963E1796 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				E1B8C7B42BB249BF84D2B1B5 /* cinder */,
-			);
-			name = include;
-			sourceTree = "<group>";
-		};
-		E1B8C7B42BB249BF84D2B1B5 /* cinder */ = {
-			isa = PBXGroup;
-			children = (
-				9F521147E02B40FD9D2FB398 /* cairo */,
-			);
-			name = cinder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,10 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */,
 				6A5344991AF7AC0500EB5383 /* MyCamera.cpp in Sources */,
 				CEE482CA843A4CB2A21A75E7 /* contour_0App.cpp in Sources */,
 				6A5344981AF7AC0500EB5383 /* ContourMap.cpp in Sources */,
-				5C52DCB08E264CDD91B67B83 /* Cairo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,14 +312,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = i386;
-				CINDER_PATH = ../../../../../../Documents/cinder/cinder_0.8.6_mac;
+				CINDER_PATH = ../../..;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(CINDER_PATH)/boost\"",
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include/macosx,
+					"$(CINDER_PATH)/boost",
+					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
 				);
 				LD_MAP_FILE_PATH = "$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt";
 				LIBRARY_SEARCH_PATHS = (
@@ -405,7 +355,8 @@
 					"-lopencv_videostab",
 				);
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/opencv2";
+				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "$(CINDER_PATH)/include ../include $(CINDER_PATH)/blocks/Cairo/include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2";
 			};
 			name = Debug;
 		};
@@ -414,14 +365,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = i386;
-				CINDER_PATH = ../../../../../../Documents/cinder/cinder_0.8.6_mac;
+				CINDER_PATH = ../../..;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"\"$(CINDER_PATH)/boost\"",
-					../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include/macosx,
+					"$(CINDER_PATH)/boost",
+					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(CINDER_PATH)/lib/",
@@ -454,7 +407,8 @@
 					"-lopencv_videostab",
 				);
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/Cairo/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include ../../../../../../Documents/cinder/cinder_0.8.6_mac/blocks/OpenCV/include/opencv2";
+				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "$(CINDER_PATH)/include ../include $(CINDER_PATH)/blocks/Cairo/include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2";
 			};
 			name = Release;
 		};
