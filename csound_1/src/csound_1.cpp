@@ -6,15 +6,16 @@
 #include "cinder/gl/Texture.h"
 #include "cinder/Camera.h"
 #include "cinder/MayaCamUI.h"
-#include "CinderOpenCv.h"
-#include "ufUtil.h"
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
-#include "ContourMap.h"
+#include "CinderOpenCv.h"
 
 #include "csound.hpp"
 #include "csPerfThread.hpp"
 #include "csound.h"
+
+#include "ContourMap.h"
+#include "ufUtil.h"
 
 using namespace ci;
 using namespace ci::app;
