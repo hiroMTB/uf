@@ -91,3 +91,8 @@ _settings.xml
 *.svg
 *.pdf
 *.ai
+
+*.aif
+*.aiff
+*.wav
+*.mp3
