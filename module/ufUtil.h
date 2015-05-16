@@ -26,13 +26,14 @@ namespace uf {
         tm local;
         time(&curr);
         local =*(localtime(&curr));
-        int yday = local.tm_yday;
+        int month = local.tm_mon;
+        int day = local.tm_mday;
         int hours = local.tm_hour;
         int min = local.tm_min;
         int sec = local.tm_sec;
         
         char stamp[16];
-        sprintf(stamp, "%03d_%02d%02d_%02d", yday, hours, min, sec);
+        sprintf(stamp, "%02d%02d_%02d%02d_%02d", month+1, day, hours, min, sec);
         return string(stamp);
     }
     
