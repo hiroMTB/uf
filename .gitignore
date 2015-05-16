@@ -96,3 +96,5 @@ _settings.xml
 *.aiff
 *.wav
 *.mp3
+*.raw
+*.pkf
