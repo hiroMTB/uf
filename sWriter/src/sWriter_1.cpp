@@ -13,6 +13,8 @@
 #include "ContourMap.h"
 #include "ufUtil.h"
 
+#include <sndfile.hh>
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -21,6 +23,7 @@ class cApp : public AppNative {
     
 public:
     void setup();
+    void writeWavHeader();
     
     Perlin mPln;
 };
@@ -32,7 +35,7 @@ void cApp::setup(){
 
     // setting
     int nCh = 2;
-    int samplingRate = 19200;
+    int samplingRate = 192000;
     float duration = 10;  // sec
     int totalSamp = duration * samplingRate;
 
@@ -48,12 +51,24 @@ void cApp::setup(){
         data[i*nCh+1] = noise;
     }
 
-    string path = uf::getTimeStamp() + ".raw";
-    FILE * file = fopen( path.c_str(), "wb");
-    fwrite( &data[0], data.size(), sizeof(data[0]), file );
-    fclose( file );
+    string path = uf::getTimeStamp() + ".wav";
+    
+    /*
+     *      Write WAV file with libsndfile
+     */
+    SNDFILE * file;
+    SF_INFO sfinfo;
+    sfinfo.samplerate = samplingRate;
+    sfinfo.frames = totalSamp;
+    sfinfo.channels = nCh;
+    sfinfo.format = (SF_FORMAT_WAV | SF_FORMAT_FLOAT);  /* 32 bit float data */
+    file = sf_open(path.c_str(), SFM_WRITE, &sfinfo);
+    sf_count_t frameWrote = sf_write_float(file, &data[0], data.size());
+    if(frameWrote != data.size()) puts(sf_strerror(file));
+    sf_close(file);
+    
+    
     quit();
 }
-
 
 CINDER_APP_NATIVE( cApp, RendererGl(0) )
