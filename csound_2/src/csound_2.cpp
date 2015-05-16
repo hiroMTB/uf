@@ -26,32 +26,41 @@ public:
     void setup();
     
     Csound * csound;
-    MYFLT mPitch;
+    MYFLT mAmp;
+    MYFLT mFreq;
+    
     Perlin mPln;
+    Perlin mPln2;
 
 };
 
 void cApp::setup(){
     
-    mPitch = 70;
+    mAmp = 0.5;
+    mFreq = 200;
     
     mPln.setSeed(123);
-    mPln.setOctaves(3);
+    mPln.setOctaves(4);
+
+    mPln2.setSeed(555);
+    mPln2.setOctaves(32);
 
     std::string orc =
-    "sr=44100\n\
-    ksmps=32\n\
+    "sr=19200\n\
+    ksmps=129\n\
     nchnls=2\n\
     0dbfs=1\n\
     \n\
     instr 1\n\
-    kfreq chnget \"pitch\" \n\
-    aout vco2 0.1, kfreq\n\
+    kAmp chnget \"amp\" \n\
+    kFreq chnget \"freq\" \n\
+    aout oscil kAmp, kFreq\n\
     outs aout, aout\n\
     endin";
     
+    string fileName = "-o " + uf::getTimeStamp() + ".wav";
     csound = new Csound();
-    csound->SetOption("-o csound_2.wav");   // file name
+    csound->SetOption( const_cast<char*>(fileName.c_str()) );   // file name
     csound->SetOption("-W");                // Wav
     csound->SetOption("-f");                // 32float
     csound->CompileOrc(orc.c_str());
@@ -62,14 +71,32 @@ void cApp::setup(){
     
     int i = 0;
     while ( csoundPerformKsmps(csound->GetCsound() ) == 0) {
-        MYFLT * pvalue;
-        int result = csoundGetChannelPtr( csound->GetCsound(), &pvalue, "pitch", CSOUND_INPUT_CHANNEL | CSOUND_CONTROL_CHANNEL );
-        if( result != 0){
-            cout << "Cant get chPtr" << endl;
-        }else{
-            *pvalue = mPitch;
-            mPitch += mPln.fBm( ++i*0.1, mPitch*0.05 )*100.0;
+
+        i++;
+        
+        float tempAmp = 1;
+        
+        if( mPln2.fBm(i*0.1) > 0.01 ){
+            tempAmp = 0.5;
         }
+        
+        {
+            MYFLT * pAmp;
+            int result = csoundGetChannelPtr( csound->GetCsound(), &pAmp, "amp", CSOUND_INPUT_CHANNEL | CSOUND_CONTROL_CHANNEL );
+            *pAmp = mAmp*tempAmp;
+            mAmp += (mPln.fBm( i*0.05, (float)mAmp*1.0)-0.5) * 0.1;
+            if(mAmp<0)
+                mAmp = 0.6;
+        }
+    
+        {
+            MYFLT * pFreq;
+            int result = csoundGetChannelPtr( csound->GetCsound(), &pFreq, "freq", CSOUND_INPUT_CHANNEL | CSOUND_CONTROL_CHANNEL );
+            *pFreq = mFreq;
+            mFreq += (mPln2.fBm(i*0.01, mFreq*0.1 + randFloat()*0.05)-0.5) * 2.0;
+            mFreq *= mAmp;
+        }
+        
     }
     
     csoundDestroy( csound->GetCsound() );
