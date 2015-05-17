@@ -38,13 +38,13 @@
 		6A183D141B065F1400E686A3 /* CsoundLib64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CsoundLib64.framework; path = /Library/Frameworks/CsoundLib64.framework; sourceTree = "<absolute>"; };
 		6A183D181B066A8900E686A3 /* libcsnd6.6.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcsnd6.6.0.dylib; path = /Library/Frameworks/CsoundLib64.framework/Versions/6.0/libcsnd6.6.0.dylib; sourceTree = "<absolute>"; };
 		6A19C2CA1B0616DD00A8AD2D /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
+		6A2BC2311B0809AB0043E8EC /* csound_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = csound_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
 		6A53448F1AF7ABF800EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
 		6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AC60E011AF39A9D00345E26 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
 		6AC60E021AF39A9D00345E26 /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* csound_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = csound_1.app; path = /Users/mtb/Desktop/Unfold/dev/cinder_0.8.6_mac/uf/csound_1/xcode/bin/csound_1.app; sourceTree = "<absolute>"; };
 		AEF6A16AF68948639A699138 /* csound_1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = csound_1.cpp; path = ../src/csound_1.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +117,7 @@
 				080E96DDFE201D6D7F000001 /* Source */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				6A2BC2321B0809AB0043E8EC /* Products */,
 			);
 			name = contour_1;
 			sourceTree = "<group>";
@@ -146,6 +147,14 @@
 				6A183D141B065F1400E686A3 /* CsoundLib64.framework */,
 			);
 			name = Csound;
+			sourceTree = "<group>";
+		};
+		6A2BC2321B0809AB0043E8EC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6A2BC2311B0809AB0043E8EC /* csound_1.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		6A371B821AE5149700BAE4E4 /* module */ = {
@@ -180,7 +189,7 @@
 			name = csound_1;
 			productInstallPath = "$(HOME)/Applications";
 			productName = contour_1;
-			productReference = 8D1107320486CEB800E47090 /* csound_1.app */;
+			productReference = 6A2BC2311B0809AB0043E8EC /* csound_1.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -201,6 +210,7 @@
 				German,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* contour_1 */;
+			productRefGroup = 6A2BC2321B0809AB0043E8EC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -255,11 +265,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(CINDER_PATH)/boost\"",
-					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -269,7 +275,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = csound_1;
 				SYMROOT = ./build;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/blocks/Cairo/include";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -296,11 +302,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(CINDER_PATH)/boost\"",
-					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -311,7 +313,7 @@
 				PRODUCT_NAME = csound_1;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/blocks/Cairo/include";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -329,7 +331,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(CINDER_PATH)/boost\"",
-					/Library/Frameworks/CsoundLib64.framework/Headers,
+					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(CINDER_PATH)/lib/",
@@ -363,7 +365,7 @@
 					"-lopencv_videostab",
 				);
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/block/Cairo/include/cinder/cairo";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 /Library/Frameworks/CsoundLib64.framework/Headers $(CINDER_PATH)/blocks/Cairo/include";
 			};
 			name = Debug;
 		};
@@ -380,7 +382,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(CINDER_PATH)/boost\"",
-					/Library/Frameworks/CsoundLib64.framework/Headers,
+					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(CINDER_PATH)/lib/",
@@ -413,7 +415,7 @@
 					"-lopencv_videostab",
 				);
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/block/Cairo/include/cinder/cairo";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 /Library/Frameworks/CsoundLib64.framework/Headers $(CINDER_PATH)/blocks/Cairo/include";
 			};
 			name = Release;
 		};

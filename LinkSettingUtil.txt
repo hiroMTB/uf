@@ -1,32 +1,49 @@
-///	Link Setting
+///
+///	Library Setting
+///
+
+H = header search path
+uh = User header search path
+l = library search path
+f = other linker flag
++ = another things
 
 
-///
-///	Other Linker Flags
-///
 
 [Cinder]
--lcinder_d  or -lcinder
+H: $(CINDER_PATH)/boost
+uh: $(CINDER_PATH)/include ../include
+l: $(CINDER_PATH)/lib/
+f: -lcinder_d  or -lcinder
 
 
 [Cairo]
--lcairo -lpixman-1 -lpng16
+H: $(CINDER_PATH)/blocks/Cairo/include/macosx
+uh: $(CINDER_PATH)/blocks/Cairo/include
+l: $(CINDER_PATH)/blocks/Cairo/lib/macosx/
+f: -lcairo -lpixman-1 -lpng16
+
+
 
 [OpenCV]
--lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_nonfree -lopencv_objdetect -opencv_ocl -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab
+H: nothing
+uh: $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/blocks/OpenCV/include
+l: $(CINDER_PATH)/blocks/OpenCV/lib/macosx/
+f: -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_nonfree -lopencv_objdetect -opencv_ocl -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab
 
 
 
-//
-//	Library Search Path
-//
+[Csound]
+H: nothing
+uh: /Library/Frameworks/CsoundLib64.framework/Headers
+l: $(LOCAL_LIBRARY_DIR)/Frameworks/CsoundLib64.framework/Versions/6.0
+f: -lcsnd6.6.0
++: CsoundLib64.framework
 
-[Cinder]
-$(CINDER_PATH)/blocks/Cairo/lib/macosx/
 
-[Cairo]
-$(CINDER_PATH)/blocks/Cairo/lib/macosx/
 
-[OpenCV]
-$(CINDER_PATH)/blocks/OpenCV/lib/macosx/
+[libsndfile]
+H: ../../myBlocks/libsndfile
+l: ../../myBlocks/libsndfile
+f: -lsndfile
 
