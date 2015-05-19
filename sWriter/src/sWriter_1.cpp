@@ -12,6 +12,7 @@
 
 #include "ContourMap.h"
 #include "ufUtil.h"
+#include "SoundWriter.h"
 
 #include <sndfile.hh>
 
@@ -52,21 +53,7 @@ void cApp::setup(){
     }
 
     string path = uf::getTimeStamp() + ".wav";
-    
-    /*
-     *      Write WAV file with libsndfile
-     */
-    SNDFILE * file;
-    SF_INFO sfinfo;
-    sfinfo.samplerate = samplingRate;
-    sfinfo.frames = totalSamp;
-    sfinfo.channels = nCh;
-    sfinfo.format = (SF_FORMAT_WAV | SF_FORMAT_FLOAT);  /* 32 bit float data */
-    file = sf_open(path.c_str(), SFM_WRITE, &sfinfo);
-    sf_count_t frameWrote = sf_write_float(file, &data[0], data.size());
-    if(frameWrote != data.size()) puts(sf_strerror(file));
-    sf_close(file);
-    
+    SoundWriter::writeWav32f(data, nCh, samplingRate, totalSamp, path);
     
     quit();
 }

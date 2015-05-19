@@ -19,6 +19,7 @@
 		6A19C2CB1B0616DD00A8AD2D /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A19C2CA1B0616DD00A8AD2D /* Cairo.cpp */; };
 		6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */; };
 		6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AC60E011AF39A9D00345E26 /* ContourMap.cpp */; };
+		6AD297591B0B428B00A90116 /* SoundWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AD297571B0B428B00A90116 /* SoundWriter.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,8 @@
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AC60E011AF39A9D00345E26 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
 		6AC60E021AF39A9D00345E26 /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
+		6AD297571B0B428B00A90116 /* SoundWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundWriter.cpp; sourceTree = "<group>"; };
+		6AD297581B0B428B00A90116 /* SoundWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundWriter.h; sourceTree = "<group>"; };
 		AEF6A16AF68948639A699138 /* sWriter_1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sWriter_1.cpp; path = ../src/sWriter_1.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +167,8 @@
 				6A371B861AE5149700BAE4E4 /* Exporter.h */,
 				6AC60E011AF39A9D00345E26 /* ContourMap.cpp */,
 				6AC60E021AF39A9D00345E26 /* ContourMap.h */,
+				6AD297571B0B428B00A90116 /* SoundWriter.cpp */,
+				6AD297581B0B428B00A90116 /* SoundWriter.h */,
 			);
 			name = module;
 			path = ../../module;
@@ -235,6 +240,7 @@
 				6A19C2CB1B0616DD00A8AD2D /* Cairo.cpp in Sources */,
 				13F4CB1A47D64E98988CAEE5 /* sWriter_1.cpp in Sources */,
 				6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */,
+				6AD297591B0B428B00A90116 /* SoundWriter.cpp in Sources */,
 				6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

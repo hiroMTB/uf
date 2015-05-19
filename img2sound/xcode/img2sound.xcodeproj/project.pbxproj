@@ -41,6 +41,7 @@
 		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
 		6A53448F1AF7ABF800EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
 		6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
+		6AA2742B1B0B4506007960C0 /* SoundWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundWriter.h; sourceTree = "<group>"; };
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AC60E011AF39A9D00345E26 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
 		6AC60E021AF39A9D00345E26 /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 				6A371B861AE5149700BAE4E4 /* Exporter.h */,
 				6AC60E011AF39A9D00345E26 /* ContourMap.cpp */,
 				6AC60E021AF39A9D00345E26 /* ContourMap.h */,
+				6AA2742B1B0B4506007960C0 /* SoundWriter.h */,
 			);
 			name = module;
 			path = ../../module;
