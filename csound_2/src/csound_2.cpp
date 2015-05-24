@@ -46,7 +46,7 @@ void cApp::setup(){
     mPln2.setOctaves(32);
 
     std::string orc =
-    "sr=19200\n\
+    "sr=192000\n\
     ksmps=129\n\
     nchnls=2\n\
     0dbfs=1\n\

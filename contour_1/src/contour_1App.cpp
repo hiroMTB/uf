@@ -63,11 +63,11 @@ void cApp::setup(){
     // load image
     vector<Surface32f> surs;
 //    surs.push_back( Surface32f( loadImage((loadAsset("vela_orient_blue_pac70_signal.tiff")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("1.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("2.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("3.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("4.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("5.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/1.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/2.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/3.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/4.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/5.tif")))) );
 
     for ( auto & s : surs ) {
         ContourMap cm;
@@ -232,7 +232,7 @@ void cApp::keyDown( KeyEvent event ) {
             break;
             
         case 'e':
-            string epsPath = "../../../out/eps/";
+            string epsPath = "../../out/eps/";
             createDirectories( epsPath );
             mCMaps[0].exportContour( epsPath+"contour", "eps" );
             break;

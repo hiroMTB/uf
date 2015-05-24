@@ -16,7 +16,6 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		6A183D151B065F1400E686A3 /* CsoundLib64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A183D141B065F1400E686A3 /* CsoundLib64.framework */; };
-		6A183D191B066A8900E686A3 /* libcsnd6.6.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A183D181B066A8900E686A3 /* libcsnd6.6.0.dylib */; };
 		6A19C2CB1B0616DD00A8AD2D /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A19C2CA1B0616DD00A8AD2D /* Cairo.cpp */; };
 		6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */; };
 		6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AC60E011AF39A9D00345E26 /* ContourMap.cpp */; };
@@ -36,7 +35,6 @@
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		6A183D141B065F1400E686A3 /* CsoundLib64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CsoundLib64.framework; path = /Library/Frameworks/CsoundLib64.framework; sourceTree = "<absolute>"; };
-		6A183D181B066A8900E686A3 /* libcsnd6.6.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcsnd6.6.0.dylib; path = /Library/Frameworks/CsoundLib64.framework/Versions/6.0/libcsnd6.6.0.dylib; sourceTree = "<absolute>"; };
 		6A19C2CA1B0616DD00A8AD2D /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		6A2BC22F1B0804910043E8EC /* csound_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = csound_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3691051B06B03A0095DF1A /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
@@ -54,7 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A183D191B066A8900E686A3 /* libcsnd6.6.0.dylib in Frameworks */,
 				6A183D151B065F1400E686A3 /* CsoundLib64.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
@@ -135,20 +132,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6A183D1A1B066A9F00E686A3 /* Csound */,
+				6A183D141B065F1400E686A3 /* CsoundLib64.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6A183D1A1B066A9F00E686A3 /* Csound */ = {
-			isa = PBXGroup;
-			children = (
-				6A183D181B066A8900E686A3 /* libcsnd6.6.0.dylib */,
-				6A183D141B065F1400E686A3 /* CsoundLib64.framework */,
-			);
-			name = Csound;
 			sourceTree = "<group>";
 		};
 		6A371B821AE5149700BAE4E4 /* module */ = {
@@ -334,8 +322,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
-					"-lcsnd6.6.0",
 					"-lcinder_d",
+					"-lcsnd6.6.0",
 					"-lcairo",
 					"-lpixman-1",
 					"-lpng16",
@@ -386,6 +374,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-lcinder",
+					"-lcsnd6.6.0",
 					"-lcairo",
 					"-lpixman-1",
 					"-lpng16",

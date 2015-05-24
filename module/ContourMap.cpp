@@ -22,7 +22,7 @@ void ContourMap::setImage(ci::Surface32f sur, bool convert2gray=true, cv::Size b
     cv::blur( input, input, blurSize );
 }
 
-void ContourMap::addContour( float threshold ){
+void ContourMap::addContour( float threshold, bool output_threshold_image ){
     ContourGroup cg;
     
     /* 
@@ -35,14 +35,12 @@ void ContourMap::addContour( float threshold ){
     
     cv::threshold( input, thresh, threshold, 1.0, CV_THRESH_BINARY );
 
-#define OUTPUT_THRESH_IMG
-#ifdef OUTPUT_THRESH_IMG
-    
-    Surface32f thresh_sur = fromOcv( thresh );
-    createDirectories( "../../../out/threshold" );
-    writeImage( "../../../out/threshold/" + (toString(threshold)+".png"), thresh_sur );
-    
-#endif
+    if( output_threshold_image ){
+        Surface32f thresh_sur = fromOcv( thresh );
+        createDirectories( "../../out/threshold" );
+        writeImage( "../../out/threshold/" + (toString(threshold)+".png"), thresh_sur );
+    }
+ 
     thresh.convertTo(thresh, CV_32SC1);
     
     if( thresh.type() == CV_32SC1 ){

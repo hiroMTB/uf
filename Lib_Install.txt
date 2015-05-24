@@ -1,0 +1,26 @@
+Dependency Installation Guide
+
+
+//
+//	CSound 6.05 installation
+//
+
+1. download .dmg
+	http://sourceforge.net/projects/csound/files/csound6/
+	csound6.05-OSX-universal.dmg
+	
+2. run pkg
+
+3. check you have /Library/framework/CsoundLib64.framework
+
+* CsoundQT is GUI app for CSound. 
+No need for Cinder project but useful for checking examples.
+
+
+
+
+//
+//		libsnd
+//
+
+1. inside of myBlocks

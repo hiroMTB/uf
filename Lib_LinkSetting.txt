@@ -36,7 +36,7 @@ f: -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_
 [Csound]
 H: nothing
 uh: /Library/Frameworks/CsoundLib64.framework/Headers
-l: $(LOCAL_LIBRARY_DIR)/Frameworks/CsoundLib64.framework/Versions/6.0
+l: 
 f: -lcsnd6.6.0
 +: CsoundLib64.framework
 
