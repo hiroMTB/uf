@@ -52,7 +52,7 @@ void cApp::setup(){
     \n\
     instr 1\n\
     kfreq chnget \"pitch\" \n\
-    aout vco2 0.1, kfreq\n\
+    aout vco2 0.01, kfreq\n\
     outs aout, aout\n\
     endin";
     

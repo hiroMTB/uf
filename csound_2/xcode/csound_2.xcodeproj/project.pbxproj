@@ -41,6 +41,8 @@
 		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
 		6A53448F1AF7ABF800EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
 		6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
+		6AAB06E41B1262D900AC8B49 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		6AAB06E51B1262D900AC8B49 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AC60E011AF39A9D00345E26 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
 		6AC60E021AF39A9D00345E26 /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		29B97314FDCFA39411CA2CEA /* contour_1 */ = {
 			isa = PBXGroup;
 			children = (
+				6AAB06E31B1262D900AC8B49 /* config */,
 				01B97315FEAEA392516A2CEA /* Blocks */,
 				080E96DDFE201D6D7F000001 /* Source */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -151,6 +154,15 @@
 			);
 			name = module;
 			path = ../../module;
+			sourceTree = "<group>";
+		};
+		6AAB06E31B1262D900AC8B49 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				6AAB06E41B1262D900AC8B49 /* debug.xcconfig */,
+				6AAB06E51B1262D900AC8B49 /* release.xcconfig */,
+			);
+			path = config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +314,7 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AAB06E41B1262D900AC8B49 /* debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
@@ -311,48 +324,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(CINDER_PATH)/boost\"",
-					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(CINDER_PATH)/lib/",
-					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/",
-					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				OTHER_LDFLAGS = (
-					"-lcinder_d",
-					"-lcsnd6.6.0",
-					"-lcairo",
-					"-lpixman-1",
-					"-lpng16",
-					"-lopencv_calib3d",
-					"-lopencv_contrib",
-					"-lopencv_core",
-					"-lopencv_features2d",
-					"-lopencv_flann",
-					"-lopencv_gpu",
-					"-lopencv_imgproc",
-					"-lopencv_legacy",
-					"-lopencv_ml",
-					"-lopencv_nonfree",
-					"-lopencv_objdetect",
-					"-opencv_ocl",
-					"-lopencv_photo",
-					"-lopencv_stitching",
-					"-lopencv_superres",
-					"-lopencv_ts",
-					"-lopencv_video",
-					"-lopencv_videostab",
-				);
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "../include \"$(CINDER_PATH)/include\" $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/blocks/Cairo/include /Library/Frameworks/CsoundLib64.framework/Headers";
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AAB06E51B1262D900AC8B49 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
@@ -362,43 +341,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(CINDER_PATH)/boost\"",
-					"$(CINDER_PATH)/blocks/Cairo/include/macosx",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(CINDER_PATH)/lib/",
-					"$(CINDER_PATH)/blocks/OpenCV/lib/macosx/",
-					"$(CINDER_PATH)/blocks/Cairo/lib/macosx/",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				OTHER_LDFLAGS = (
-					"-lcinder",
-					"-lcsnd6.6.0",
-					"-lcairo",
-					"-lpixman-1",
-					"-lpng16",
-					"-lopencv_calib3d",
-					"-lopencv_contrib",
-					"-lopencv_core",
-					"-lopencv_features2d",
-					"-lopencv_flann",
-					"-lopencv_gpu",
-					"-lopencv_imgproc",
-					"-lopencv_legacy",
-					"-lopencv_ml",
-					"-lopencv_nonfree",
-					"-lopencv_objdetect",
-					"-opencv_ocl",
-					"-lopencv_photo",
-					"-lopencv_stitching",
-					"-lopencv_superres",
-					"-lopencv_ts",
-					"-lopencv_video",
-					"-lopencv_videostab",
-				);
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "../include \"$(CINDER_PATH)/include\" $(CINDER_PATH)/blocks/OpenCV/include $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/blocks/Cairo/include /Library/Frameworks/CsoundLib64.framework/Headers";
 			};
 			name = Release;
 		};

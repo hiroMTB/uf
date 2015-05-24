@@ -8,9 +8,7 @@
 #include "cinder/MayaCamUI.h"
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
-#include "CinderOpenCv.h"
 
-#include "ContourMap.h"
 #include "ufUtil.h"
 #include "SoundWriter.h"
 
