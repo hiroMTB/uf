@@ -16,6 +16,7 @@
 
 #include "ContourMap.h"
 #include "ufUtil.h"
+#include "ConsoleColor.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -44,25 +45,54 @@ void cApp::setup(){
     mPln.setSeed(123);
     mPln.setOctaves(3);
 
-    std::string orc =
-    "sr=44100\n\
-    ksmps=32\n\
-    nchnls=2\n\
-    0dbfs=1\n\
-    \n\
-    instr 1\n\
-    kfreq chnget \"pitch\" \n\
-    aout vco2 0.01, kfreq\n\
-    outs aout, aout\n\
-    endin";
-    
     csound = new Csound();
     csound->SetOption("-odac");
-    csound->CompileOrc(orc.c_str());
 
-    std::string sco = "i1 0 10000";
-    csound->ReadScore(sco.c_str());
-    csound->Start();
+    std::string orc =
+                        "sr=44100\n\
+                        ksmps=32\n\
+                        nchnls=2\n\
+                        0dbfs=1\n\
+                        \n\
+                        instr 1\n\
+                        kfreq chnget \"pitch\" \n\
+                        aout vco2 0.01, kfreq\n\
+                        outs aout, aout\n\
+                        endin";
+
+    std::string sco =
+                        "i1 0 10000";
+
+    {
+        int result = csound->CompileOrc(orc.c_str());
+        if( result ==0 ){
+            ccout::b( "Orcestra file compile OK" );
+        }else{
+            ccout::r( "Orcestra file compile Failed" );
+            quit();
+        }
+    }
+
+    {
+        int result = csound->ReadScore(sco.c_str());
+        if( result ==0 ){
+            ccout::b("Score file compile OK");
+        }else{
+            ccout::r("Score file compile Failed");
+            quit();
+        }
+    }
+    
+    {
+        
+        int result = csound->Start();
+        if( result ==0 ){
+            ccout::b("Csound start OK");
+        }else{
+            ccout::r("CSound start Failed");
+            quit();
+        }
+    }
     perfThread = new CsoundPerformanceThread(csound);
     perfThread->Play();
 }
