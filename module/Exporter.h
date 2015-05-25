@@ -1,11 +1,3 @@
-//
-//  cs_rnd.h
-//  gradient
-//
-//  Created by MatobaHiroshi on 2/2/15.
-//
-//
-
 #pragma once
 
 #include "cinder/gl/gl.h"
@@ -56,7 +48,6 @@ public:
         cout << ss.str() << endl;
     }
     
-    
     void begin(){
         mFbo.bindFramebuffer();
     }
@@ -79,7 +70,6 @@ public:
             bSnap = false;
         }
     }
-    
     
     void startRender(){
         bRender = true;

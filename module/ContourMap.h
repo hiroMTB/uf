@@ -1,6 +1,5 @@
 #pragma once
 
-#include "cinder/gl/Texture.h"
 #include "CinderOpenCv.h"
 
 using namespace std;
@@ -9,7 +8,6 @@ using namespace ci;
 class ContourMap{
     
 public:
-    
     
     ContourMap();
     

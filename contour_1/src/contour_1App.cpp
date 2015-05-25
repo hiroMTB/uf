@@ -6,12 +6,12 @@
 #include "cinder/gl/Texture.h"
 #include "cinder/Camera.h"
 #include "cinder/MayaCamUI.h"
-#include "CinderOpenCv.h"
-#include "ufUtil.h"
-#include "Exporter.h"
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
+#include "CinderOpenCv.h"
 
+#include "ufUtil.h"
+#include "Exporter.h"
 #include "MyCamera.h"
 #include "ContourMap.h"
 
@@ -32,33 +32,26 @@ public:
     
     int mWin_w = 1920;
     int mWin_h = 1080;
+    int n_threshold;
 
-    Exporter mExp;
-    
     gl::Texture mTex;
-    
     params::InterfaceGlRef mParams;
     Quatf mObjOrientation;
-    
-    
-    MyCamera mCam;
-    
-    vector<ContourMap> mCMaps;
-
-    int n_threshold;
-    
     Perlin mPln;
+    vector<ContourMap> mCMaps;
+    MyCamera mCam;
+    Exporter mExp;
 };
 
 void cApp::setup(){
     
-    mPln.setSeed(123);
-    mPln.setOctaves(3);
+    mPln.setSeed( 123 );
+    mPln.setOctaves( 3 );
     
     n_threshold = 0;
-    setWindowPos(0, 0);
-    setWindowSize(mWin_w, mWin_h);
-    mExp.setup( mWin_w, mWin_h, 3001, GL_RGB, uf::getRenderPath(), 0);
+    setWindowPos( 0, 0 );
+    setWindowSize( mWin_w, mWin_h );
+    mExp.setup( mWin_w, mWin_h, 3001, GL_RGB, uf::getRenderPath(), 0 );
     
     // load image
     vector<Surface32f> surs;
@@ -75,35 +68,35 @@ void cApp::setup(){
         mCMaps.push_back(cm);
     }
     
-    mCMaps[0].addContour(0.05);
-    mCMaps[0].addContour(0.08);
-    mCMaps[0].addContour(0.1);
-    mCMaps[0].addContour(0.13);
-    mCMaps[0].addContour(0.17);
+    mCMaps[0].addContour( 0.05 );
+    mCMaps[0].addContour( 0.08 );
+    mCMaps[0].addContour( 0.10 );
+    mCMaps[0].addContour( 0.13 );
+    mCMaps[0].addContour( 0.17 );
     
-    mCMaps[1].addContour(0.1);
-    mCMaps[1].addContour(0.14);
-    mCMaps[1].addContour(0.18);
-    mCMaps[1].addContour(0.21);
-    mCMaps[1].addContour(0.25);
+    mCMaps[1].addContour( 0.1 );
+    mCMaps[1].addContour( 0.14 );
+    mCMaps[1].addContour( 0.18 );
+    mCMaps[1].addContour( 0.21 );
+    mCMaps[1].addContour( 0.25 );
 
-    mCMaps[2].addContour(0.1);
-    mCMaps[2].addContour(0.12);
-    mCMaps[2].addContour(0.14);
-    mCMaps[2].addContour(0.16);
-    mCMaps[2].addContour(0.19);
+    mCMaps[2].addContour( 0.1 );
+    mCMaps[2].addContour( 0.12 );
+    mCMaps[2].addContour( 0.14 );
+    mCMaps[2].addContour( 0.16 );
+    mCMaps[2].addContour( 0.19 );
 
-    mCMaps[3].addContour(0.12);
-    mCMaps[3].addContour(0.13);
-    mCMaps[3].addContour(0.14);
-    mCMaps[3].addContour(0.16);
-    mCMaps[3].addContour(0.18);
+    mCMaps[3].addContour( 0.12 );
+    mCMaps[3].addContour( 0.13 );
+    mCMaps[3].addContour( 0.14 );
+    mCMaps[3].addContour( 0.16 );
+    mCMaps[3].addContour( 0.18 );
     
-    mCMaps[4].addContour(0.3);
-    mCMaps[4].addContour(0.302);
-    mCMaps[4].addContour(0.308);
-    mCMaps[4].addContour(0.313);
-    mCMaps[4].addContour(0.32);
+    mCMaps[4].addContour( 0.300 );
+    mCMaps[4].addContour( 0.302 );
+    mCMaps[4].addContour( 0.308 );
+    mCMaps[4].addContour( 0.313 );
+    mCMaps[4].addContour( 0.320 );
 
     surs.clear();
 
@@ -136,7 +129,7 @@ void cApp::draw(){
         gl::setMatrices( mCam );
         gl::pushMatrices();
         gl::rotate( mObjOrientation );
-        gl::translate( -5200, 0 ,0);
+        gl::translate( -5200, 0 ,0 );
         
         int mapId = -1;
 
@@ -177,7 +170,7 @@ void cApp::draw(){
                         
                         if( ++nVertex < frame*scanSpeed){
                             cv::Point & p = c[k];
-                            glColor4f(1.0-i*0.01, i*0.1+mapId*0.01, i*0.1+j*0.001, k*0.1);
+                            glColor4f( 1.0-i*0.01, i*0.1+mapId*0.01, i*0.1+j*0.001, k*0.1 );
                             gl::vertex( fromOcv(p) );
                             scanPoint = fromOcv(p);
                             
@@ -213,8 +206,6 @@ void cApp::draw(){
     mParams->draw();
     mCam.drawParam();
 }
-
-
 
 void cApp::keyDown( KeyEvent event ) {
     char key = event.getChar();

@@ -1,8 +1,7 @@
 #include "ContourMap.h"
 #include "cinder/app/AppBasic.h"
-#include "cinder/Path2d.h"
 #include "cinder/cairo/Cairo.h"
-#include "cinder/Rand.h"
+#include "cinder/gl/Texture.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -10,7 +9,7 @@ using namespace ci::app;
 ContourMap::ContourMap(){
 }
 
-void ContourMap::setImage(ci::Surface32f sur, bool convert2gray=true, cv::Size blurSize=cv::Size(2,2)){
+void ContourMap::setImage( ci::Surface32f sur, bool convert2gray=true, cv::Size blurSize=cv::Size(2,2) ){
     
     gl::Texture mTex = gl::Texture( sur );
     
@@ -137,7 +136,6 @@ void ContourMap::drawContourGroup( int whichThreshold ){
     glEnd();
     
 }
-
 
 void ContourMap::exportContour( string path, string fileType="eps" ){
  

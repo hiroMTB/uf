@@ -20,7 +20,6 @@ namespace uf {
         return layout;
     }
     
-    
     string getTimeStamp(){        
         time_t curr;
         tm local;
@@ -40,7 +39,6 @@ namespace uf {
     string getTimeStampU(){
         return toString( time(NULL) );
     }
- 
     
     void renderScreen( fs::path path, int frame ){
         string frame_name = "f_" + toString( frame ) + ".png";
@@ -71,7 +69,6 @@ namespace uf {
         }
     }
     
-    
     void drawCoordinate( float length=100 ){
         glBegin( GL_LINES ); {
             glColor3f( 1, 0, 0 );
@@ -86,21 +83,4 @@ namespace uf {
         } glEnd();
     }
   
-    // this does work but strange behavior !!
-    /*
-     inline ColorAf getColorFromItr( const Surface16u::Iter & itr ){
-     return ColorAf(itr.r(), itr.g(), itr.b(), itr.a() );
-     }
-     */
-    
-    // this does not work!!
-    /*
-     inline void setColorToItr( Surface16u::Iter & itr, const ColorAf & col ){
-     itr.r() = col.r;
-     itr.g() = col.g;
-     itr.b() = col.b;
-     itr.a() = col.a;
-     }
-     */
-    
  }
