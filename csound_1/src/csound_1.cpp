@@ -46,25 +46,34 @@ void cApp::setup(){
     mPln.setOctaves(3);
 
     csound = new Csound();
-    csound->SetOption("-odac");
+    csound->SetOption( (char*)"-odac" );
+    
+    string orc = R"dlm(
+                        ; orchestra code
+    
+                        sr=44100
+                        ksmps=32
+                        nchnls=2
+                        0dbfs=1
+    
+                        instr 1
+                        kfreq chnget "pitch"
+                        aout vco2 0.01, kfreq
+                        outs aout, aout
+                        endin
+                )dlm";
 
-    std::string orc =
-                        "sr=44100\n\
-                        ksmps=32\n\
-                        nchnls=2\n\
-                        0dbfs=1\n\
-                        \n\
-                        instr 1\n\
-                        kfreq chnget \"pitch\" \n\
-                        aout vco2 0.01, kfreq\n\
-                        outs aout, aout\n\
-                        endin";
+    string sco = R"dlm(
 
-    std::string sco =
-                        "i1 0 10000";
+                        ; score code
 
+                        i1 0 10000
+                 )dlm";
+    
     {
-        int result = csound->CompileOrc(orc.c_str());
+        cout << orc << endl;
+        int result = csound->CompileOrc( orc.c_str() );
+        
         if( result ==0 ){
             ccout::b( "Orcestra file compile OK" );
         }else{
@@ -74,12 +83,12 @@ void cApp::setup(){
     }
 
     {
+        cout << sco << endl;
         int result = csound->ReadScore(sco.c_str());
         if( result ==0 ){
             ccout::b("Score file compile OK");
         }else{
             ccout::r("Score file compile Failed");
-            quit();
         }
     }
     

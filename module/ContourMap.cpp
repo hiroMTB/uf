@@ -49,9 +49,7 @@ void ContourMap::addContour( float threshold, bool output_threshold_image ){
         ContourGroup::iterator itr = cg.begin();
 
         /*
-         *  Filterling Contour to aboid double line
-         *
-         *
+         *  Filterling Contour to aboid duplicated line
          */
         int filterType = 0;
         switch (filterType) {
@@ -115,7 +113,7 @@ void ContourMap::addContour( float threshold, bool output_threshold_image ){
 void ContourMap::drawContourAll(){
 
     glBegin( GL_POINTS );
-    for ( auto & cg : mCMapData )
+    for( auto & cg : mCMapData )
         for( auto & c : cg )
             for( auto & p : c )
                 gl::vertex( fromOcv(p) );

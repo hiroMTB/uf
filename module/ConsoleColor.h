@@ -22,15 +22,16 @@ namespace ccout{
     static const string rstb     = escape + "bg;";   // reset bg
     static const string rst      = escape + ";";     // reset all
     
-    static const string setb    = escape + "fg20,150,255;";
-    static const string setr    = escape + "fg255,50,50;";
+    static const string blue     = escape + "fg20,150,255;";
+    static const string red     = escape + "fg255,50,50;";
+    static const string gray   = escape + "fg100,100,100;";
     
     void b( const string &s ){
-        cout << setb << s << rst << endl;
+        cout << blue << s << rst << endl;
     }
     
     void r( const string &s ){
-        cout << setr << s << rst << endl;
+        cout << red << s << rst << endl;
     }
     
 }

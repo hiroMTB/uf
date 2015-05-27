@@ -18,9 +18,20 @@ No need for Cinder project but useful for checking examples.
 
 
 
-
 //
 //		libsnd
 //
+//
+library to write sound file in various format
+No need to install
+Everything is inside of myBlocks
 
-1. inside of myBlocks
+
+
+//
+//		XcodeColors
+//
+Xcode plugin enable to output colored console out
+Download source and follow instruction, 5 min, stable
+https://github.com/robbiehanson/XcodeColors
+
