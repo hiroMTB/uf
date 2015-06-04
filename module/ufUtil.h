@@ -83,4 +83,20 @@ namespace uf {
         } glEnd();
     }
   
+    
+    void drawScreenGuide(){
+
+        float w = getWindowWidth();
+        float h = getWindowHeight();
+        gl::pushMatrices();
+        gl::setMatricesWindow( getWindowSize() );
+        glBegin( GL_LINES ); {
+            glColor3f( 1,1,1 );
+            glVertex3f( w*0.5, 0, 0 );
+            glVertex3f( w*0.5, h, 0 );
+            glVertex3f( 0, h*0.5, 0 );
+            glVertex3f( w, h*0.5, 0 );
+        } glEnd();
+        gl::popMatrices();
+    }
  }

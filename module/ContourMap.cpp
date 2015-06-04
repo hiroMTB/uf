@@ -21,7 +21,7 @@ void ContourMap::setImage( ci::Surface32f sur, bool convert2gray=true, cv::Size 
     cv::blur( input, input, blurSize );
 }
 
-void ContourMap::addContour( float threshold, bool output_threshold_image ){
+void ContourMap::addContour( float threshold, int filterType, bool output_threshold_image ){
     ContourGroup cg;
     
     /* 
@@ -44,14 +44,24 @@ void ContourMap::addContour( float threshold, bool output_threshold_image ){
     
     if( thresh.type() == CV_32SC1 ){
         vector<cv::Vec4i> hierarchy;
-        cv::findContours( thresh, cg, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
-
+        vector<vector<cv::Point>> cg2i;
+        cv::findContours( thresh, cg2i, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_NONE, cv::Point(0, 0));
+        
+        for( int i=0; i<cg2i.size(); i++ ){
+            Contour c;
+            c.assign( cg2i[i].size(), cv::Point2f(0,0) );
+            for( int j=0; j<cg2i[i].size(); j++ ){
+                c[j] = cg2i[i][j];
+            }
+            cg.push_back(c);
+        }
+        cg2i.clear();
+        
         ContourGroup::iterator itr = cg.begin();
 
         /*
          *  Filterling Contour to aboid duplicated line
          */
-        int filterType = 0;
         switch (filterType) {
 
             // remove odd contour

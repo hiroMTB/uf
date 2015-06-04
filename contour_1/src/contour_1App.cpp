@@ -60,7 +60,7 @@ void cApp::setup(){
     surs.push_back( Surface32f( loadImage((loadAsset("img/2.tif")))) );
     surs.push_back( Surface32f( loadImage((loadAsset("img/3.tif")))) );
     surs.push_back( Surface32f( loadImage((loadAsset("img/4.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/5.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/vela_scana_spire350_signal.tiff")))) );
 
     for ( auto & s : surs ) {
         ContourMap cm;
@@ -92,11 +92,11 @@ void cApp::setup(){
     mCMaps[3].addContour( 0.16 );
     mCMaps[3].addContour( 0.18 );
     
-    mCMaps[4].addContour( 0.300 );
-    mCMaps[4].addContour( 0.302 );
-    mCMaps[4].addContour( 0.308 );
-    mCMaps[4].addContour( 0.313 );
-    mCMaps[4].addContour( 0.320 );
+    mCMaps[4].addContour( 0.10 );
+    mCMaps[4].addContour( 0.15 );
+    mCMaps[4].addContour( 0.20 );
+    mCMaps[4].addContour( 0.30 );
+    mCMaps[4].addContour( 0.40 );
 
     surs.clear();
 
@@ -157,8 +157,13 @@ void cApp::draw(){
                 
                 ContourMap::ContourGroup &cg = map.mCMapData[i];
                 int nVertex = 0;
+                int totalVerts = 0;
                 Vec2f scanPoint;
                 bool scanFinish = false;
+                for( int j=0; j<cg.size(); j++ ){
+                    totalVerts += cg[j].size();
+                }
+                
                 for( int j=0; j<cg.size(); j++ ){
 
                     ContourMap::Contour & c = cg[j];
@@ -169,10 +174,12 @@ void cApp::draw(){
                         scanFinish = (j==cg.size()-1) && (k==c.size()-1);
                         
                         if( ++nVertex < frame*scanSpeed){
-                            cv::Point & p = c[k];
+                            cv::Point2f & p = c[k];
                             glColor4f( 1.0-i*0.01, i*0.1+mapId*0.01, i*0.1+j*0.001, k*0.1 );
                             gl::vertex( fromOcv(p) );
-                            scanPoint = fromOcv(p);
+                            if( !scanFinish ){
+                                scanPoint = fromOcv(p);
+                            }
                             
                             if( frame > 300 ){
                                 p.x += mPln.fBm(mapId*0.2, i*0.5, frame*0.005)*5.0;
@@ -184,15 +191,20 @@ void cApp::draw(){
                     }
                     glEnd();
                 }
- 
-                if( !scanFinish ){
+                
+                if( scanFinish ){
+                    int scanId = (int)(frame*scanSpeed) % totalVerts;
+                    scanPoint = fromOcv( *cg[0][scanId] );
+                }
+            
+                //if( !scanFinish ){
                     glLineWidth( 1 );
                     glBegin( GL_LINES );
                     gl::vertex( scanPoint );
                     scanPoint.y = -10000;
                     gl::vertex( scanPoint );
                     glEnd();
-                }
+                //}
             }
         }
 #endif
@@ -203,6 +215,7 @@ void cApp::draw(){
     gl::color( Colorf::white() );
     mExp.draw();
 
+    uf::drawScreenGuide();
     mParams->draw();
     mCam.drawParam();
 }
@@ -227,8 +240,7 @@ void cApp::keyDown( KeyEvent event ) {
             createDirectories( epsPath );
             mCMaps[0].exportContour( epsPath+"contour", "eps" );
             break;
-            
-    }
+        }
 }
 
 void cApp::resize(){
