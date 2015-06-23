@@ -2,6 +2,7 @@
 
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Fbo.h"
+#include "cinder/Camera.h"
 #include "ufUtil.h"
 
 using namespace ci;
@@ -37,6 +38,7 @@ public:
         format.setColorInternalFormat( colorInternalFormat );
         format.setSamples( aaSample );
         mFbo = gl::Fbo( width, height, format );
+        mFbo.getTexture(0).setFlipped(true);
         mRenderPath = path;
         
         mImgWOption.quality(1);
@@ -49,25 +51,43 @@ public:
     }
     
     void begin(){
+        gl::pushMatrices();
+        //gl::SaveFramebufferBinding bindingSaver;
+        gl::setViewport( mFbo.getBounds() );
+        
         mFbo.bindFramebuffer();
+        gl::setMatricesWindow( mFbo.getSize() );
     }
-    
+
+    void begin( const Camera & cam){
+        gl::pushMatrices();
+        //gl::SaveFramebufferBinding bindingSaver;
+        gl::setViewport( mFbo.getBounds() );
+        
+        mFbo.bindFramebuffer();
+        gl::setMatrices( cam );
+    }
+
     void end(){
         mFbo.unbindFramebuffer();
+        gl::popMatrices();
         
         if( bRender || bSnap ){
-            Surface16u sur( mFbo.getTexture() );
             string frame_name = "f_" + toString( mFrame ) + ".png";
-            writeImage( mRenderPath/frame_name,  sur);
+            writeImage( mRenderPath/frame_name,  mFbo.getTexture());
             cout << "Render Image : " << mFrame << endl;
-            mFrame++;
             
             if( mExitFrame <= mFrame ){
-                cout << "Finish Rendering " << mFrame << " frames" << endl;
-                exit(1);
+                if( bSnap ){
+                    cout << "Finish Snapshot " << endl;
+                }else{
+                    cout << "Finish Rendering " << mFrame << " frames" << endl;
+                    exit(1);
+                }
             }
             
             bSnap = false;
+            mFrame++;
         }
     }
     
@@ -86,9 +106,25 @@ public:
     }
     
     void draw(){
+
+//        float win_w = getWindowWidth();
+//        float win_h = getWindowHeight();
+//        float win_aspect = win_w/win_h;
+//        float fbo_aspect = mFbo.getAspectRatio();
+//        Area area(0,0,0,0);
+//        if( win_aspect >= fbo_aspect ){
+//            float scale = mFbo.getHeight()/win_h;
+//            area.set(0, 0, win_w * scale, win_h);
+//        }else{
+//            float scale = mFbo.getWidth() / win_w;
+//            area.set(0, 0, win_w, win_h*scale);
+//        }
+
         gl::pushMatrices();
         gl::setMatricesWindow( mFbo.getSize() );
+        gl::setViewport(getWindowBounds() );
         gl::draw( mFbo.getTexture() );
         gl::popMatrices();
     }
 };
+
