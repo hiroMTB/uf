@@ -92,7 +92,6 @@ void cApp::loadSimulationData(string fileName){
     is.read(reinterpret_cast<char*>(&rho[0]), fileSize);
     is.close();
     
-    
     cout << "close binary file " << endl;
     cout << "Making point data... " << endl;
     
@@ -104,12 +103,15 @@ void cApp::loadSimulationData(string fileName){
         in_max = MAX( in_max, r);
     }
     
-    vector< tuple<float,ColorAf> > thresholds = {
-                                                    { 0.007, ColorAf( 0.3, 0.3, 0.6, 1) },
-                                                    { 0.010, ColorAf( 0.5, 0.4, 0.5, 1) },
-                                                    { 0.017, ColorAf( 0.6, 0.4, 0.4, 1) },
-                                                    { 1.000, ColorAf( 0.8, 0.1, 0.1, 1) }
-                                               };
+    vector< tuple<float, float, ColorAf> > thresholds = {
+        { 0.0006,   0.00066,    ColorAf( 0.7, 0.2, 0.6, 1) },
+        { 0.00066,  0.00072,    ColorAf( 0.7, 0.6, 0.1, 1) },
+        { 0.00075,  0.0008,     ColorAf( 0.8, 0.1, 0.1, 1) },
+        { 0.01,     0.0102,     ColorAf( 0.2, 0.5, 0.5, 1) },
+        { 0.02,     0.022,      ColorAf( 0.0, 0.4, 0.7, 1) },
+        { 0.1,      0.24,       ColorAf( 0.3, 0.3, 0.3, 1) },
+        { 0.24,     1.0,        ColorAf( 1.0, 0.0, 0.1, 1) }
+    };
     
     vector< vector<Vec3f> > points( thresholds.size() );
     vector< vector<ColorAf> > colors( thresholds.size() );
@@ -132,34 +134,36 @@ void cApp::loadSimulationData(string fileName){
                     rhof = rho_map;
                 }
                 
-                float visible_thresh = 0.0008f;
-                if( visible_thresh < rhof ){
-                    rhof = lmap( rhof, visible_thresh, 1.0f, 0.005f, 0.4f);
+                for( int t=0; t<thresholds.size(); t++ ){
                     
-                    Vec3f noise = mPln.dfBm(k, j, i);
-                    Vec3f weight(0, 0, 0);
+                    float low = std::get<0>(thresholds[t]);
+                    float high = std::get<1>(thresholds[t]);
                     
-                    for( int t=0; t<thresholds.size(); t++ ){
-                        if( rhof < std::get<0>(thresholds[t]) ){
-                            
-                            weight.x = t * -200 + 200;
-                            points[t].push_back( Vec3f(k-200, j-200, i-200) + noise + weight );
-
-                            
-                            ColorAf c = std::get<1>(thresholds[t]);
-                            c.r += noise.x * 2;
-                            c.g += noise.y * 2;
-                            c.b += noise.z * 2;
-                            c.a = rhof*1.2;
-                            colors[t].push_back( c );
-                            break;
-                        }
+                    if( low<=rhof && rhof<high ){
+                        
+                        Vec3f noise = mPln.dfBm(k, j, i);
+                        Vec3f weight(0, 0, 0);
+                        
+                        //rhof = lmap( rhof, visible_thresh, 1.0f, 0.005f, 0.4f);
+                        weight.x = t * -600 + 200;
+                        
+                        Vec3f v = Vec3f(k-200, j-200, i-200) + noise + weight;
+//                        v.rotate( Vec3f(1,0,0), t*90 );
+                        points[t].push_back( v );
+                        
+                        ColorAf c = std::get<2>(thresholds[t]);
+                        c.r += noise.x;
+                        c.g += noise.y;
+                        c.b += noise.z;
+                        c.a = 0.1 + rhof*0.5;
+                        colors[t].push_back( c );
+                        break;
                     }
                 }
             }
         }
     }
-    
+
     int totalPoints = 0;
     for( int i=0; i<points.size(); i++ ){
         
@@ -180,26 +184,29 @@ void cApp::loadSimulationData(string fileName){
     vector<ColorAf> bc;
     for( int i=0; i<points.size()-1; i++ ){
     
-        for( int j=0; j<3000; j++ ){
+        int num_try = MIN(points[i].size(),points[i+1].size()) * 0.02;
+        
+        for( int j=0; j<num_try; j++ ){
             int id1 = randInt(0, points[i].size() );
             int id2 = randInt(0, points[i+1].size() );
             Vec3f v1 = points[i][id1];
             Vec3f v2 = points[i+1][id2];
             
             float dist = v1.distance(v2);
-            if( 20<dist && dist<300 ){
+            if( 20<dist && dist<1000 ){
                 
                 bv.push_back( v1 );
                 bv.push_back( v2 );
                 
                 ColorAf &c1 = colors[i][id1];
                 ColorAf &c2 = colors[i+1][id2];
-                ColorAf c = (c1 + c2)*0.5;
-                c.a += 0.1;
+                ColorAf c = (c1 + c2)*0.3;
                 bc.push_back( c );
                 bc.push_back( c );
             }
         }
+        
+        points[i].clear();
     }
     
     gl::VboMesh::Layout layout;
@@ -228,6 +235,8 @@ void cApp::draw(){
     mExp.begin( camUi.getCamera() );{
         gl::clear( ColorA(0,0,0,1) );
         gl::enableAlphaBlending();
+        gl::enableDepthRead();
+        gl::enableDepthWrite();
         
         if( !mExp.bSnap && !mExp.bRender ){
             // Guide

@@ -64,45 +64,48 @@ void cApp::setup(){
 
     for ( auto & s : surs ) {
         ContourMap cm;
-        cm.setImage( s, true, cv::Size(2,2) );
-        mCMaps.push_back(cm);
+        cm.setImage( s, true, cv::Size(1,1) );
+        mCMaps.push_back( cm );
     }
     
-    mCMaps[0].addContour( 0.05 );
-    mCMaps[0].addContour( 0.08 );
-    mCMaps[0].addContour( 0.10 );
-    mCMaps[0].addContour( 0.13 );
-    mCMaps[0].addContour( 0.17 );
+    mCMaps[0].addContour( 0.05, randInt(0,3) );
+    mCMaps[0].addContour( 0.08, randInt(0,3) );
+    mCMaps[0].addContour( 0.10, randInt(0,3) );
+    mCMaps[0].addContour( 0.13, randInt(0,3) );
+    mCMaps[0].addContour( 0.17, randInt(0,3) );
     
-    mCMaps[1].addContour( 0.1 );
-    mCMaps[1].addContour( 0.14 );
-    mCMaps[1].addContour( 0.18 );
-    mCMaps[1].addContour( 0.21 );
-    mCMaps[1].addContour( 0.25 );
+    mCMaps[1].addContour( 0.1 , randInt(0,3));
+    mCMaps[1].addContour( 0.14, randInt(0,3) );
+    mCMaps[1].addContour( 0.18, randInt(0,3) );
+    mCMaps[1].addContour( 0.21, randInt(0,3) );
+    mCMaps[1].addContour( 0.25, randInt(0,3) );
 
-    mCMaps[2].addContour( 0.1 );
-    mCMaps[2].addContour( 0.12 );
-    mCMaps[2].addContour( 0.14 );
-    mCMaps[2].addContour( 0.16 );
-    mCMaps[2].addContour( 0.19 );
+    mCMaps[2].addContour( 0.1 , randInt(0,3) );
+    mCMaps[2].addContour( 0.12, randInt(0,3) );
+    mCMaps[2].addContour( 0.14, randInt(0,3) );
+    mCMaps[2].addContour( 0.16, randInt(0,3) );
+    mCMaps[2].addContour( 0.19, randInt(0,3) );
 
-    mCMaps[3].addContour( 0.12 );
-    mCMaps[3].addContour( 0.13 );
-    mCMaps[3].addContour( 0.14 );
-    mCMaps[3].addContour( 0.16 );
-    mCMaps[3].addContour( 0.18 );
+    mCMaps[3].addContour( 0.12, randInt(0,3) );
+    mCMaps[3].addContour( 0.13, randInt(0,3) );
+    mCMaps[3].addContour( 0.14, randInt(0,3) );
+    mCMaps[3].addContour( 0.16, randInt(0,3) );
+    mCMaps[3].addContour( 0.18, randInt(0,3) );
     
-    mCMaps[4].addContour( 0.10 );
-    mCMaps[4].addContour( 0.15 );
-    mCMaps[4].addContour( 0.20 );
-    mCMaps[4].addContour( 0.30 );
-    mCMaps[4].addContour( 0.40 );
+    mCMaps[4].addContour( 0.10, randInt(0,3) );
+    mCMaps[4].addContour( 0.15, randInt(0,3) );
+    mCMaps[4].addContour( 0.20, randInt(0,3) );
+    mCMaps[4].addContour( 0.23, randInt(0,3) );
+    mCMaps[4].addContour( 0.30, randInt(0,3) );
+    mCMaps[4].addContour( 0.33, randInt(0,3) );
+    mCMaps[4].addContour( 0.40, randInt(0,3) );
 
+    
     surs.clear();
 
     // Camera
     mCam.setFov( 54 );
-   	mCam.lookAt( Vec3f( 0, 0, 4000 ), Vec3f::zero() );
+   	mCam.lookAt( Vec3f( 0, 0, 4200 ), Vec3f::zero() );
     mCam.setNearClip(1);
     mCam.setFarClip(100000);
 
@@ -152,7 +155,7 @@ void cApp::draw(){
         
         for( auto & map : mCMaps ){
             mapId++;
-            gl::translate( 1500, 0, 0 );
+            gl::translate( 1480, 0, 0 );
             for( int i=0; i<map.mCMapData.size(); i++ ){
                 
                 ContourMap::ContourGroup &cg = map.mCMapData[i];
@@ -175,15 +178,15 @@ void cApp::draw(){
                         
                         if( ++nVertex < frame*scanSpeed){
                             cv::Point2f & p = c[k];
-                            glColor4f( 1.0-i*0.01, i*0.1+mapId*0.01, i*0.1+j*0.001, k*0.1 );
+                            glColor4f( 0.2+i*0.2+mPln.noise(j)*0.1, 0.8-i*0.1+mapId*0.01, i*0.1+j*0.01+mPln.noise(i)*0.02, k*0.06 );
                             gl::vertex( fromOcv(p) );
                             if( !scanFinish ){
                                 scanPoint = fromOcv(p);
                             }
                             
                             if( frame > 300 ){
-                                p.x += mPln.fBm(mapId*0.2, i*0.5, frame*0.005)*5.0;
-                                p.y += mPln.fBm(mapId*0.2, j*0.5, frame*0.005)*5.0;
+                                p.x += mPln.fBm( mapId*0.5, i*0.5, frame*0.005 )*7.0;
+                                p.y += mPln.fBm( mapId*0.5, j*0.5, frame*0.005 )*5.0;
                             }
                         }else{
                             break;
@@ -194,7 +197,7 @@ void cApp::draw(){
                 
                 if( scanFinish ){
                     int scanId = (int)(frame*scanSpeed) % totalVerts;
-                    scanPoint = fromOcv( *cg[0][scanId] );
+                    //scanPoint = fromOcv( *cg[0][scanId] );
                 }
             
                 //if( !scanFinish ){

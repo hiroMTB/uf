@@ -38,7 +38,7 @@ public:
         format.setColorInternalFormat( colorInternalFormat );
         format.setSamples( aaSample );
         mFbo = gl::Fbo( width, height, format );
-        mFbo.getTexture(0).setFlipped(true);
+        //mFbo.getTexture(0).setFlipped(true);
         mRenderPath = path;
         
         mImgWOption.quality(1);
