@@ -54,8 +54,15 @@ namespace uf {
         return expandPath("../../../");
     }
     
-    float distanceToLine(Ray ray, Vec3f point){
+    float distanceToLine( const Ray &ray, const Vec3f &point){
         return cross(ray.getDirection(), point - ray.getOrigin()).length();
+    }
+    
+    Vec3f dirToLine( const Vec3f &p0, const Vec3f &p1, const Vec3f &p2 ){
+        Vec3f v = p2-p1;
+        Vec3f w = p0-p1;
+        double b = v.dot(w) / v.dot(v);
+        return -w + b * v;
     }
     
     void fillSurface( Surface16u & sur, const ColorAf & col){

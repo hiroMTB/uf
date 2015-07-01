@@ -56,11 +56,11 @@ void cApp::setup(){
     // load image
     vector<Surface32f> surs;
 //    surs.push_back( Surface32f( loadImage((loadAsset("vela_orient_blue_pac70_signal.tiff")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/1.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/2.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/3.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/4.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/vela_scana_spire350_signal.tiff")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/01/1.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/01/2.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/01/3.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/01/4.tif")))) );
+    surs.push_back( Surface32f( loadImage((loadAsset("img/01/vela_scana_spire350_signal.tiff")))) );
 
     for ( auto & s : surs ) {
         ContourMap cm;
