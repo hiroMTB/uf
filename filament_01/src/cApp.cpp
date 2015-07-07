@@ -55,9 +55,11 @@ void cApp::setup(){
     setWindowSize( 1080*3*0.5, 1920*0.5 );
     mExp.setup( 1080*3, 1920, 3000, GL_RGB, uf::getRenderPath(), 0);
     
-    CameraPersp cam(1080*3, 1920, 54.4f, 1, 100000 );
-    cam.lookAt( Vec3f(0,0, 1800), Vec3f(0,0,0) );
+    CameraPersp cam( 1080*3, 1920, 25/*39.6f*/, 1, 100000 );
+    cam.lookAt( Vec3f(0,0, 3300), Vec3f(0,0,0), Vec3f(1,0,0) );
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
+    cam.setLensShift( 0, 1 );
+    
     camUi.setCurrentCam( cam );
     
     mPln.setSeed(123);
@@ -72,8 +74,8 @@ void cApp::setup(){
         intensityH = sIntensity.getHeight();
         
         Surface32f::Iter itr = sIntensity.getIter();
-        float threashold = 0.3;
-        float extrusion = 300;
+        float threashold = 0.4;
+        float extrusion = 1000;
         
         while ( itr.line() ) {
             while( itr.pixel() ){
@@ -82,17 +84,17 @@ void cApp::setup(){
                 if( threashold < gray ){
                     Vec2i pos = itr.getPos();
                     Vec3f v( pos.x, pos.y, gray*extrusion );
-                    Vec3f noise = mPln.dfBm( Vec3f(pos.x, pos.y, gray) ) * 4.0;
+                    Vec3f noise = mPln.dfBm( Vec3f(pos.x, pos.y, gray) ) * 5.0;
                     ps.push_back( v + noise );
 
                     pos *= 1.9f;
                     pos.x += 1000;
                     
-                    noise *= 0.1;
-                    float r = *colorMap.getDataRed( pos ) + noise.x;
-                    float g = *colorMap.getDataGreen( pos )+ noise.y;
-                    float b = *colorMap.getDataBlue( pos ) + noise.z;
-                    float a = lmap(gray, 0.0f, 1.0f, 0.4f, 0.6f);
+                    noise *= 0.15;
+                    float r = *colorMap.getDataRed( pos ) + noise.x*0.5;
+                    float g = *colorMap.getDataGreen( pos )+ noise.y*0.5;
+                    float b = *colorMap.getDataBlue( pos ) + noise.z*0.5;
+                    float a = lmap(gray, 0.0f, 1.0f, 0.01f, 0.5f);
                     cs.push_back( ColorAf(r, g, b, a) );
                 }
             }
@@ -110,7 +112,7 @@ void cApp::setup(){
     
     {
         // Spline
-        int num = 80;
+        int num = 10000;
         Ray center( Vec3f(intensityW/2, intensityH/2, 0), Vec3f(0,1,0) );
 
         Vec3f center_top( intensityW/2, 0, 0);
@@ -121,13 +123,24 @@ void cApp::setup(){
             int id1 = randInt( 0, ps.size() );
             Vec3f start = ps[id1];
             
-            for( int m=0; m<300; m++ ){
+            for( int m=0; m<30000; m++ ){
                 
                 int id2 = randInt( 0, ps.size() );
                 Vec3f end = ps[id2];
                 
                 float dist = start.distance( end );
-                if( 150<dist && dist<300+m/3 ){
+                float min = 10;
+                float max = 30;
+                float radius = 3.0;
+                int numCtrl = 5;
+                
+                if( abs(randFloat())>0.99993f ){
+                    min = 100;
+                    max = 200;
+                    radius += randFloat(400, 500);
+                }
+                    
+                if( min<dist && dist<max ){
                     Vec3f dir = end - start;
                     Vec3f mid = start + dir * 0.5;
 
@@ -136,12 +149,11 @@ void cApp::setup(){
                     
                     vector< Vec3f > ctrls;
                     ctrls.push_back( start );
-                    int numCtrl = randInt( 5, 6 );
-                    float rate = 0.0;
                     
+                    float rate = 0.0f;
                     for( int j=1; j<numCtrl-1; j++ ){
                         rate = (float)j/numCtrl;
-                        Vec3f cp = start + dir*rate + prep*randFloat(0.1, 1.3)*200.0f;
+                        Vec3f cp = start + dir*rate + prep*radius;
                         ctrls.push_back( cp );
                     }
                     
@@ -176,13 +188,14 @@ void cApp::draw(){
         gl::translate( -intensityW/2, -intensityH/2 );
         
         
-        float resolution = 100.0f;
         for( int i=0; i<bspls.size(); i++ ){
             
             int colorIndex = i*33 % cs.size();
             ColorAf & c = cs[colorIndex];
             gl::color( c.r, c.g, c.b, c.a*0.9 );
             
+            float resolution = bspls[i].getNumControlPoints() * 10.0f;
+
             glBegin(GL_LINES);
             for( int j=0; j<resolution-1; j++ ){
                 float rate1 = (float)j/resolution;
@@ -195,17 +208,17 @@ void cApp::draw(){
             glEnd();
             
             
-            glColor4f( 0, 0, 1, 0.6 );
-            glPointSize( 2 );
-            glBegin( GL_POINTS );
-            for( int j=0; j<bspls[i].getNumControlPoints(); j++ ){
-                Vec3f v1 = bspls[i].getControlPoint( j );
-                glVertex3f( v1.x, v1.y, v1.z );
-            }
-            glEnd();
+//            glColor4f( 0.9, 0.5, 0.01, 0.8 );
+//            glPointSize( 1 );
+//            glBegin( GL_POINTS );
+//            for( int j=0; j<bspls[i].getNumControlPoints(); j++ ){
+//                Vec3f v1 = bspls[i].getControlPoint( j );
+//                glVertex3f( v1.x, v1.y, v1.z );
+//            }
+//            glEnd();
 
-            glColor4f( 0, 0, 1, 1 );
-            glPointSize( 2 );
+            glColor4f( 0.3, 0.3, 0.9, 0.9 );
+            glPointSize( 3 );
             glBegin( GL_POINTS );
             Vec3f st = bspls[i].getControlPoint( 0 );
             glVertex3f( st.x, st.y, st.z );
