@@ -59,7 +59,7 @@ void cApp::setup(){
     
     boxelx = boxely = boxelz = 400;
     
-    if( 1 ) loadSimulationData( "sim/Heracles/512.bin" );
+    if( 1 ) loadSimulationData( "sim/Heracles/044/044f_u.bin" );
 }
 
 void cApp::loadSimulationData(string fileName){
@@ -99,7 +99,10 @@ void cApp::loadSimulationData(string fileName){
         in_min = MIN( in_min, r);
         in_max = MAX( in_max, r);
     }
-    
+
+    cout << "min : " << in_min << endl;
+    cout << "max : " << in_max << endl;
+
     vector<Vec3f> points;
     vector<ColorAf> colors;
     
@@ -108,43 +111,65 @@ void cApp::loadSimulationData(string fileName){
             for( int k=0; k<boxelx; k++ ){
                 
                 int index = i + j*boxely + k*boxelz*boxely;
-                double rho_raw = rho[index];
-                float rhof;
-                
-                bool logarizm = true;
-                if( logarizm ){
-                    double rho_map = lmap(rho_raw, in_min, in_max, 1.0, 10.0);
-                    double rho_log = log10(rho_map);
-                    rhof = rho_log;
-                }else{
-                    double rho_map = lmap(rho_raw, in_min, in_max, 0.0, 1.0);
-                    rhof = rho_map;
-                }
-                
-                float visible_thresh = 0.0005f;
-                if( rhof>visible_thresh ){
-                    rhof = lmap( rhof, visible_thresh, 1.0f, 0.005f, 0.4f);
-                    
-                    Vec3f noise = mPln.dfBm(k, j, i);
-                    Vec3f weight(0, 0, 0);
 
-                    ColorAf color(1,1,1,rhof);
-//                    if( rhof < 0.01 ){
-//                        weight.x = 0;
-//                        color.set(0.3, 0, 0, rhof);
-//                    }else if( rhof < 0.05 ){
-//                        weight.x = -100;
-//                        color.set(0, 0.3, 0, rhof);
-//                    }else if( rhof < 0.15 ){
-//                        weight.x = -150;
-//                        color.set(0, 0, 0.3, rhof);
-//                    }else{
-//                        weight.x = -200;
-//                        color.set(0.1, 0.1, 0.1, rhof);
-//                    }
-                    
-                    points.push_back( Vec3f(k-200, j-200, i-200) + noise + weight );
-                    colors.push_back( color );
+                int dimension = 3;
+                switch ( dimension) {
+                    case 1:
+                    {
+                        double rho_raw = rho[index];
+                        float rhof;
+                        
+                        bool logarizm = true;
+                        if( logarizm ){
+                            double rho_map = lmap(rho_raw, in_min, in_max, 1.0, 10.0);
+                            rhof = log10(rho_map);
+                        }else{
+                            double rho_map = lmap(rho_raw, in_min, in_max, 0.0, 1.0);
+                            rhof = rho_map;
+                        }
+                        
+                        float visible_thresh = 0.005f;
+                        
+                        if( rhof>visible_thresh ){
+                            rhof = lmap( rhof, visible_thresh, 1.0f, 0.001f, 0.7f);
+                            
+                            Vec3f noise = mPln.dfBm(k, j, i);
+                            
+                            ColorAf color(1,1,1,rhof);
+                            points.push_back( Vec3f(k-200, j-200, i-200) + noise );
+                            colors.push_back( color );
+                        }
+                        break;
+                    }
+                        
+                    case 3:
+                    {
+                        double x = rho[ index*3 + 0];
+                        double y = rho[ index*3 + 1];
+                        double z = rho[ index*3 + 2];
+                        double x_map = lmap( x, in_min, in_max, 1.0, 10.0 );
+                        double y_map = lmap( y, in_min, in_max, 1.0, 10.0 );
+                        double z_map = lmap( z, in_min, in_max, 1.0, 10.0 );
+                        float xf = log10( x_map );
+                        float yf = log10( y_map );
+                        float zf = log10( z_map );
+ 
+                        
+                        double ulen = sqrt(x*x + y*y + z*z);
+                        double ulen_map = lmap( ulen, in_min, in_max, 1.0, 10.0 );
+                        float ulenf = log10(ulen_map);
+                        float visible_thresh = 0.78f;
+                        
+                        if( ulenf>visible_thresh ){
+                            ulenf = lmap( ulenf, visible_thresh, 1.0f, 0.000001f, 0.2f);
+                            
+                            Vec3f noise = mPln.dfBm(k, j, i) * 1.5;
+                            ColorAf color( xf, yf, zf, ulenf);
+                            points.push_back( Vec3f(k-200, j-200, i-200) + noise );
+                            colors.push_back( color );
+                        }
+                        break;
+                    }
                 }
             }
         }
@@ -174,23 +199,17 @@ void cApp::draw(){
         gl::enableAlphaBlending();
         
         if( !mExp.bSnap && !mExp.bRender ){
-            // test cube
-            gl::color(1,0,0);
-            gl::drawStrokedCube(Vec3f(0,0,0), Vec3f(50,50,50) );
-            
             // Guide
             uf::drawCoordinate(10);
-        }
         
-        {
             // base rect
-            gl::lineWidth(1);
-            gl::color(0.25, 0.25, 0.25);
-            gl::pushModelView();{
-                gl::translate(Vec3f(210,0,0));
-                gl::rotate(Vec3f(0,90,0));
-                gl::drawStrokedRect( Rectf( -200,200, 200,-200) );
-            }gl::popModelView();
+//            gl::lineWidth(1);
+//            gl::color(0.25, 0.25, 0.25);
+//            gl::pushModelView();{
+//                gl::translate(Vec3f(210,0,0));
+//                gl::rotate(Vec3f(0,90,0));
+//                gl::drawStrokedRect( Rectf( -200,200, 200,-200) );
+//            }gl::popModelView();
         }
         
         {
