@@ -55,7 +55,8 @@ void cApp::setup(){
     mExp.setup( 1080*3, 1920, 3000, GL_RGB, uf::getRenderPath(), 0);
     
     CameraPersp cam(1080*3, 1920, 54.4f, 0.1, 10000 );
-    cam.lookAt( Vec3f(0,0, 1600), Vec3f(0,0,0) );
+    cam.lookAt( Vec3f(0,0, 1200), Vec3f(0,0,0) );
+    cam.setLensShift(1.05, 0);
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
     camUi.setCurrentCam( cam );
     
@@ -173,7 +174,9 @@ void cApp::draw(){
         
         glPointSize( 1 );
         gl::rotate( Vec3f(0, 90.0f, 0) );
-        gl::translate( 0, 0, -1600 );
+        gl::rotate( Vec3f(0, 0, -90.0f) );
+
+        gl::translate( 0, 0, 0 );
         
         if( !mExp.bSnap && !mExp.bRender ){
             uf::drawCoordinate( 100 );

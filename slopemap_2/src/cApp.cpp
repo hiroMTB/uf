@@ -127,6 +127,9 @@ void cApp::setup(){
     }
     
     
+    mExp.startRender();
+    bStart = true;
+    
 }
 
 void cApp::update(){

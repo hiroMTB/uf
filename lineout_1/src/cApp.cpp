@@ -169,6 +169,9 @@ void cApp::setup(){
         }
     }
     
+    bStart = true;
+    bOrtho = true;
+    mExp.startRender();
     
 }
 
@@ -182,7 +185,7 @@ void cApp::update(){
         const Vec2i & imgIndex = mGrain[i].imgIndex;
         Vec3f vel( mVecMap[imgIndex.x][imgIndex.y].x, mVecMap[imgIndex.x][imgIndex.y].y, 0);
         float len = vel.length();
-        len *= len * 0.5;
+        len *= len * 0.05;
         
         Vec3f & pos = mGrain[i].pos;
         
@@ -226,6 +229,20 @@ void cApp::draw(){
         }
         
         float s = 1920.0f/intensityH;
+        
+        glPushMatrix();
+        glLineWidth( 1 );
+        gl::translate( -mExp.mFbo.getWidth()/2, 0, 0);
+        gl::color( ColorAf(1,0,0,0.5) );
+        glBegin(GL_LINES);
+        glVertex3f(1080, 0, 0);
+        glVertex3f(1080, 1920, 0);
+        glVertex3f(1080*2, 0, 0);
+        glVertex3f(1080*2, 1920, 0);
+        glEnd();
+        glPopMatrix();
+
+        
         glPushMatrix();
         gl::scale(1, s, s);
 
@@ -240,7 +257,7 @@ void cApp::draw(){
         glPushMatrix();
         glLineWidth( 1 );
         gl::translate( -mExp.mFbo.getWidth()/2, 0, 0);
-        gl::color( ColorAf(1,0,0,0.7) );
+        gl::color( ColorAf(1,0,0,0.5) );
         glBegin(GL_LINES);
         glVertex3f(1080, 0, 0);
         glVertex3f(1080, 1920, 0);
