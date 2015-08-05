@@ -2,11 +2,7 @@
 
 /*
  *      Export binary file for RF particle simulation
- *
- *      Output bin file can be loaded to BinaryLoader object and make simulation w/ RF.
- *      Basicaly with this usage user needs 1 time export noly.
- *
- *      No framework is used for this class
+ *      No framework needed.
  */
 
 #include <stdio.h>

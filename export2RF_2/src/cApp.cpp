@@ -41,7 +41,7 @@ void cApp::setup(){
     setWindowSize( 1920, 1080 );
     
     CameraPersp cam( 1920, 1080, 54.4f, 1, 100000 );
-    cam.lookAt( Vec3f(0,0,1000), Vec3f(0,0,0) );
+    cam.lookAt( Vec3f(0,0,200), Vec3f(0,0,0) );
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
     camUi.setCurrentCam( cam );
     
@@ -57,26 +57,32 @@ void cApp::setup(){
     
     {
         // make point from intensity
-        Surface32f sIntensity( loadImage(loadAsset("img/02/vela_scana_spire500_signal.tiff")) );
+        Surface32f sIntensity( loadImage(loadAsset("img/03/RCW36_conbine_log.tif")) );
         int intensityW = sIntensity.getWidth();
         int intensityH = sIntensity.getHeight();
         
-        float threashold = 0.4;
+        float threashold = 0.5;
         
         Surface32f::Iter itr = sIntensity.getIter();
         while ( itr.line() ) {
             while( itr.pixel() ){
                 float gray = itr.r();
                 
-                if( threashold<gray && gray<0.7 ){
+                if( threashold<gray && gray<0.95 ){
+                    
+                    
+                    if( randFloat(0,1) < 0.98 )
+                        continue;
+                    
                     Vec2i posi = itr.getPos();
-                    float extrusion = 100.0f;
-                    Vec3f v(posi.x-intensityW/2, posi.y-intensityH/2, gray*extrusion );
+                    float extrusion = 500.0f;
+                    Vec3f v(posi.x-intensityW/2, gray*extrusion, posi.y-intensityH/2 );
                     Vec3f noise = mPln.dfBm( Vec3f(posi.x, posi.y, gray) );
+
+                    v += noise;
+                    v *= 0.06;
                     
-                    v *= 0.1;
-                    
-                    ps.push_back( v + noise );
+                    ps.push_back( v );
 
                     ColorAf c( randFloat(), gray, randFloat(), 1);
                     cs.push_back( c );
@@ -86,16 +92,22 @@ void cApp::setup(){
                     pos.push_back( v.z );
                     
                     vel.push_back( c.r-0.5 );
-                    vel.push_back( c.g-0.5 );
-                    vel.push_back( -c.r );
+                    vel.push_back( -c.g );
+                    vel.push_back( c.r-0.5 );
                 }
             }
         }
+        
+        mDg.createDot( ps, cs, 0.0 );
+        RfExporterBin rfB;
+        rfB.write( /* uf::getTimeStamp() +*/ "myParticle_00000.bin", pos, vel );
+        
+        cout << "Write Bin file, particle num= " <<  ps.size() << endl;
     }
     
-    mDg.createDot( ps, cs, 0.0 );
-    RfExporterBin rfB;
-    rfB.write( /* uf::getTimeStamp() +*/ "myParticle_00000.bin", pos, vel );
+    
+    
+    
 }
 
 void cApp::update(){
