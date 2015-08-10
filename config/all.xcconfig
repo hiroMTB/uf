@@ -30,6 +30,6 @@ LD_FLAG_CSOUND = -lcsnd6.6.0
 
 
 // libsnd
-HEADER_SNDFILE = ../../myBlocks/libsndfile
-LIB_PATH_SNDFILE = ../../myBlocks/libsndfile
+HEADER_SNDFILE = $(CINDER_PATH)/blocks/libsndfile
+LIB_PATH_SNDFILE = $(CINDER_PATH)/blocks/libsndfile
 LD_FLAG_SNDFILE = -lsndfile
