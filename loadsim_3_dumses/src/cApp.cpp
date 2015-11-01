@@ -40,6 +40,7 @@ public:
     Perlin mPln;
     
     Exporter mExp;
+    int boxelx, boxely, boxelz;
 };
 
 void cApp::setup(){

@@ -12,10 +12,12 @@
 		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
 		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
-		13F4CB1A47D64E98988CAEE5 /* sound_writer_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* sound_writer_1.cpp */; };
+		13F4CB1A47D64E98988CAEE5 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* cApp.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */; };
+		6A8A9AC21BE6433F006BD10C /* debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6A8A9AC01BE6433F006BD10C /* debug.xcconfig */; };
+		6A8A9AC31BE6433F006BD10C /* release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6A8A9AC11BE6433F006BD10C /* release.xcconfig */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,11 +38,11 @@
 		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
 		6A53448F1AF7ABF800EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
 		6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
-		6AAB06E71B12640B00AC8B49 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
-		6AAB06E81B12640B00AC8B49 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		6A8A9AC01BE6433F006BD10C /* debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = config/debug.xcconfig; sourceTree = "<group>"; };
+		6A8A9AC11BE6433F006BD10C /* release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = release.xcconfig; path = config/release.xcconfig; sourceTree = "<group>"; };
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AD297581B0B428B00A90116 /* SoundWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundWriter.h; sourceTree = "<group>"; };
-		AEF6A16AF68948639A699138 /* sound_writer_1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sound_writer_1.cpp; path = ../src/sound_writer_1.cpp; sourceTree = "<group>"; };
+		AEF6A16AF68948639A699138 /* cApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cApp.cpp; path = ../src/cApp.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				6A371B821AE5149700BAE4E4 /* module */,
-				AEF6A16AF68948639A699138 /* sound_writer_1.cpp */,
+				AEF6A16AF68948639A699138 /* cApp.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -98,22 +100,15 @@
 		29B97314FDCFA39411CA2CEA /* contour_1 */ = {
 			isa = PBXGroup;
 			children = (
-				6AAB06E61B12640B00AC8B49 /* config */,
+				6A8A9AC01BE6433F006BD10C /* debug.xcconfig */,
+				6A8A9AC11BE6433F006BD10C /* release.xcconfig */,
+				08F93EAE4679458E9C1DE6E6 /* Info.plist */,
 				080E96DDFE201D6D7F000001 /* Source */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				6A3691051B06B03A0095DF1A /* bin */,
 				6A2BC2341B080B5D0043E8EC /* Products */,
 			);
 			name = contour_1;
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				08F93EAE4679458E9C1DE6E6 /* Info.plist */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -144,15 +139,6 @@
 			);
 			name = module;
 			path = ../../module;
-			sourceTree = "<group>";
-		};
-		6AAB06E61B12640B00AC8B49 /* config */ = {
-			isa = PBXGroup;
-			children = (
-				6AAB06E71B12640B00AC8B49 /* debug.xcconfig */,
-				6AAB06E81B12640B00AC8B49 /* release.xcconfig */,
-			);
-			path = config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +194,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A8A9AC31BE6433F006BD10C /* release.xcconfig in Resources */,
+				6A8A9AC21BE6433F006BD10C /* debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13F4CB1A47D64E98988CAEE5 /* sound_writer_1.cpp in Sources */,
+				13F4CB1A47D64E98988CAEE5 /* cApp.cpp in Sources */,
 				6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,7 +233,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = sound_writer_1;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
 			};
@@ -271,7 +259,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = sound_writer_1;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
@@ -280,7 +268,7 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AAB06E71B12640B00AC8B49 /* debug.xcconfig */;
+			baseConfigurationReference = 6A8A9AC11BE6433F006BD10C /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
@@ -297,7 +285,7 @@
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AAB06E81B12640B00AC8B49 /* release.xcconfig */;
+			baseConfigurationReference = 6A8A9AC11BE6433F006BD10C /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";

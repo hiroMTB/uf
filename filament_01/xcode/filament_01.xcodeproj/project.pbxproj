@@ -37,7 +37,7 @@
 		6AAB06D91B125DE200AC8B49 /* cApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cApp.cpp; path = ../src/cApp.cpp; sourceTree = "<group>"; };
 		6AAB06DB1B125DF100AC8B49 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = config/debug.xcconfig; sourceTree = "<group>"; };
 		6AAB06DC1B125DF100AC8B49 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = release.xcconfig; path = config/release.xcconfig; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* slopemap_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slopemap_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* filament_01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = filament_01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CFCBE1AFA244A19A93A224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +95,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* slopemap_2.app */,
+				8D1107320486CEB800E47090 /* filament_01.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 			name = filament_01;
 			productInstallPath = "$(HOME)/Applications";
 			productName = contour_0;
-			productReference = 8D1107320486CEB800E47090 /* slopemap_2.app */;
+			productReference = 8D1107320486CEB800E47090 /* filament_01.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +240,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_GENERATE_MAP_FILE = NO;
-				PRODUCT_NAME = filament_01;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SYMROOT = ./build;
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
@@ -267,7 +267,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_GENERATE_MAP_FILE = NO;
-				PRODUCT_NAME = filament_01;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";

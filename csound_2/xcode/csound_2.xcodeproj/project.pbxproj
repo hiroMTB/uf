@@ -267,7 +267,7 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks/CsoundLib64.framework/Versions/6.0",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = csound_2;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SYMROOT = ./build;
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
@@ -304,7 +304,7 @@
 					"$(LOCAL_LIBRARY_DIR)/Frameworks/CsoundLib64.framework/Versions/6.0",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = csound_2;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";

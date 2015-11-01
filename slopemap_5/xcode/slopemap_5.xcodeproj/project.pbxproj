@@ -240,7 +240,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_GENERATE_MAP_FILE = NO;
-				PRODUCT_NAME = slopemap_5;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SYMROOT = ./build;
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 				WRAPPER_EXTENSION = app;
@@ -267,7 +267,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_GENERATE_MAP_FILE = NO;
-				PRODUCT_NAME = slopemap_5;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
 				USER_HEADER_SEARCH_PATHS = "$(inherited)";
