@@ -1,13 +1,15 @@
 ; orchestra code
 
+/*
 sr=192000
 ksmps=32
 nchnls=2
 0dbfs=1
+*/
 
+;giFile	ftgen	0, 0, 0, 1, "fox.wav", 0, 0, 0	; soundfile for source waveform
 giCosine	ftgen	0, 0, 8193, 9, 1, 1, 90		; cosine
 giDisttab	ftgen	0, 0, 32768, 7, 0, 32768, 1	; for kdistribution
-giFile		ftgen	0, 0, 0, 1, "fox.wav", 0, 0, 0	; soundfile for source waveform
 giWin		ftgen	0, 0, 4096, 20, 9, 1		; grain envelope
 giPan		ftgen	0, 0, 32768, -21, 1		; for panning (random values between 0 and 1)
 
@@ -20,36 +22,60 @@ giPan		ftgen	0, 0, 32768, -21, 1		; for panning (random values between 0 and 1)
 /* C++ param */
 gkCpp1  init 0
 gkCpp2  init 0
+gkCpp3  init 0
 
 giCpp1  init 0
 giCpp2  init 0
+giCpp3  init 0
 
 instr 2
 ikConversion:
 gkCpp1   chnget  "cpp1"
 gkCpp2   chnget  "cpp2"
+gkCpp3   chnget  "cpp3"
 
 giCpp1 = i(gkCpp1)
 giCpp2 = i(gkCpp2)
-;print giCpp1, giCpp2
+giCpp3 = i(gkCpp3)
+
 rireturn
 reinit ikConversion
 endin
 
 instr 1
 
-/*score parameters*/
-ispeed			= p4		; 1 = original speed
-igrainrate		= p5		; grain rate
-igrainsize		= p6		; grain size in ms
-icent			= p7		; transposition in cent
-iposrand		= p8		; time position randomness (offset) of the pointer in ms
-icentrand		= p9		; transposition randomness in cents
-ipan			= p10		; panning narrow (0) to wide (1)
-idist			= p11		; grain distribution (0=periodic, 1=scattered)
+/*score parameters */
+ispeed_b		= p4		; 1 = original speed
+igrainrate_b	= p5		; grain rate
+igrainsize_b	= p6		; grain size in ms
+icent_b			= p7		; transposition in cent
+iposrand_b		= p8		; time position randomness (offset) of the pointer in ms
+icentrand_b		= p9		; transposition randomness in cents
+ipan_b			= p10		; panning narrow (0) to wide (1)
+idist_b			= p11		; grain distribution (0=periodic, 1=scattered)
 
-ispeed          = ispeed + giCpp1*10
-igrainsize      = igrainsize + giCpp2*3.0
+ispeed          = p4
+igrainrate      = p5
+igrainsize      = p6
+icent           = p7
+iposrand		= p8
+icentrand		= p9
+ipan			= p10
+idist			= p11
+
+ikParameter:
+;ispeed         = ispeed_b + giCpp2
+igrainrate      = igrainrate_b + giCpp3*100
+igrainsize      = igrainsize_b + giCpp3*10
+icent           = icent_b + 1000*giCpp1
+iposrand       = iposrand_b + giCpp2 * 2000
+icentrand      = icentrand_b + giCpp2 * 100
+ipan            = ipan_b + giCpp3
+idist           = idist_b + giCpp3
+
+rireturn
+reinit ikParameter
+
 
 /*get length of source wave file, needed for both transposition and time pointer*/
 ifilen			tableng	giFile
@@ -59,15 +85,15 @@ ifildur			= ifilen / sr
 async			= 0
 
 /*grain envelope*/
-kenv2amt		= 1		; use only secondary envelope
+kenv2amt		= 0.2 + gkCpp2 * 1.2	; use only secondary envelope
 ienv2tab 		= giWin		; grain (secondary) envelope
 ienv_attack		= -1 		; default attack envelope (flat)
 ienv_decay		= -1 		; default decay envelope (flat)
-ksustain_amount	= 0.5		; no meaning in this case (use only secondary envelope, ienv2tab)
-ka_d_ratio		= gkCpp1  ;0.5 		; no meaning in this case (use only secondary envelope, ienv2tab)
+ksustain_amount	= gkCpp1    ; no meaning in this case (use only secondary envelope, ienv2tab)
+ka_d_ratio		= gkCpp2  ;0.5 		; no meaning in this case (use only secondary envelope, ienv2tab)
 
 /*amplitude*/
-kamp			= gkCpp1*0.05 + 0.6*0dbfs	; grain amplitude
+kamp			= gkCpp3 + 0.1*0dbfs	; grain amplitude
 igainmasks		= -1		; (default) no gain masking
 
 /*transposition*/
@@ -76,7 +102,7 @@ iorig			= 1 / ifildur	; original pitch
 kwavfreq		= iorig * cent(icent + kcentrand)
 
 /*other pitch related (disabled)*/
-ksweepshape		= 0		; no frequency sweep
+ksweepshape		= 1		; no frequency sweep
 iwavfreqstarttab 	= -1		; default frequency sweep start
 iwavfreqendtab		= -1		; default frequency sweep end
 awavfm			= 0		; no FM input
@@ -85,8 +111,8 @@ kfmenv			= -1		; default FM envelope (flat)
 
 /*trainlet related (disabled)*/
 icosine			= giCosine	; cosine ftable
-kTrainCps		= igrainrate	; set trainlet cps equal to grain rate for single-cycle trainlet in each grain
-knumpartials		= 1		; number of partials in trainlet
+kTrainCps		= igrainrate ; set trainlet cps equal to grain rate for single-cycle trainlet in each grain
+knumpartials		= 1000		; number of partials in trainlet
 kchroma			= 1		; balance of partials in trainlet
 
 /*panning, using channel masks*/

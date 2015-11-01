@@ -15,8 +15,25 @@
 		13F4CB1A47D64E98988CAEE5 /* csound_3_grain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* csound_3_grain.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		6A121D4F1BE3DEBB0092D943 /* tmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A121D4D1BE3DEBB0092D943 /* tmp.cpp */; };
 		6A183D151B065F1400E686A3 /* CsoundLib64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A183D141B065F1400E686A3 /* CsoundLib64.framework */; };
 		6A19C2CB1B0616DD00A8AD2D /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A19C2CA1B0616DD00A8AD2D /* Cairo.cpp */; };
+		6A3F97EB1BE40FCC004B678E /* partikkle_2_r1.orc in Resources */ = {isa = PBXBuildFile; fileRef = 6A3F97EA1BE40FCC004B678E /* partikkle_2_r1.orc */; };
+		6A3F97EE1BE42047004B678E /* partikkle_2_r1.orc in Resources */ = {isa = PBXBuildFile; fileRef = 6A3F97EA1BE40FCC004B678E /* partikkle_2_r1.orc */; };
+		6A3F97F01BE42047004B678E /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A19C2CA1B0616DD00A8AD2D /* Cairo.cpp */; };
+		6A3F97F11BE42047004B678E /* tmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A121D4D1BE3DEBB0092D943 /* tmp.cpp */; };
+		6A3F97F21BE42047004B678E /* csound_3_grain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* csound_3_grain.cpp */; };
+		6A3F97F31BE42047004B678E /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */; };
+		6A3F97F41BE42047004B678E /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AC60E011AF39A9D00345E26 /* ContourMap.cpp */; };
+		6A3F97F61BE42047004B678E /* CsoundLib64.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A183D141B065F1400E686A3 /* CsoundLib64.framework */; };
+		6A3F97F71BE42047004B678E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		6A3F97F81BE42047004B678E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		6A3F97F91BE42047004B678E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		6A3F97FA1BE42047004B678E /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		6A3F97FB1BE42047004B678E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		6A3F97FC1BE42047004B678E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		6A3F97FD1BE42047004B678E /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		6A3F97FE1BE42047004B678E /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */; };
 		6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AC60E011AF39A9D00345E26 /* ContourMap.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -34,12 +51,16 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		6A121D4D1BE3DEBB0092D943 /* tmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tmp.cpp; path = ../src/tmp.cpp; sourceTree = "<group>"; };
 		6A183D141B065F1400E686A3 /* CsoundLib64.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CsoundLib64.framework; path = /Library/Frameworks/CsoundLib64.framework; sourceTree = "<absolute>"; };
 		6A19C2CA1B0616DD00A8AD2D /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		6A2BC22F1B0804910043E8EC /* csound_3_grain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = csound_3_grain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3691051B06B03A0095DF1A /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
 		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
 		6A37EF481B20B13E00D65E5D /* ConsoleColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
+		6A3F97EA1BE40FCC004B678E /* partikkle_2_r1.orc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = partikkle_2_r1.orc; path = ../../assets/csound/partikkle_2_r1.orc; sourceTree = "<group>"; };
+		6A3F98021BE42047004B678E /* csound_3_grain copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "csound_3_grain copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A3F98031BE42047004B678E /* csound_3_grain copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "csound_3_grain copy-Info.plist"; path = "/Volumes/StudioRK/unfold/dev/cinder_0.8.6_mac/_uf/csound_3_grain/xcode/csound_3_grain copy-Info.plist"; sourceTree = "<absolute>"; };
 		6A53448F1AF7ABF800EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
 		6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
 		6AAB06E41B1262D900AC8B49 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
@@ -47,11 +68,26 @@
 		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AC60E011AF39A9D00345E26 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
 		6AC60E021AF39A9D00345E26 /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
-		6ACF419D1B21029A00A57E2C /* partikkle_2_r1.orc */ = {isa = PBXFileReference; lastKnownFileType = text; name = partikkle_2_r1.orc; path = ../assets/partikkle_2_r1.orc; sourceTree = "<group>"; };
 		AEF6A16AF68948639A699138 /* csound_3_grain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = csound_3_grain.cpp; path = ../src/csound_3_grain.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6A3F97F51BE42047004B678E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A3F97F61BE42047004B678E /* CsoundLib64.framework in Frameworks */,
+				6A3F97F71BE42047004B678E /* Cocoa.framework in Frameworks */,
+				6A3F97F81BE42047004B678E /* OpenGL.framework in Frameworks */,
+				6A3F97F91BE42047004B678E /* CoreVideo.framework in Frameworks */,
+				6A3F97FA1BE42047004B678E /* QTKit.framework in Frameworks */,
+				6A3F97FB1BE42047004B678E /* Accelerate.framework in Frameworks */,
+				6A3F97FC1BE42047004B678E /* AudioToolbox.framework in Frameworks */,
+				6A3F97FD1BE42047004B678E /* AudioUnit.framework in Frameworks */,
+				6A3F97FE1BE42047004B678E /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -84,6 +120,7 @@
 			children = (
 				6A371B821AE5149700BAE4E4 /* module */,
 				AEF6A16AF68948639A699138 /* csound_3_grain.cpp */,
+				6A121D4D1BE3DEBB0092D943 /* tmp.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -115,7 +152,7 @@
 		29B97314FDCFA39411CA2CEA /* contour_1 */ = {
 			isa = PBXGroup;
 			children = (
-				6ACF419D1B21029A00A57E2C /* partikkle_2_r1.orc */,
+				6A3F97EA1BE40FCC004B678E /* partikkle_2_r1.orc */,
 				6AAB06E31B1262D900AC8B49 /* config */,
 				01B97315FEAEA392516A2CEA /* Blocks */,
 				080E96DDFE201D6D7F000001 /* Source */,
@@ -123,6 +160,8 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				6A3691051B06B03A0095DF1A /* bin */,
 				6A2BC22F1B0804910043E8EC /* csound_3_grain.app */,
+				6A3F98021BE42047004B678E /* csound_3_grain copy.app */,
+				6A3F98031BE42047004B678E /* csound_3_grain copy-Info.plist */,
 			);
 			name = contour_1;
 			sourceTree = "<group>";
@@ -172,6 +211,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6A3F97EC1BE42047004B678E /* csound_3_grain copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A3F97FF1BE42047004B678E /* Build configuration list for PBXNativeTarget "csound_3_grain copy" */;
+			buildPhases = (
+				6A3F97ED1BE42047004B678E /* Resources */,
+				6A3F97EF1BE42047004B678E /* Sources */,
+				6A3F97F51BE42047004B678E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "csound_3_grain copy";
+			productInstallPath = "$(HOME)/Applications";
+			productName = contour_1;
+			productReference = 6A3F98021BE42047004B678E /* csound_3_grain copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D1107260486CEB800E47090 /* csound_3_grain */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "csound_3_grain" */;
@@ -213,26 +270,49 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* csound_3_grain */,
+				6A3F97EC1BE42047004B678E /* csound_3_grain copy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6A3F97ED1BE42047004B678E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A3F97EE1BE42047004B678E /* partikkle_2_r1.orc in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3F97EB1BE40FCC004B678E /* partikkle_2_r1.orc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6A3F97EF1BE42047004B678E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A3F97F01BE42047004B678E /* Cairo.cpp in Sources */,
+				6A3F97F11BE42047004B678E /* tmp.cpp in Sources */,
+				6A3F97F21BE42047004B678E /* csound_3_grain.cpp in Sources */,
+				6A3F97F31BE42047004B678E /* MyCamera.cpp in Sources */,
+				6A3F97F41BE42047004B678E /* ContourMap.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6A19C2CB1B0616DD00A8AD2D /* Cairo.cpp in Sources */,
+				6A121D4F1BE3DEBB0092D943 /* tmp.cpp in Sources */,
 				13F4CB1A47D64E98988CAEE5 /* csound_3_grain.cpp in Sources */,
 				6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */,
 				6AC60E031AF39A9D00345E26 /* ContourMap.cpp in Sources */,
@@ -242,6 +322,80 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		6A3F98001BE42047004B678E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "csound_3_grain copy-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks/CsoundLib64.framework/Versions/6.0",
+				);
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "csound_3_grain copy";
+				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6A3F98011BE42047004B678E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "csound_3_grain copy-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks/CsoundLib64.framework/Versions/6.0",
+				);
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "csound_3_grain copy";
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -353,6 +507,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6A3F97FF1BE42047004B678E /* Build configuration list for PBXNativeTarget "csound_3_grain copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A3F98001BE42047004B678E /* Debug */,
+				6A3F98011BE42047004B678E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "csound_3_grain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

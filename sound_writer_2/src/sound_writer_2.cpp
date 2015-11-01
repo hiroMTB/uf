@@ -8,8 +8,10 @@
 #include "cinder/MayaCamUI.h"
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
+
 #include "ufUtil.h"
 #include "SoundWriter.h"
+#include "Exporter.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -19,39 +21,111 @@ class cApp : public AppNative {
     
 public:
     void setup();
-    void writeWavHeader();
+    void writeWavFromImg(fs::path srcPath, fs::path renderdir, int nCh, int samplingRate );
+    
+    const int       samplingRate    = 192000;
+    double          screen_w        = -123;        // depends on sound sample length
+    const double    screen_h        = 1000;
+    const double    xScale          = 0.001;
+    const double    yScale          = screen_h/2;
+    const double    margin          = 40;
 };
 
 void cApp::setup(){
     
-    // setting
-    int nCh = 2;
-    int samplingRate = 192000;
+    // fetch image file
+    vector<fs::path> srcList;
+    fs::path dir = loadAsset("img/all/")->getFilePath();
+    fs::recursive_directory_iterator it(dir), eof;
+    while( it!= eof){
+        if( !fs::is_directory(it.status() ) ){
+            
+            if( it->path().filename().string().at(0) != '.' ){
+                cout << "add to process list : " << srcList.size() << " " << it->path().filename() << endl;
+                srcList.push_back( *it );
+            }
+        }
+        ++it;
+    }
 
-    Surface32f sur = Surface32f( loadImage(loadAsset("img/vela_scana_spire250_signal.tiff")));
-    int w = sur.getWidth();
-    int h = sur.getHeight();
-    int nPix = w * h;
+    // prepare render dir
+    fs::path render_dir = uf::getRenderPath();
+    
+    // write
+    for( auto srcPath : srcList ){
+        writeWavFromImg(srcPath, render_dir, 1, samplingRate);
+    }
 
+    quit();
+
+}
+
+void cApp::writeWavFromImg( fs::path srcPath, fs::path render_dir, int nCh=1, int samplingRate=192000 ){
+
+    fs::path dir_snd = render_dir / "snd/";
+    fs::path dir_img = render_dir / "img/";
+    if( !fs::exists(dir_snd) )
+        createDirectories( dir_snd );
+
+    if( !fs::exists(dir_img) )
+        createDirectories( dir_img );
+    
+    
+    // we use float for all data type
     vector<float> data;
-    data.assign( nPix*nCh , 0);
 
+    // LOAD Image
+    ImageSourceRef srcRef = loadImage(srcPath);
+
+    Surface32f sur = Surface32f( srcRef );
     Surface32f::Iter itr = sur.getIter();
-
-    int index = 0;
+    
     while(itr.line()){
         while( itr.pixel() ){
-            float r = itr.r();
-            data[index*nCh+0] = r;
-            data[index*nCh+1] = r;
-            index++;
+            data.push_back( itr.r() );
         }
     }
 
-    string path = uf::getTimeStamp() + ".wav";
-    SoundWriter::writeWav32f(data, nCh, samplingRate, data.size()/nCh, path);
+    string fileName = srcPath.filename().string();
+
     
-    quit();
+    // Write Sound
+    fs::path path_snd = dir_snd / (fileName+".wav");
+    SoundWriter::writeWav32f(data, nCh, samplingRate, data.size()/nCh, path_snd.string() );
+    
+    screen_w = data.size() * xScale;
+
+    // Write sound data PNG
+    Exporter mExp;
+    setWindowPos(0, 0);
+    setWindowSize( (screen_w+ margin*2)/10, (screen_h+margin*2)/10);
+    mExp.setup(screen_w+margin*2, screen_h+margin*2, 1, GL_RGB, "", 0);
+
+    fs::path path_img = dir_img / (fileName+ ".png");
+    mExp.snapShot( path_img.string() );
+    
+    gl::enableAlphaBlending();
+    gl::clear();
+    
+    mExp.begin();{
+        gl::clear( Colorf(0,0,0) );
+        glPointSize(1);
+        gl::color(1,1,1,0.5);
+        gl::translate( Vec2f(margin, margin+mExp.mFbo.getHeight()/2) );
+        
+        glBegin( GL_POINTS );
+        for( int i=0; i<data.size(); i++ ){
+            float x = i * xScale;
+            float y = data[i] * yScale;
+            glVertex3f( x, -y, 0 );
+        }
+        glEnd();
+        
+        // gl::color( Colorf(1,0,0) );
+        // gl::drawSolidRect( Rectf(100, -100, 400, -400) );
+    }
+    mExp.end();
+
 }
 
 CINDER_APP_NATIVE( cApp, RendererGl(0) )

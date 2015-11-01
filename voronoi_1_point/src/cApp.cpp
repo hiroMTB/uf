@@ -50,16 +50,16 @@ void cApp::setup(){
         vPs.push_back( vPoint(randFloat()*mWin_w, randFloat()*mWin_h) );
     }
     
-    for(int i=0; i<5; i++){
-        vPoint v1(randFloat()*mWin_w, randFloat()*mWin_h);
-        vPoint v2 = v1;
-        v2.x( v2.x() + randFloat()*100 );
-        v2.y( v2.y() + randFloat()*100 );
-        vSegs.push_back( vSegment(v1, v2) );
-    }
+//    for(int i=0; i<5; i++){
+//        vPoint v1(randFloat()*mWin_w, randFloat()*mWin_h);
+//        vPoint v2 = v1;
+//        v2.x( v2.x() + randFloat()*100 );
+//        v2.y( v2.y() + randFloat()*100 );
+//        vSegs.push_back( vSegment(v1, v2) );
+//    }
     
-    //construct_voronoi(vPs.begin(), vPs.end(), &vd);
-    construct_voronoi(vPs.begin(), vPs.end(), vSegs.begin(), vSegs.end(), &vd);
+    construct_voronoi(vPs.begin(), vPs.end(), &vd);
+    //construct_voronoi(vPs.begin(), vPs.end(), vSegs.begin(), vSegs.end(), &vd);
 }
 
 
@@ -70,7 +70,8 @@ void cApp::draw(){
     gl::clear(ColorA(1,1,1,1));
     gl::setMatricesWindow( getWindowSize() );
     gl::translate( 0, 0 ,0 );
-
+    glScalef(0.5, 0.5, 0.5);
+    
     gl::color(1, 0, 0);
     gl::lineWidth(1);
     gl::begin(GL_LINES);
@@ -119,13 +120,13 @@ void cApp::draw(){
         glVertex3f( v.x(), v.y(), 0);
     glEnd();
 
-    // draw Segment
-    gl::lineWidth(3);
-    glBegin(GL_LINES);
-    for( auto s : vSegs ){
-        glVertex3f(s.low().x(), s.low().y(), 0);
-        glVertex3f(s.high().x(), s.high().y(), 0);
-    }
+//    // draw Segment
+//    gl::lineWidth(3);
+//    glBegin(GL_LINES);
+//    for( auto s : vSegs ){
+//        glVertex3f(s.low().x(), s.low().y(), 0);
+//        glVertex3f(s.high().x(), s.high().y(), 0);
+//    }
     glEnd();
 }
 

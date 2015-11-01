@@ -20,10 +20,10 @@ public:
     gl::Fbo mFbo;
     fs::path mRenderPath;
     ImageTarget::Options mImgWOption;
-    
+    string snapFileName;
     Exporter(){}
     
-    void setup( int width, int height, int exitFrame, GLenum colorInternalFormat, fs::path path, int aaSample ){
+    void setup( int width, int height, int exitFrame, GLenum colorInternalFormat, fs::path path, int aaSample, bool aFlip=false ){
         bRender = false;
         bSnap = false;
         mFrame = 1;
@@ -38,7 +38,7 @@ public:
         format.setColorInternalFormat( colorInternalFormat );
         format.setSamples( aaSample );
         mFbo = gl::Fbo( width, height, format );
-        //mFbo.getTexture(0).setFlipped(true);
+        mFbo.getTexture(0).setFlipped(aFlip);
         mRenderPath = path;
         
         mImgWOption.quality(1);
@@ -57,8 +57,10 @@ public:
         
         mFbo.bindFramebuffer();
         gl::setMatricesWindow( mFbo.getSize() );
+        gl::scale(1,-1,1);
+        gl::translate( 0, -mFbo.getHeight() );
     }
-
+    
     void begin( const Camera & cam){
         gl::pushMatrices();
         //gl::SaveFramebufferBinding bindingSaver;
@@ -67,19 +69,23 @@ public:
         mFbo.bindFramebuffer();
         gl::setMatrices( cam );
     }
-
+    
     void end(){
         mFbo.unbindFramebuffer();
         gl::popMatrices();
         
         if( bRender || bSnap ){
             string frame_name = "f_" + toString( mFrame ) + ".png";
+
+            if( bSnap && snapFileName!=""){
+                frame_name = snapFileName;
+            }
             writeImage( mRenderPath/frame_name,  mFbo.getTexture());
             cout << "Render Image : " << mFrame << endl;
             
             if( mExitFrame <= mFrame ){
                 if( bSnap ){
-                    cout << "Finish Snapshot " << endl;
+                    cout << "Finish Snapshot " << frame_name << endl;
                 }else{
                     cout << "Finish Rendering " << mFrame << " frames" << endl;
                     exit(1);
@@ -101,25 +107,12 @@ public:
         cout << "Stop Render : f_" << mFrame << endl;
     }
     
-    void snapShot(){
+    void snapShot( string fileName=""){
         bSnap = true;
+        snapFileName = fileName;
     }
     
     void draw(){
-
-//        float win_w = getWindowWidth();
-//        float win_h = getWindowHeight();
-//        float win_aspect = win_w/win_h;
-//        float fbo_aspect = mFbo.getAspectRatio();
-//        Area area(0,0,0,0);
-//        if( win_aspect >= fbo_aspect ){
-//            float scale = mFbo.getHeight()/win_h;
-//            area.set(0, 0, win_w * scale, win_h);
-//        }else{
-//            float scale = mFbo.getWidth() / win_w;
-//            area.set(0, 0, win_w, win_h*scale);
-//        }
-
         gl::pushMatrices();
         gl::setMatricesWindow( mFbo.getSize() );
         gl::setViewport(getWindowBounds() );

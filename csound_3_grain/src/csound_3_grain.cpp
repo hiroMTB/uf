@@ -10,6 +10,10 @@
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
 
+#include "cinder/audio/Context.h"
+#include "cinder/audio/Utilities.h"
+#include "cinder/audio/SamplePlayerNode.h"
+
 #include "csound.hpp"
 #include "csound.h"
 
@@ -25,36 +29,84 @@ class cApp : public AppNative {
     
 public:
     void setup();
-    void update();
     void draw();
+    void write(fs::path srcPath, fs::path render_dir );
     
     Csound * csound;
-    MYFLT mAmp;
-    MYFLT mFreq;
-    
     Perlin mPln;
     Perlin mPln2;
-
+    
+    fs::path assetPath;
 };
 
 void cApp::setup(){
-    
-    mAmp = 0.5;
-    mFreq = 200;
+    setWindowPos(0, 0);
+    setWindowSize(600, 200);
     mPln.setSeed(123);
     mPln.setOctaves(4);
     mPln2.setSeed(555);
-    mPln2.setOctaves(32);
+    mPln2.setOctaves(6);
+    
+    fs::path render_dir = uf::getRenderPath();
+    bool dirok = createDirectories( render_dir.string() + "/" );
+    if( !dirok ) quit();
+    
+    vector<fs::path> srcList;
+    assetPath = "snd/data2wav";
+    //assetPath = "snd/data2wav2fftwave";
+    
+    fs::path dir = loadAsset( assetPath )->getFilePath();
+    fs::recursive_directory_iterator it(dir), eof;
+    while( it!= eof){
+        if( !fs::is_directory(it.status() ) ){
+            
+            if( it->path().filename().string().at(0) != '.' ){
+                cout << "add to process list : " << srcList.size() << " " << it->path().filename() << endl;
+                srcList.push_back( *it );
+            }
+        }
+        ++it;
+    }
+    
+    for( auto srcPath : srcList ){
+        write(srcPath, render_dir );
+    }
+    quit();
+    
+}
 
+void cApp::write( fs::path srcFilePath, fs::path render_dir ) {
+    
     csound = new Csound();
     //csound->SetOption( (char*)"-odac" );
+    string srcFilename = srcFilePath.filename().string();
+    fs::path renderFilePath = render_dir / srcFilename;
+    cout << "srcFilePath =  " << srcFilePath.string() << endl;
+    cout << "srcFilename =  " << srcFilename << endl;
+
+    cout << "renderFilePath = " << renderFilePath.string() << endl;
+    cout << "assetPath" << assetPath.string() << endl;
     
-    string fileName = "-o" + uf::getTimeStamp() + ".wav";
-    csound->SetOption( const_cast<char*>(fileName.c_str()) );   // file name
-    csound->SetOption("-W");                // Wav
-    csound->SetOption("-f");                // 32float
+    int sampling_rate = 192000;
+    int control_rate = 1;
+    string sr      = "sr=" + toString(sampling_rate) + "\n";
+    string ksmps   = "ksmps=" + toString(control_rate) + "\n";
+    string nchnls  = "nchnls=" + toString(2) + "\n";
+    string dbfs    = "0dbfs=1\n";
+    string fileName = "-o" + renderFilePath.string() + "-ptk_" + toString(sampling_rate) + "_k" + toString(control_rate)+ "_" + ".wav";
     
-    std::string orc = loadString( loadAsset("partikkle_2_r1.orc") );
+    csound->SetOption( const_cast<char*>( fileName.c_str() ) );   // file name
+    csound->SetOption( (char*)"-W" );   // Wav
+    csound->SetOption( (char*)"-f" );   // 32float
+    
+    string orc = sr + ksmps + nchnls + dbfs;
+    
+    orc += "giFile	ftgen	0, 0, 0, 1, \"../../../assets/" + assetPath.string() + "/" + srcFilename + "\", 0, 0, 0";
+    
+    string orcMain = loadString( loadAsset("csound/partikkle_2_r1.orc") );
+    
+    orc += orcMain;
+    
     {
         cout << orc << endl;
         int result = csound->CompileOrc( orc.c_str() );
@@ -67,12 +119,11 @@ void cApp::setup(){
         }
     }
     
-    
-    std::string sco =   R"dlm(
-        ; score code
-        ;i1	st	dur     speed	grate	gsize	cent	posrnd	cntrnd	pan	dist
-        i1	0	10      1.5     1000    1      1200     10000	1400     1	1
-        i2  0   10
+    string sco =   R"dlm(
+    ; score code
+    ;i1	st	dur     speed	grate	gsize	cent	posrnd	cntrnd	pan	dist
+    i1	0	10      1       20000      10     1200     1000	1400     1	1
+    i2  0   10
     )dlm";
     
     {
@@ -88,26 +139,40 @@ void cApp::setup(){
     csound->ReadScore(sco.c_str());
     csound->Start();
     
+    //assetPath = "snd/data2wav2fftwave";
+    audio::SourceFileRef sourceFileRef = audio::load( loadAsset( assetPath/srcFilePath.filename() ) );
+    audio::BufferRef buf = sourceFileRef->loadBuffer();
+    float * ch0 = buf->getChannel(0);
+    int nFrame = buf->getNumFrames();
+    
     int i = 0;
+    MYFLT * cpp1, *cpp2, *cpp3;
+    float n1 = 0.5;
+    float n2 = 0.5;
     while ( csoundPerformKsmps(csound->GetCsound() ) == 0) {
-         MYFLT * cpp1, *cpp2;
-        int result1 = csoundGetChannelPtr( csound->GetCsound(), &cpp1, "cpp1", CSOUND_INPUT_CHANNEL | CSOUND_CONTROL_CHANNEL );
-        int result2 = csoundGetChannelPtr( csound->GetCsound(), &cpp2, "cpp2", CSOUND_INPUT_CHANNEL | CSOUND_CONTROL_CHANNEL );
+        csoundGetChannelPtr( csound->GetCsound(), &cpp1, "cpp1", CSOUND_INPUT_CHANNEL | CSOUND_CONTROL_CHANNEL );
+        csoundGetChannelPtr( csound->GetCsound(), &cpp2, "cpp2", CSOUND_INPUT_CHANNEL | CSOUND_CONTROL_CHANNEL );
+        csoundGetChannelPtr( csound->GetCsound(), &cpp3, "cpp3", CSOUND_INPUT_CHANNEL | CSOUND_CONTROL_CHANNEL );
+    
+        n1 = mPln.dfBm( 1 + i*0.001, n1 ).x;
+        n2 = mPln2.dfBm( 2 + i*0.05, n1 ).x;
+        n1 = (n1+1.0)*0.5;
+        n2 = (n2+1.0)*0.5;
         
-        *cpp1 = (mPln.fBm( i*0.05, *cpp2*1.0)-0.5)*0.001;
-        *cpp2 = (mPln2.fBm(i*0.01, *cpp1*0.1 + randFloat()*0.05)-0.5);
+        *cpp1 = n1*0.9 + 0.1;
+        *cpp2 = n2*0.9 + 0.1;
+        *cpp3 = ch0[i%nFrame];
+        
+        //cout << *cpp1 << ", " << *cpp2 << endl;
         i++;
     }
     
     csoundDestroy( csound->GetCsound() );
-    quit();
 }
 
-void cApp::update(){
-}
 
 void cApp::draw(){
-    gl::clear();
+    gl::clear( Colorf(1,0.4,0.3));
 }
 
 
