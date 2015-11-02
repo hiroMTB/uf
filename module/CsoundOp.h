@@ -7,33 +7,37 @@ using boost::format;
 namespace mt{
 
     /*
-     *      最後のパラメタ0個の時にこれが呼ばれる。
+     *      private use only
      */
-    string op_expander(boost::format& fmt) {
+    string op(boost::format& fmt) {
         return fmt.str() + "\n";
     }
     
     /*
-     *      受け取った値を1個ずつ処理する
+     *      With user defined boost::format
+     *
+     *      Usage
+     *      boost::format fmt("i %d, %d, %d");
+     *      cout << mt::op( fmt, 1,2,3 );
      */
     template<typename TPrm, typename... TPrms>
-    string op_expander(boost::format& fmt, TPrm prm, TPrms... prms) {
+    string op(boost::format& fmt, TPrm prm, TPrms... prms) {
         fmt % prm;
-        return op_expander(fmt, prms...);
+        return op(fmt, prms...);
     }
 
     /*
-     *      Variadic template
-     *      どんな型の値を何個でも受け取って間に空白を挿入する。
+     *      Usage
+     *      cout << mt::op( 1,2,3 );
      */
     template<typename... TPrms>
     string op( TPrms... prms) {
         int nPrm = sizeof...(prms);
         string fmtstr;
         for( int i=0; i<nPrm; i++)
-            fmtstr += "%" + str( format("%d") % (i+1) ) + "% ";
+            fmtstr += "%" + to_string( i+1 ) + "%" + " ";
         
         boost::format fmt(fmtstr);
-        return op_expander(fmt, prms...);
+        return op(fmt, prms...);
     }
 }

@@ -44,10 +44,14 @@ public:
 
 void cApp::setup(){
     
-    cout << mt::op( "i", "+", 123, 11, "123", 1.11) << endl;
-    cout << mt::op( "ocil", "bamboo", 123, 11, "123", 1.11) << endl;
-    cout << mt::op( 4,4,4, "<" ,4,10, 123, 11, "123", 1.11) << endl;
-    cout << mt::op( 123, 11, "123", 1.11) << endl;
+    cout << mt::op( 1 ) << endl;
+    cout << mt::op( 1.1, "Yes" ) << endl;
+    cout << mt::op( 1, 2, 0.333 ) << endl;
+    cout << mt::op( "one", "two", "three" ) << endl;
+    cout << mt::op( 1, 2, 333, 4444, 5, 6, 7, 8 ) << endl;
+
+    boost::format fmt("Yoooo!! %05.4f,%05.4f,%05.4f");
+    cout << mt::op( fmt, 1, 2, 0.333 ) << endl;
     
     setWindowPos(0, 0);
     setWindowSize(600, 200);
