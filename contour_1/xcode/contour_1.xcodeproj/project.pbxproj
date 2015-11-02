@@ -16,7 +16,7 @@
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		6A5344991AF7AC0500EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5344951AF7AC0500EB5383 /* MyCamera.cpp */; };
 		6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EFB181B06111200E7ECF9 /* Cairo.cpp */; };
-		6AAB06DA1B125DE200AC8B49 /* contour_1App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB06D91B125DE200AC8B49 /* contour_1App.cpp */; };
+		6AAB06DA1B125DE200AC8B49 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB06D91B125DE200AC8B49 /* cApp.cpp */; };
 		6AAB06DF1B125E9100AC8B49 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB06DD1B125E9100AC8B49 /* ContourMap.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -37,7 +37,7 @@
 		6A5344961AF7AC0500EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
 		6A5344971AF7AC0500EB5383 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6A7EFB181B06111200E7ECF9 /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
-		6AAB06D91B125DE200AC8B49 /* contour_1App.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = contour_1App.cpp; path = ../src/contour_1App.cpp; sourceTree = "<group>"; };
+		6AAB06D91B125DE200AC8B49 /* cApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cApp.cpp; path = ../src/cApp.cpp; sourceTree = "<group>"; };
 		6AAB06DB1B125DF100AC8B49 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = config/debug.xcconfig; sourceTree = "<group>"; };
 		6AAB06DC1B125DF100AC8B49 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = release.xcconfig; path = config/release.xcconfig; sourceTree = "<group>"; };
 		6AAB06DD1B125E9100AC8B49 /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		29B97315FDCFA39411CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
-				6AAB06D91B125DE200AC8B49 /* contour_1App.cpp */,
+				6AAB06D91B125DE200AC8B49 /* cApp.cpp */,
 				6A5344911AF7AC0500EB5383 /* module */,
 			);
 			name = src;
@@ -221,7 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AAB06DA1B125DE200AC8B49 /* contour_1App.cpp in Sources */,
+				6AAB06DA1B125DE200AC8B49 /* cApp.cpp in Sources */,
 				6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */,
 				6A5344991AF7AC0500EB5383 /* MyCamera.cpp in Sources */,
 				6AAB06DF1B125E9100AC8B49 /* ContourMap.cpp in Sources */,

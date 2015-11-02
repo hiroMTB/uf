@@ -10,7 +10,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class contour_0App : public AppNative {
+class cApp : public AppNative {
   public:
 	void setup();
     void update();
@@ -34,7 +34,7 @@ class contour_0App : public AppNative {
     vector<vector<cv::Vec4i>> hierarchyMap;
 };
 
-void contour_0App::setup(){
+void cApp::setup(){
     setWindowSize( 1920, 1080 );
     setWindowPos( 0, 0 );
     
@@ -119,10 +119,10 @@ void contour_0App::setup(){
     }
 }
 
-void contour_0App::update(){
+void cApp::update(){
 }
 
-void contour_0App::draw(){
+void cApp::draw(){
     
     gl::pushMatrices();
     gl::setMatrices( mMayaCam.getCamera() );
@@ -153,27 +153,27 @@ void contour_0App::draw(){
 
 }
 
-void contour_0App::keyDown( KeyEvent event ){
+void cApp::keyDown( KeyEvent event ){
     
 }
 
-void contour_0App::mouseDown( MouseEvent event ){
+void cApp::mouseDown( MouseEvent event ){
     mMayaCam.mouseDown( event.getPos() );
 }
 
-void contour_0App::mouseMove( MouseEvent event ){
+void cApp::mouseMove( MouseEvent event ){
     mMousePos = event.getPos();
 }
 
-void contour_0App::mouseDrag( MouseEvent event ){
+void cApp::mouseDrag( MouseEvent event ){
     mMousePos = event.getPos();
     mMayaCam.mouseDrag( event.getPos(), event.isLeftDown(), event.isMiddleDown(), event.isRightDown() );
 }
 
-void contour_0App::resize(){
+void cApp::resize(){
     CameraPersp cam = mMayaCam.getCamera();
     cam.setAspectRatio( getWindowAspectRatio() );
     mMayaCam.setCurrentCam( cam );
 }
 
-CINDER_APP_NATIVE( contour_0App, RendererGl(0) )
+CINDER_APP_NATIVE( cApp, RendererGl(0) )

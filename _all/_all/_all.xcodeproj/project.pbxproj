@@ -770,7 +770,6 @@
 		6A8A9A681BE640CE006BD10C /* slopemap_2.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			name = slopemap_2.app;
 			path = filament_01.app;
 			remoteRef = 6A8A9A671BE640CE006BD10C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -778,7 +777,6 @@
 		6A8A9A6B1BE640CE006BD10C /* slopemap_2.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			name = slopemap_2.app;
 			path = lineout_1.app;
 			remoteRef = 6A8A9A6A1BE640CE006BD10C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -823,7 +821,6 @@
 		6A8A9A7D1BE640CE006BD10C /* slopemap_2.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			name = slopemap_2.app;
 			path = slopemap_3.app;
 			remoteRef = 6A8A9A7C1BE640CE006BD10C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1024,6 +1021,7 @@
 				6A8A9A901BE641A9006BD10C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

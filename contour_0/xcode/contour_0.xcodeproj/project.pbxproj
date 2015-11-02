@@ -17,7 +17,7 @@
 		6A5344991AF7AC0500EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A5344951AF7AC0500EB5383 /* MyCamera.cpp */; };
 		6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EFB181B06111200E7ECF9 /* Cairo.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		CEE482CA843A4CB2A21A75E7 /* contour_0App.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444894A18C4C457A91266DCA /* contour_0App.cpp */; };
+		CEE482CA843A4CB2A21A75E7 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 444894A18C4C457A91266DCA /* cApp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		444894A18C4C457A91266DCA /* contour_0App.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = contour_0App.cpp; path = ../src/contour_0App.cpp; sourceTree = "<group>"; };
+		444894A18C4C457A91266DCA /* cApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cApp.cpp; path = ../src/cApp.cpp; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		6A5344941AF7AC0500EB5383 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		29B97315FDCFA39411CA2CEA /* src */ = {
 			isa = PBXGroup;
 			children = (
-				444894A18C4C457A91266DCA /* contour_0App.cpp */,
+				444894A18C4C457A91266DCA /* cApp.cpp */,
 				6A5344911AF7AC0500EB5383 /* module */,
 			);
 			name = src;
@@ -218,7 +218,7 @@
 			files = (
 				6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */,
 				6A5344991AF7AC0500EB5383 /* MyCamera.cpp in Sources */,
-				CEE482CA843A4CB2A21A75E7 /* contour_0App.cpp in Sources */,
+				CEE482CA843A4CB2A21A75E7 /* cApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
