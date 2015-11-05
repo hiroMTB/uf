@@ -14,7 +14,7 @@
 #include "csound.h"
 
 #include "ContourMap.h"
-#include "ufUtil.h"
+#include "mtUtil.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -58,7 +58,7 @@ void cApp::setup(){
     outs aout, aout\n\
     endin";
     
-    string fileName = "-o " + uf::getTimeStamp() + ".wav";
+    string fileName = "-o " + mt::getTimeStamp() + ".wav";
     csound = new Csound();
     csound->SetOption( const_cast<char*>(fileName.c_str()) );   // file name
     csound->SetOption("-W");                // Wav

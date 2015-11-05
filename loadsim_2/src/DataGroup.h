@@ -35,7 +35,7 @@ public:
         }
         
         char m[255];
-        sprintf(m, "create vbo DOT    threshold %0.4f  %10d verts", mThreshold, mDot.getNumVertices() );
+        sprintf(m, "create vbo DOT    threshold %0.4f  %10zu verts", mThreshold, mDot.getNumVertices() );
         cout << m << endl;
     }
     
@@ -85,11 +85,15 @@ public:
         }
         
         char m[255];
-        sprintf(m, "create vbo Line   threshold %0.4f  %10d lines", mThreshold, mLine.getNumVertices()/2 );
+        sprintf(m, "create vbo Line   threshold %0.4f  %10lu lines", mThreshold, mLine.getNumVertices()/2 );
         cout << m << endl;
 
     }
     
+    void clear(){
+        mDot.reset();
+        mLine.reset();
+    }
     
     gl::VboMesh mDot;
     gl::VboMesh mLine;

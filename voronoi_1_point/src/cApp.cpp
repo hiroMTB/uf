@@ -9,7 +9,7 @@
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "boost/polygon/voronoi.hpp"
 #include "boost/polygon/segment_data.hpp"
 

@@ -10,7 +10,7 @@
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "Exporter.h"
 
@@ -53,7 +53,7 @@ void cApp::setup(){
     
     setWindowPos( 0, 0 );
     setWindowSize( 1080*3*0.5, 1920*0.5 );
-    mExp.setup( 1080*3, 1920, 3000, GL_RGB, uf::getRenderPath(), 0);
+    mExp.setup( 1080*3, 1920, 3000, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp cam( 1080*3, 1920, 25/*39.6f*/, 1, 100000 );
     cam.lookAt( Vec3f(0,0, 3300), Vec3f(0,0,0), Vec3f(1,0,0) );
@@ -65,11 +65,12 @@ void cApp::setup(){
     mPln.setSeed(123);
     mPln.setOctaves(4);
 
-    colorMap = Surface32f( loadImage(loadAsset("img/Vela_colorMap_x2.tif")) ); // 1920*900
+    fs::path assetPath = mt::getAssetPath();
+    colorMap = Surface32f( loadImage(assetPath/"img/Vela_colorMap_x2.tif") ); // 1920*900
     
     {
         // make point from intensity
-        Surface32f sIntensity( loadImage(loadAsset("img/04/THY_Bfort 031_blk_x3.png")) );
+        Surface32f sIntensity( loadImage( assetPath/"img/04/THY_Bfort 031_blk_x3.png" ) );
         intensityW = sIntensity.getWidth();
         intensityH = sIntensity.getHeight();
         
@@ -100,7 +101,7 @@ void cApp::setup(){
             }
         }
         
-        mPoints = gl::VboMesh( ps.size(), 0, uf::getVboLayout(), GL_POINTS );
+        mPoints = gl::VboMesh( ps.size(), 0, mt::getVboLayout(), GL_POINTS );
         gl::VboMesh::VertexIter vitr( mPoints );
         for(int i=0; i<ps.size(); i++ ){
             vitr.setPosition( ps[i] );
@@ -144,7 +145,7 @@ void cApp::setup(){
                     Vec3f dir = end - start;
                     Vec3f mid = start + dir * 0.5;
 
-                    Vec3f prep = -uf::dirToLine( mid, center_top, center_bottom );
+                    Vec3f prep = -mt::dirToLine( mid, center_top, center_bottom );
                     prep.normalize();
                     
                     vector< Vec3f > ctrls;
@@ -182,7 +183,7 @@ void cApp::draw(){
         
         if( !mExp.bSnap && !mExp.bRender ){
             // Guide
-            uf::drawCoordinate( 100 );
+            mt::drawCoordinate( 100 );
         }
         
         gl::translate( -intensityW/2, -intensityH/2 );

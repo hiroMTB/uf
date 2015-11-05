@@ -9,7 +9,7 @@
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "Exporter.h"
 
@@ -46,7 +46,7 @@ public:
 void cApp::setup(){
     setWindowPos( 0, 0 );
     setWindowSize( 1080*3*0.5, 1920*0.5 );
-    mExp.setup( 1080*3, 1920, 1, GL_RGB, uf::getRenderPath(), 0);
+    mExp.setup( 1080*3, 1920, 1, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp cam(1080*3, 1920, 54.4f, 1, 100000 );
     cam.lookAt( Vec3f(0,0,600), Vec3f(0,0,0) );
@@ -63,8 +63,8 @@ void cApp::setup(){
 }
 
 void cApp::loadSimulationData(string fileName){
-    
-    string path = loadAsset( fileName )->getFilePath().string();
+    fs::path assetPath = mt::getAssetPath();
+    string path = (assetPath/fileName).string();
     cout << "loading binary file : " << path << endl;
     std::ifstream is( path, std::ios::binary );
     if(is){
@@ -200,7 +200,7 @@ void cApp::draw(){
         
         if( !mExp.bSnap && !mExp.bRender ){
             // Guide
-            uf::drawCoordinate(10);
+            mt::drawCoordinate(10);
         
             // base rect
 //            gl::lineWidth(1);

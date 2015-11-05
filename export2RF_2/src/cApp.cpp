@@ -10,7 +10,7 @@
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "DataGroup.h"
 #include "RfExporterBin.h"
@@ -48,16 +48,16 @@ void cApp::setup(){
     mPln.setSeed(123);
     mPln.setOctaves(4);
     
-    
     vector<Vec3f> ps;
     vector<ColorAf> cs;
     vector<float> pos;
     vector<float> vel;
 
+    fs::path assetPath = mt::getAssetPath();
     
     {
         // make point from intensity
-        Surface32f sIntensity( loadImage(loadAsset("img/03/RCW36_conbine_log.tif")) );
+        Surface32f sIntensity( loadImage(assetPath/("img/03/RCW36_conbine_log.tif")) );
         int intensityW = sIntensity.getWidth();
         int intensityH = sIntensity.getHeight();
         
@@ -100,7 +100,7 @@ void cApp::setup(){
         
         mDg.createDot( ps, cs, 0.0 );
         RfExporterBin rfB;
-        rfB.write( /* uf::getTimeStamp() +*/ "myParticle_00000.bin", pos, vel );
+        rfB.write( /* mt::getTimeStamp() +*/ "myParticle_00000.bin", pos, vel );
         
         cout << "Write Bin file, particle num= " <<  ps.size() << endl;
     }
@@ -118,7 +118,7 @@ void cApp::draw(){
     gl::clear( ColorA(1,1,1,1) );
 
     gl::setMatrices( camUi.getCamera() );
-    uf::drawCoordinate( 10 );
+    mt::drawCoordinate( 10 );
     
     // data
     glPointSize( 1 );

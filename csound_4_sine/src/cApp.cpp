@@ -14,7 +14,7 @@
 #include "csound.h"
 
 #include "ContourMap.h"
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 
 using namespace ci;
@@ -49,12 +49,13 @@ void cApp::setup(){
     csound = new Csound();
     //csound->SetOption( (char*)"-odac" );
     
-    string fileName = "-o" + uf::getTimeStamp() + ".wav";
+    string fileName = "-o" + mt::getTimeStamp() + ".wav";
     csound->SetOption( const_cast<char*>(fileName.c_str()) );   // file name
-    csound->SetOption("-W");                // Wav
-    csound->SetOption("-f");                // 32float
+    csound->SetOption((char*)"-W");                // Wav
+    csound->SetOption((char*)"-f");                // 32float
     
-    std::string orc = loadString( loadAsset("partikkle_2_r1.orc") );
+    fs::path assetPath = mt::getAssetPath();
+    std::string orc = loadString( loadFile(assetPath/("partikkle_2_r1.orc")) );
     {
         cout << orc << endl;
         int result = csound->CompileOrc( orc.c_str() );

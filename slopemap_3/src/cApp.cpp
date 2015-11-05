@@ -10,7 +10,7 @@
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "Exporter.h"
 
@@ -52,7 +52,7 @@ void cApp::setup(){
     
     setWindowPos( 0, 0 );
     setWindowSize( 1080*3*0.5, 1920*0.5 );
-    mExp.setup( 1080*3, 1920, 3000, GL_RGB, uf::getRenderPath(), 0);
+    mExp.setup( 1080*3, 1920, 3000, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp cam(1080*3, 1920, 54.4f, 0.1, 10000 );
     cam.lookAt( Vec3f(0,0, 1200), Vec3f(0,0,0) );
@@ -63,10 +63,12 @@ void cApp::setup(){
     mPln.setSeed(123);
     mPln.setOctaves(4);
     
+    fs::path assetPath = mt::getAssetPath();
+    
     {
         // make VectorMap
-        Surface32f sAspect( loadImage(loadAsset("img/03/RCW36_conbine_log_aspect.tif")) );
-        Surface32f sSlope( loadImage(loadAsset("img/03/RCW36_conbine_log_slope2.tif")) );
+        Surface32f sAspect( loadImage(assetPath/("img/03/RCW36_conbine_log_aspect.tif")) );
+        Surface32f sSlope( loadImage(assetPath/("img/03/RCW36_conbine_log_slope2.tif")) );
 
         int w = sAspect.getWidth();
         int h = sAspect.getHeight();
@@ -95,7 +97,7 @@ void cApp::setup(){
     
     {
         // make point from intensity
-        Surface32f sIntensity( loadImage(loadAsset("img/03/RCW36_conbine_log.tif")) );
+        Surface32f sIntensity( loadImage(assetPath/("img/03/RCW36_conbine_log.tif")) );
         intensityW = sIntensity.getWidth();
         intensityH = sIntensity.getHeight();
         
@@ -117,7 +119,7 @@ void cApp::setup(){
             }
         }
         
-        mPoints = gl::VboMesh( ps.size(), 0, uf::getVboLayout(), GL_POINTS );
+        mPoints = gl::VboMesh( ps.size(), 0, mt::getVboLayout(), GL_POINTS );
         gl::VboMesh::VertexIter vitr( mPoints );
         for(int i=0; i<ps.size(); i++ ){
             vitr.setPosition( ps[i] );
@@ -179,7 +181,7 @@ void cApp::draw(){
         gl::translate( 0, 0, 0 );
         
         if( !mExp.bSnap && !mExp.bRender ){
-            uf::drawCoordinate( 100 );
+            mt::drawCoordinate( 100 );
         }
         gl::draw( mPoints );
         

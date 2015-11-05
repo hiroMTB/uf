@@ -18,7 +18,7 @@
 #include "csound.h"
 
 #include "ContourMap.h"
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "CsoundOp.h"
 
@@ -40,6 +40,7 @@ public:
     
     vector<fs::path> srcList;
     fs::path assetPath;
+    fs::path srcDirPath;
 };
 
 void cApp::setup(){
@@ -60,13 +61,14 @@ void cApp::setup(){
     mPln2.setSeed(555);
     mPln2.setOctaves(6);
     
-    fs::path render_dir = uf::getRenderPath();
+    fs::path render_dir = mt::getRenderPath();
     bool dirok = createDirectories( render_dir.string() + "/" );
     if( !dirok ) quit();
 
-    assetPath = "snd/data2wav";
+    assetPath = mt::getAssetPath();
+    srcDirPath = assetPath/"snd/data2wav";
     //assetPath = "snd/data2wav2fftwave";
-    listup( srcList, assetPath );
+    listup( srcList, srcDirPath );
 
     for( auto srcPath : srcList ){
         write(srcPath, render_dir );
@@ -74,9 +76,7 @@ void cApp::setup(){
 }
 
 void cApp::listup( vector<fs::path>&srcList, fs::path assetPath){
-    
-    fs::path dir = loadAsset( assetPath )->getFilePath();
-    fs::recursive_directory_iterator it(dir), eof;
+    fs::recursive_directory_iterator it(assetPath), eof;
     while( it!= eof){
         if( !fs::is_directory(it.status() ) ){
             
@@ -115,9 +115,9 @@ void cApp::write( fs::path srcFilePath, fs::path render_dir ) {
     
     string orc = sr + ksmps + nchnls + dbfs;
     
-    orc += "giFile	ftgen	0, 0, 0, 1, \"../../../assets/" + assetPath.string() + "/" + srcFilename + "\", 0, 0, 0";
+    orc += "giFile	ftgen	0, 0, 0, 1, \"" + srcDirPath.string() + "/" + srcFilename + "\", 0, 0, 0";
     
-    string orcMain = loadString( loadAsset("csound/partikkle_2_r1.orc") );
+    string orcMain = loadString( loadFile(assetPath/("csound/partikkle_2_r1.orc")) );
     
     orc += orcMain;
     
@@ -154,10 +154,10 @@ void cApp::write( fs::path srcFilePath, fs::path render_dir ) {
     csound->Start();
     
     //assetPath = "snd/data2wav2fftwave";
-    audio::SourceFileRef sourceFileRef = audio::load( loadAsset( assetPath/srcFilePath.filename() ) );
-    audio::BufferRef buf = sourceFileRef->loadBuffer();
-    float * ch0 = buf->getChannel(0);
-    int nFrame = buf->getNumFrames();
+//    audio::SourceFileRef sourceFileRef = audio::load( assetPath/( assetPath/srcFilePath.filename() ) );
+//    audio::BufferRef buf = sourceFileRef->loadBuffer();
+//    float * ch0 = buf->getChannel(0);
+//    int nFrame = buf->getNumFrames();
     
     int i = 0;
     MYFLT * cpp1, *cpp2, *cpp3;
@@ -175,7 +175,7 @@ void cApp::write( fs::path srcFilePath, fs::path render_dir ) {
         
         *cpp1 = n1*0.9 + 0.1;
         *cpp2 = n2*0.9 + 0.1;
-        *cpp3 = ch0[i%nFrame];
+        *cpp3 = 1; //ch0[i%nFrame];
         
         //cout << *cpp1 << ", " << *cpp2 << endl;
         i++;

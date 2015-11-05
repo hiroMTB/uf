@@ -9,7 +9,7 @@
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "Exporter.h"
 
@@ -33,7 +33,7 @@ public:
 };
 
 void cApp::setup(){
-    mExp.setup( 1080*3, 1920, 1, GL_RGB, uf::getRenderPath(), 0);
+    mExp.setup( 1080*3, 1920, 1, GL_RGB, mt::getRenderPath(), 0);
     setWindowPos( 0, 0 );
     setWindowSize( 1080*3*0.5, 1920*0.5 );
 }
@@ -57,7 +57,7 @@ void cApp::draw(){
         gl::drawCube( Vec3f(0,0,0), Vec3f(250,250,250) );
         
         // Guide
-        uf::drawCoordinate(500);
+        mt::drawCoordinate(500);
         
     }mExp.end();
     

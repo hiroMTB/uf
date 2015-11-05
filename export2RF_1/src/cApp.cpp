@@ -10,7 +10,7 @@
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "DataGroup.h"
 #include "RfExporterBin.h"
@@ -95,7 +95,7 @@ void cApp::draw(){
     gl::clear( ColorA(1,1,1,1) );
 
     gl::setMatrices( camUi.getCamera() );
-    uf::drawCoordinate( 10 );
+    mt::drawCoordinate( 10 );
     
     // data
     if( mDg.mDot ){
@@ -111,8 +111,10 @@ void cApp::keyDown( KeyEvent event ) {
         {
             vs.clear();
             RfImporterBin rfIn;
-            rfIn.load( "myParticle_00000.bin", pos, vel );
+            rfIn.load( "myParticle_00000.bin");
             
+            pos = rfIn.pPosition;
+            vel = rfIn.pVelocity;
             for( int i=0; i<pos.size()/3; i++){
                 float x = pos[i*3+0];
                 float y = pos[i*3+1];

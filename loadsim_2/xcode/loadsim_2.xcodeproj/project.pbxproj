@@ -14,7 +14,33 @@
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		6A2DF11F1BEB70F2006CCD91 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCEE1BE7A83F00387FFC /* MyCamera.cpp */; };
+		6A2DF1201BEB70F2006CCD91 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB06D91B125DE200AC8B49 /* cApp.cpp */; };
+		6A2DF1211BEB70F2006CCD91 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCEA1BE7A83F00387FFC /* ContourMap.cpp */; };
+		6A2DF1221BEB70F2006CCD91 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EFB181B06111200E7ECF9 /* Cairo.cpp */; };
+		6A2DF1241BEB70F2006CCD91 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		6A2DF1251BEB70F2006CCD91 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		6A2DF1261BEB70F2006CCD91 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		6A2DF1271BEB70F2006CCD91 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		6A2DF1281BEB70F2006CCD91 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		6A2DF1291BEB70F2006CCD91 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		6A2DF12A1BEB70F2006CCD91 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		6A2DF12B1BEB70F2006CCD91 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		6A2DF1341BEB71DD006CCD91 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCEE1BE7A83F00387FFC /* MyCamera.cpp */; };
+		6A2DF1351BEB71DD006CCD91 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB06D91B125DE200AC8B49 /* cApp.cpp */; };
+		6A2DF1361BEB71DD006CCD91 /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCEA1BE7A83F00387FFC /* ContourMap.cpp */; };
+		6A2DF1371BEB71DD006CCD91 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EFB181B06111200E7ECF9 /* Cairo.cpp */; };
+		6A2DF1391BEB71DD006CCD91 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		6A2DF13A1BEB71DD006CCD91 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		6A2DF13B1BEB71DD006CCD91 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		6A2DF13C1BEB71DD006CCD91 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		6A2DF13D1BEB71DD006CCD91 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		6A2DF13E1BEB71DD006CCD91 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		6A2DF13F1BEB71DD006CCD91 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		6A2DF1401BEB71DD006CCD91 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EFB181B06111200E7ECF9 /* Cairo.cpp */; };
+		6A99CCF41BE7A83F00387FFC /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCEA1BE7A83F00387FFC /* ContourMap.cpp */; };
+		6A99CCF51BE7A83F00387FFC /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCEE1BE7A83F00387FFC /* MyCamera.cpp */; };
 		6AAB06DA1B125DE200AC8B49 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB06D91B125DE200AC8B49 /* cApp.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -30,10 +56,22 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
-		6A4FA0961B36CCFC006BC799 /* ConsoleColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
-		6A5344941AF7AC0500EB5383 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
-		6A5344971AF7AC0500EB5383 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
+		6A2DF12F1BEB70F2006CCD91 /* loadsim_2 copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "loadsim_2 copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A2DF1301BEB70F2006CCD91 /* loadsim_2 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "loadsim_2 copy-Info.plist"; path = "/Volumes/StudioRK/unfold/dev/cinder_0.8.6_mac/_uf/loadsim_2/xcode/loadsim_2 copy-Info.plist"; sourceTree = "<absolute>"; };
+		6A2DF1441BEB71DD006CCD91 /* loadsim_2 copy 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "loadsim_2 copy 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A2DF1451BEB71DE006CCD91 /* loadsim_2 copy 2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "loadsim_2 copy 2-Info.plist"; path = "/Volumes/StudioRK/unfold/dev/cinder_0.8.6_mac/_uf/loadsim_2/xcode/loadsim_2 copy 2-Info.plist"; sourceTree = "<absolute>"; };
 		6A7EFB181B06111200E7ECF9 /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
+		6A99CCE91BE7A83F00387FFC /* ConsoleColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
+		6A99CCEA1BE7A83F00387FFC /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
+		6A99CCEB1BE7A83F00387FFC /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
+		6A99CCEC1BE7A83F00387FFC /* CsoundOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsoundOp.h; sourceTree = "<group>"; };
+		6A99CCED1BE7A83F00387FFC /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
+		6A99CCEE1BE7A83F00387FFC /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
+		6A99CCEF1BE7A83F00387FFC /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
+		6A99CCF01BE7A83F00387FFC /* RfExporterBin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RfExporterBin.h; sourceTree = "<group>"; };
+		6A99CCF11BE7A83F00387FFC /* RfImporterBin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RfImporterBin.h; sourceTree = "<group>"; };
+		6A99CCF21BE7A83F00387FFC /* SoundWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundWriter.h; sourceTree = "<group>"; };
+		6A99CCF31BE7A83F00387FFC /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AAB06D91B125DE200AC8B49 /* cApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cApp.cpp; path = ../src/cApp.cpp; sourceTree = "<group>"; };
 		6AAB06DB1B125DF100AC8B49 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = config/debug.xcconfig; sourceTree = "<group>"; };
 		6AAB06DC1B125DF100AC8B49 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = release.xcconfig; path = config/release.xcconfig; sourceTree = "<group>"; };
@@ -43,6 +81,36 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6A2DF1231BEB70F2006CCD91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A2DF1241BEB70F2006CCD91 /* Cocoa.framework in Frameworks */,
+				6A2DF1251BEB70F2006CCD91 /* OpenGL.framework in Frameworks */,
+				6A2DF1261BEB70F2006CCD91 /* CoreVideo.framework in Frameworks */,
+				6A2DF1271BEB70F2006CCD91 /* QTKit.framework in Frameworks */,
+				6A2DF1281BEB70F2006CCD91 /* Accelerate.framework in Frameworks */,
+				6A2DF1291BEB70F2006CCD91 /* AudioToolbox.framework in Frameworks */,
+				6A2DF12A1BEB70F2006CCD91 /* AudioUnit.framework in Frameworks */,
+				6A2DF12B1BEB70F2006CCD91 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A2DF1381BEB71DD006CCD91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A2DF1391BEB71DD006CCD91 /* Cocoa.framework in Frameworks */,
+				6A2DF13A1BEB71DD006CCD91 /* OpenGL.framework in Frameworks */,
+				6A2DF13B1BEB71DD006CCD91 /* CoreVideo.framework in Frameworks */,
+				6A2DF13C1BEB71DD006CCD91 /* QTKit.framework in Frameworks */,
+				6A2DF13D1BEB71DD006CCD91 /* Accelerate.framework in Frameworks */,
+				6A2DF13E1BEB71DD006CCD91 /* AudioToolbox.framework in Frameworks */,
+				6A2DF13F1BEB71DD006CCD91 /* AudioUnit.framework in Frameworks */,
+				6A2DF1401BEB71DD006CCD91 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,6 +132,7 @@
 		01B97315FEAEA392516A2CEA /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
+				6A99CCE81BE7A83F00387FFC /* libmtb */,
 				6AA336581B060EB100C7B4E2 /* Cairo */,
 			);
 			name = Blocks;
@@ -97,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* loadsim_2.app */,
+				6A2DF12F1BEB70F2006CCD91 /* loadsim_2 copy.app */,
+				6A2DF1441BEB71DD006CCD91 /* loadsim_2 copy 2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +182,8 @@
 				01B97315FEAEA392516A2CEA /* Blocks */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				6A2DF1301BEB70F2006CCD91 /* loadsim_2 copy-Info.plist */,
+				6A2DF1451BEB71DE006CCD91 /* loadsim_2 copy 2-Info.plist */,
 			);
 			name = contour_0;
 			sourceTree = "<group>";
@@ -120,7 +193,6 @@
 			children = (
 				6AAB06D91B125DE200AC8B49 /* cApp.cpp */,
 				6AC953231B3B054A0034B33A /* DataGroup.h */,
-				6A5344911AF7AC0500EB5383 /* module */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -134,15 +206,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6A5344911AF7AC0500EB5383 /* module */ = {
+		6A99CCE81BE7A83F00387FFC /* libmtb */ = {
 			isa = PBXGroup;
 			children = (
-				6A4FA0961B36CCFC006BC799 /* ConsoleColor.h */,
-				6A5344941AF7AC0500EB5383 /* Exporter.h */,
-				6A5344971AF7AC0500EB5383 /* ufUtil.h */,
+				6A99CCE91BE7A83F00387FFC /* ConsoleColor.h */,
+				6A99CCEA1BE7A83F00387FFC /* ContourMap.cpp */,
+				6A99CCEB1BE7A83F00387FFC /* ContourMap.h */,
+				6A99CCEC1BE7A83F00387FFC /* CsoundOp.h */,
+				6A99CCED1BE7A83F00387FFC /* Exporter.h */,
+				6A99CCEE1BE7A83F00387FFC /* MyCamera.cpp */,
+				6A99CCEF1BE7A83F00387FFC /* MyCamera.h */,
+				6A99CCF01BE7A83F00387FFC /* RfExporterBin.h */,
+				6A99CCF11BE7A83F00387FFC /* RfImporterBin.h */,
+				6A99CCF21BE7A83F00387FFC /* SoundWriter.h */,
+				6A99CCF31BE7A83F00387FFC /* ufUtil.h */,
 			);
-			name = module;
-			path = ../../module;
+			name = libmtb;
+			path = ../../../blocks/libmtb;
 			sourceTree = "<group>";
 		};
 		6AA336581B060EB100C7B4E2 /* Cairo */ = {
@@ -156,6 +236,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6A2DF11C1BEB70F2006CCD91 /* loadsim_2 copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A2DF12C1BEB70F2006CCD91 /* Build configuration list for PBXNativeTarget "loadsim_2 copy" */;
+			buildPhases = (
+				6A2DF11D1BEB70F2006CCD91 /* Resources */,
+				6A2DF11E1BEB70F2006CCD91 /* Sources */,
+				6A2DF1231BEB70F2006CCD91 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "loadsim_2 copy";
+			productInstallPath = "$(HOME)/Applications";
+			productName = contour_0;
+			productReference = 6A2DF12F1BEB70F2006CCD91 /* loadsim_2 copy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6A2DF1311BEB71DD006CCD91 /* loadsim_2 copy 2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A2DF1411BEB71DD006CCD91 /* Build configuration list for PBXNativeTarget "loadsim_2 copy 2" */;
+			buildPhases = (
+				6A2DF1321BEB71DD006CCD91 /* Resources */,
+				6A2DF1331BEB71DD006CCD91 /* Sources */,
+				6A2DF1381BEB71DD006CCD91 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "loadsim_2 copy 2";
+			productInstallPath = "$(HOME)/Applications";
+			productName = contour_0;
+			productReference = 6A2DF1441BEB71DD006CCD91 /* loadsim_2 copy 2.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D1107260486CEB800E47090 /* loadsim_2 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "loadsim_2" */;
@@ -196,11 +312,27 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* loadsim_2 */,
+				6A2DF11C1BEB70F2006CCD91 /* loadsim_2 copy */,
+				6A2DF1311BEB71DD006CCD91 /* loadsim_2 copy 2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6A2DF11D1BEB70F2006CCD91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A2DF1321BEB71DD006CCD91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,11 +343,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6A2DF11E1BEB70F2006CCD91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A2DF11F1BEB70F2006CCD91 /* MyCamera.cpp in Sources */,
+				6A2DF1201BEB70F2006CCD91 /* cApp.cpp in Sources */,
+				6A2DF1211BEB70F2006CCD91 /* ContourMap.cpp in Sources */,
+				6A2DF1221BEB70F2006CCD91 /* Cairo.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A2DF1331BEB71DD006CCD91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A2DF1341BEB71DD006CCD91 /* MyCamera.cpp in Sources */,
+				6A2DF1351BEB71DD006CCD91 /* cApp.cpp in Sources */,
+				6A2DF1361BEB71DD006CCD91 /* ContourMap.cpp in Sources */,
+				6A2DF1371BEB71DD006CCD91 /* Cairo.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A99CCF51BE7A83F00387FFC /* MyCamera.cpp in Sources */,
 				6AAB06DA1B125DE200AC8B49 /* cApp.cpp in Sources */,
+				6A99CCF41BE7A83F00387FFC /* ContourMap.cpp in Sources */,
 				6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +379,114 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		6A2DF12D1BEB70F2006CCD91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = "loadsim_2 copy-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LD_GENERATE_MAP_FILE = NO;
+				PRODUCT_NAME = "loadsim_2 copy";
+				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6A2DF12E1BEB70F2006CCD91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = "loadsim_2 copy-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LD_GENERATE_MAP_FILE = NO;
+				PRODUCT_NAME = "loadsim_2 copy";
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6A2DF1421BEB71DD006CCD91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = "loadsim_2 copy 2-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LD_GENERATE_MAP_FILE = NO;
+				PRODUCT_NAME = "loadsim_2 copy 2";
+				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6A2DF1431BEB71DD006CCD91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = "loadsim_2 copy 2-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LD_GENERATE_MAP_FILE = NO;
+				PRODUCT_NAME = "loadsim_2 copy 2";
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -321,6 +585,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6A2DF12C1BEB70F2006CCD91 /* Build configuration list for PBXNativeTarget "loadsim_2 copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A2DF12D1BEB70F2006CCD91 /* Debug */,
+				6A2DF12E1BEB70F2006CCD91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A2DF1411BEB71DD006CCD91 /* Build configuration list for PBXNativeTarget "loadsim_2 copy 2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A2DF1421BEB71DD006CCD91 /* Debug */,
+				6A2DF1431BEB71DD006CCD91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "loadsim_2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

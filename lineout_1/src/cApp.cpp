@@ -10,7 +10,7 @@
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "Exporter.h"
 
@@ -64,7 +64,7 @@ void cApp::setup(){
     
     setWindowPos( 0, 0 );
     setWindowSize( 1080*3*0.7, 1920*0.7 );
-    mExp.setup( 1080*3, 1920, 3000, GL_RGB, uf::getRenderPath(), 0);
+    mExp.setup( 1080*3, 1920, 3000, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp persp(1080*3, 1920, 54.4f, 1, 100000 );
     persp.lookAt( Vec3f(0,0, -2000), Vec3f(0,0,0), Vec3f(0,1,0) );
@@ -76,11 +76,12 @@ void cApp::setup(){
     mPln.setSeed(123);
     mPln.setOctaves(4);
     
+    fs::path assetPath = mt::getAssetPath();
     
     {
         // make VectorMap
-        Surface32f sAspect( loadImage(loadAsset("img/07/hamosaic_aspect_32bit.tif")) );
-        Surface32f sSlope( loadImage(loadAsset("img/07/hamosaic_slope1.tif")) );
+        Surface32f sAspect( loadImage(assetPath/("img/07/hamosaic_aspect_32bit.tif")) );
+        Surface32f sSlope( loadImage(assetPath/("img/07/hamosaic_slope1.tif")) );
 
         int w = sAspect.getWidth();
         int h = sAspect.getHeight();
@@ -107,7 +108,7 @@ void cApp::setup(){
     
     {
         // make point from intensity
-        Surface32f sIntensity( loadImage(loadAsset("img/07/hamosaic.gif")) );
+        Surface32f sIntensity( loadImage(assetPath/("img/07/hamosaic.gif")) );
         intensityW = sIntensity.getWidth();
         intensityH = sIntensity.getHeight();
         
@@ -159,7 +160,7 @@ void cApp::setup(){
         }
         
         
-        mPoints = gl::VboMesh( mGrain.size(), 0, uf::getVboLayout(), GL_POINTS );
+        mPoints = gl::VboMesh( mGrain.size(), 0, mt::getVboLayout(), GL_POINTS );
         gl::VboMesh::VertexIter vitr( mPoints );
         for(int i=0; i<mGrain.size(); i++ ){
             vitr.setPosition( mGrain[i].pos );
@@ -225,7 +226,7 @@ void cApp::draw(){
         if( !mExp.bSnap && !mExp.bRender ){
             // Guide
             glLineWidth( 4 );
-            uf::drawCoordinate( 300 );
+            mt::drawCoordinate( 300 );
         }
         
         float s = 1920.0f/intensityH;

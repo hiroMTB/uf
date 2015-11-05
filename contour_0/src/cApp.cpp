@@ -5,6 +5,7 @@
 #include "cinder/gl/Texture.h"
 #include "CinderOpenCv.h"
 #include "cinder/cairo/Cairo.h"
+#include "mtUtil.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -47,7 +48,8 @@ void cApp::setup(){
     
     // CONTOUR
     // loadAsset search parent directry, on up 5 level
-    Surface32f sur( loadImage(loadAsset("img/vela_orient_red_pacs160_signal_full.tiff")) );
+    fs::path assetPath = mt::getAssetPath();
+    Surface32f sur( loadImage( assetPath/"img/01/vela_orient_red_pacs160_signal_full.tiff") );
     gl::Texture mTex = gl::Texture( sur );
     input = toOcv( sur );
     cv::cvtColor( input, input, CV_RGB2GRAY );

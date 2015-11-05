@@ -9,7 +9,7 @@
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "SoundWriter.h"
 #include "Exporter.h"
 
@@ -34,8 +34,9 @@ public:
 void cApp::setup(){
     
     // fetch image file
+    fs::path assetPath = mt::getAssetPath();
     vector<fs::path> srcList;
-    fs::path dir = loadAsset("img/all/")->getFilePath();
+    fs::path dir = assetPath/("img/all/");
     fs::recursive_directory_iterator it(dir), eof;
     while( it!= eof){
         if( !fs::is_directory(it.status() ) ){
@@ -49,7 +50,7 @@ void cApp::setup(){
     }
 
     // prepare render dir
-    fs::path render_dir = uf::getRenderPath();
+    fs::path render_dir = mt::getRenderPath();
     
     // write
     for( auto srcPath : srcList ){

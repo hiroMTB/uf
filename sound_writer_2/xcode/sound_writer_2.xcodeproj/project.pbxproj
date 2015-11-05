@@ -15,7 +15,7 @@
 		13F4CB1A47D64E98988CAEE5 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* cApp.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */; };
+		6A99CD651BE7A88200387FFC /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CD5E1BE7A88200387FFC /* MyCamera.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,15 +31,19 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		6A2756301BE93E54003B7804 /* mtUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mtUtil.h; sourceTree = "<group>"; };
 		6A2BC2331B080B5D0043E8EC /* sound_writer_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sound_writer_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3691051B06B03A0095DF1A /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
-		6A371B861AE5149700BAE4E4 /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
-		6A53448F1AF7ABF800EB5383 /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
-		6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
-		6AA2742B1B0B4506007960C0 /* SoundWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundWriter.h; sourceTree = "<group>"; };
+		6A99CD591BE7A88200387FFC /* ConsoleColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
+		6A99CD5C1BE7A88200387FFC /* CsoundOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsoundOp.h; sourceTree = "<group>"; };
+		6A99CD5D1BE7A88200387FFC /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
+		6A99CD5E1BE7A88200387FFC /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
+		6A99CD5F1BE7A88200387FFC /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
+		6A99CD601BE7A88200387FFC /* RfExporterBin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RfExporterBin.h; sourceTree = "<group>"; };
+		6A99CD611BE7A88200387FFC /* RfImporterBin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RfImporterBin.h; sourceTree = "<group>"; };
+		6A99CD621BE7A88200387FFC /* SoundWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundWriter.h; sourceTree = "<group>"; };
 		6AAB06EB1B12687A00AC8B49 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = config/debug.xcconfig; sourceTree = "<group>"; };
 		6AAB06EC1B12687A00AC8B49 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = release.xcconfig; path = config/release.xcconfig; sourceTree = "<group>"; };
-		6AC60DFD1AF393F700345E26 /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		AEF6A16AF68948639A699138 /* cApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cApp.cpp; path = ../src/cApp.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,7 +69,6 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6A371B821AE5149700BAE4E4 /* module */,
 				AEF6A16AF68948639A699138 /* cApp.cpp */,
 			);
 			name = Source;
@@ -101,6 +104,7 @@
 				6AAB06EB1B12687A00AC8B49 /* debug.xcconfig */,
 				6AAB06EC1B12687A00AC8B49 /* release.xcconfig */,
 				08F93EAE4679458E9C1DE6E6 /* Info.plist */,
+				6A99CD581BE7A88200387FFC /* libmtb */,
 				080E96DDFE201D6D7F000001 /* Source */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				6A3691051B06B03A0095DF1A /* bin */,
@@ -126,17 +130,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6A371B821AE5149700BAE4E4 /* module */ = {
+		6A99CD581BE7A88200387FFC /* libmtb */ = {
 			isa = PBXGroup;
 			children = (
-				6A53448F1AF7ABF800EB5383 /* MyCamera.h */,
-				6A53449A1AF7B1BD00EB5383 /* MyCamera.cpp */,
-				6AC60DFD1AF393F700345E26 /* ufUtil.h */,
-				6A371B861AE5149700BAE4E4 /* Exporter.h */,
-				6AA2742B1B0B4506007960C0 /* SoundWriter.h */,
+				6A99CD591BE7A88200387FFC /* ConsoleColor.h */,
+				6A99CD5C1BE7A88200387FFC /* CsoundOp.h */,
+				6A99CD5D1BE7A88200387FFC /* Exporter.h */,
+				6A99CD5E1BE7A88200387FFC /* MyCamera.cpp */,
+				6A99CD5F1BE7A88200387FFC /* MyCamera.h */,
+				6A99CD601BE7A88200387FFC /* RfExporterBin.h */,
+				6A99CD611BE7A88200387FFC /* RfImporterBin.h */,
+				6A2756301BE93E54003B7804 /* mtUtil.h */,
+				6A99CD621BE7A88200387FFC /* SoundWriter.h */,
 			);
-			name = module;
-			path = ../../module;
+			name = libmtb;
+			path = ../../../blocks/libmtb;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,7 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13F4CB1A47D64E98988CAEE5 /* cApp.cpp in Sources */,
-				6A53449B1AF7B1BD00EB5383 /* MyCamera.cpp in Sources */,
+				6A99CD651BE7A88200387FFC /* MyCamera.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,3 +1,5 @@
+#define RENDER
+
 #include "cinder/app/AppNative.h"
 #include "cinder/Rand.h"
 #include "cinder/Utilities.h"
@@ -10,7 +12,7 @@
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "Exporter.h"
 #include "DataGroup.h"
@@ -32,10 +34,8 @@ public:
     void mouseDrag( MouseEvent event );
     void keyDown( KeyEvent event );
     void resize();
-    void loadSimulationData( string fileName );
+    void loadSimulationData( int idump );
     
-    int mWin_w = 1920;
-    int mWin_h = 1080;
     int boxelx, boxely, boxelz;
     
     MayaCamUI camUi;
@@ -45,15 +45,15 @@ public:
     vector<DataGroup> mDataGroup;
     
     gl::VboMesh bridge;
-    
+    unsigned int idump = 24;
 };
 
 void cApp::setup(){
     setWindowPos( 0, 0 );
     setWindowSize( 1080*3*0.5, 1920*0.5 );
-    mExp.setup( 1080*3, 1920, 1, GL_RGB, uf::getRenderPath(), 0);
+    mExp.setup( 1080*3, 1920, 100, GL_RGB, mt::getRenderPath(), 0);
     
-    CameraPersp cam(1080*3, 1920, 54.4f, 1, 100000 );
+    CameraPersp cam(1080*3, 1920, 54.4f, 1, 1000000 );
     cam.lookAt( Vec3f(0,0,600), Vec3f(0,0,0) );
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
     //cam.setPerspective( 54.4f, getWindowAspectRatio(), 1, 100000 );     // 35mm
@@ -64,12 +64,29 @@ void cApp::setup(){
     
     boxelx = boxely = boxelz = 400;
     
-    if( 1 ) loadSimulationData( "sim/Heracles/512.bin" );
+#ifdef RENDER
+    mExp.startRender();
+#endif
 }
 
-void cApp::loadSimulationData(string fileName){
+void cApp::update(){
     
-    string path = loadAsset( fileName )->getFilePath().string();
+    for( auto dg : mDataGroup )
+    dg.clear();
+    mDataGroup.clear();
+    
+    idump++;
+    loadSimulationData( idump );
+    
+}
+
+
+void cApp::loadSimulationData( int idump){
+    
+    string fileName = "sim/Heracles/simu_mach4_split/rho/rho_0" + to_string(idump) + ".bin";
+    
+    fs::path assetPath = mt::getAssetPath();
+    string path = ( assetPath/fileName ).string();
     cout << "loading binary file : " << path << endl;
     std::ifstream is( path, std::ios::binary );
     if(is){
@@ -104,13 +121,13 @@ void cApp::loadSimulationData(string fileName){
     }
     
     vector< tuple<float, float, ColorAf> > thresholds = {
-        { 0.0006,   0.00066,    ColorAf( 0.7, 0.2, 0.6, 1) },
-        { 0.00066,  0.00072,    ColorAf( 0.7, 0.6, 0.1, 1) },
-        { 0.00075,  0.0008,     ColorAf( 0.8, 0.1, 0.1, 1) },
+        { 0.000645,   0.00066,    ColorAf( 0.7, 0.2, 0.6, 1) },
+        { 0.00067,  0.00072,    ColorAf( 0.7, 0.6, 0.1, 1) },
+        { 0.00075,  0.0008,     ColorAf( 0.8, 0.1, 0.1, 0.1) },
         { 0.01,     0.0102,     ColorAf( 0.2, 0.5, 0.5, 1) },
         { 0.02,     0.022,      ColorAf( 0.0, 0.4, 0.7, 1) },
         { 0.1,      0.24,       ColorAf( 0.3, 0.3, 0.3, 1) },
-        { 0.24,     1.0,        ColorAf( 1.0, 0.0, 0.1, 1) }
+        { 0.24,     1,        ColorAf( 1.0, 0.0, 0.1, 1) }
     };
     
     vector< vector<Vec3f> > points( thresholds.size() );
@@ -145,7 +162,7 @@ void cApp::loadSimulationData(string fileName){
                         Vec3f weight(0, 0, 0);
                         
                         //rhof = lmap( rhof, visible_thresh, 1.0f, 0.005f, 0.4f);
-                        weight.x = t * -600 + 200;
+                        weight.x = -t * getElapsedFrames() + 200;
                         
                         Vec3f v = Vec3f(k-200, j-200, i-200) + noise + weight;
 //                        v.rotate( Vec3f(1,0,0), t*90 );
@@ -223,12 +240,10 @@ void cApp::loadSimulationData(string fileName){
     }
     
     char m[255];
-    sprintf(m, "create Bridge : %10d lines", bridge.getNumVertices()/2 );
+    sprintf(m, "create Bridge : %10lu lines", bridge.getNumVertices()/2 );
     cout << m << endl;
 }
 
-void cApp::update(){
-}
 
 void cApp::draw(){
     
@@ -240,7 +255,7 @@ void cApp::draw(){
         
         if( !mExp.bSnap && !mExp.bRender ){
             // Guide
-            uf::drawCoordinate( 10 );
+            mt::drawCoordinate( 10 );
         }
         
         // data

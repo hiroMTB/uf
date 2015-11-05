@@ -15,7 +15,7 @@
 #include "csound.h"
 
 #include "ContourMap.h"
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "ConsoleColor.h"
 
 using namespace ci;

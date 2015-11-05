@@ -10,7 +10,7 @@
 #include "cinder/params/Params.h"
 #include "CinderOpenCv.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "Exporter.h"
 #include "MyCamera.h"
 #include "ContourMap.h"
@@ -51,16 +51,18 @@ void cApp::setup(){
     n_threshold = 0;
     setWindowPos( 0, 0 );
     setWindowSize( mWin_w, mWin_h );
-    mExp.setup( mWin_w, mWin_h, 3001, GL_RGB, uf::getRenderPath(), 0 );
-    
+    mExp.setup( mWin_w, mWin_h, 3001, GL_RGB, mt::getRenderPath(), 0 );
+
+    fs::path assetPath = mt::getAssetPath();
+
     // load image
     vector<Surface32f> surs;
-//    surs.push_back( Surface32f( loadImage((loadAsset("vela_orient_blue_pac70_signal.tiff")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/01/1.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/01/2.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/01/3.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/01/4.tif")))) );
-    surs.push_back( Surface32f( loadImage((loadAsset("img/01/vela_scana_spire350_signal.tiff")))) );
+//    surs.push_back( Surface32f( loadImage((assetPath/("vela_orient_blue_pac70_signal.tiff")))) );
+    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_orient_red_pacs160_signal_full.tiff")))) );
+    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_orient_red_pacs160_signal.tiff")))) );
+    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_scana_spire250_signal.tiff")))) );
+    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_scana_spire350_signal.tiff")))) );
+    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_scana_spire500_signal.tiff")))) );
 
     for ( auto & s : surs ) {
         ContourMap cm;
@@ -218,7 +220,7 @@ void cApp::draw(){
     gl::color( Colorf::white() );
     mExp.draw();
 
-    uf::drawScreenGuide();
+    mt::drawScreenGuide();
     mParams->draw();
     mCam.drawParam();
 }

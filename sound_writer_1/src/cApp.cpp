@@ -9,7 +9,7 @@
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
 
-#include "ufUtil.h"
+#include "mtUtil.h"
 #include "SoundWriter.h"
 
 #include <sndfile.hh>
@@ -50,7 +50,7 @@ void cApp::setup(){
         data[i*nCh+1] = noise;
     }
 
-    string path = uf::getTimeStamp() + ".wav";
+    string path = mt::getTimeStamp() + ".wav";
     SoundWriter::writeWav32f(data, nCh, samplingRate, totalSamp, path);
     
     quit();
