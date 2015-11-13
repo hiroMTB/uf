@@ -19,7 +19,6 @@
 				6A2755F01BE9285B003B7804 /* PBXTargetDependency */,
 				6A2755F21BE9285B003B7804 /* PBXTargetDependency */,
 				6A2755F41BE9285B003B7804 /* PBXTargetDependency */,
-				6A2755F61BE9285B003B7804 /* PBXTargetDependency */,
 				6A2755F81BE9285B003B7804 /* PBXTargetDependency */,
 				6A2755FA1BE9285B003B7804 /* PBXTargetDependency */,
 				6A2755FC1BE9285B003B7804 /* PBXTargetDependency */,
@@ -84,13 +83,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 6A2BC22F1B0804910043E8EC;
 			remoteInfo = csound_4_sine;
-		};
-		6A2755B71BE9281C003B7804 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6A2755701BE9281B003B7804 /* csound_5_pms.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6A2755731BE9281B003B7804;
-			remoteInfo = csound_3_grain;
 		};
 		6A2755BA1BE9281C003B7804 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -246,13 +238,6 @@
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = csound_4_sine;
 		};
-		6A2755F51BE9285B003B7804 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6A2755701BE9281B003B7804 /* csound_5_pms.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D1107260486CEB800E47090;
-			remoteInfo = csound_3_grain;
-		};
 		6A2755F71BE9285B003B7804 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6A2755741BE9281B003B7804 /* export2RF_1.xcodeproj */;
@@ -365,6 +350,20 @@
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = voronoi_1;
 		};
+		6AA951CF1BF5720B00A872F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A2755861BE9281B003B7804 /* loadsim_2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6A2DF12F1BEB70F2006CCD91;
+			remoteInfo = "loadsim_2 copy";
+		};
+		6AA951D11BF5720B00A872F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A2755861BE9281B003B7804 /* loadsim_2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6A2DF1441BEB71DD006CCD91;
+			remoteInfo = "loadsim_2 copy 2";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -375,7 +374,6 @@
 		6A2755671BE9281B003B7804 /* csound_2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = csound_2.xcodeproj; path = ../csound_2/xcode/csound_2.xcodeproj; sourceTree = "<group>"; };
 		6A27556A1BE9281B003B7804 /* csound_3_grain.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = csound_3_grain.xcodeproj; path = ../csound_3_grain/xcode/csound_3_grain.xcodeproj; sourceTree = "<group>"; };
 		6A27556D1BE9281B003B7804 /* csound_4_sine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = csound_4_sine.xcodeproj; path = ../csound_4_sine/xcode/csound_4_sine.xcodeproj; sourceTree = "<group>"; };
-		6A2755701BE9281B003B7804 /* csound_5_pms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = csound_5_pms.xcodeproj; path = ../csound_5_pms/xcode/csound_5_pms.xcodeproj; sourceTree = "<group>"; };
 		6A2755741BE9281B003B7804 /* export2RF_1.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = export2RF_1.xcodeproj; path = ../export2RF_1/xcode/export2RF_1.xcodeproj; sourceTree = "<group>"; };
 		6A2755771BE9281B003B7804 /* export2RF_2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = export2RF_2.xcodeproj; path = ../export2RF_2/xcode/export2RF_2.xcodeproj; sourceTree = "<group>"; };
 		6A27557A1BE9281B003B7804 /* exporter_test.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = exporter_test.xcodeproj; path = ../exporter_test/xcode/exporter_test.xcodeproj; sourceTree = "<group>"; };
@@ -443,14 +441,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6A2755711BE9281B003B7804 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6A2755B81BE9281C003B7804 /* csound_5_pms.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		6A2755751BE9281B003B7804 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +493,8 @@
 			isa = PBXGroup;
 			children = (
 				6A2755CD1BE9281C003B7804 /* loadsim_2.app */,
+				6AA951D01BF5720B00A872F4 /* loadsim_2 copy.app */,
+				6AA951D21BF5720B00A872F4 /* loadsim_2 copy 2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -589,7 +581,6 @@
 				6A2755671BE9281B003B7804 /* csound_2.xcodeproj */,
 				6A27556A1BE9281B003B7804 /* csound_3_grain.xcodeproj */,
 				6A27556D1BE9281B003B7804 /* csound_4_sine.xcodeproj */,
-				6A2755701BE9281B003B7804 /* csound_5_pms.xcodeproj */,
 				6A2755741BE9281B003B7804 /* export2RF_1.xcodeproj */,
 				6A2755771BE9281B003B7804 /* export2RF_2.xcodeproj */,
 				6A27557A1BE9281B003B7804 /* exporter_test.xcodeproj */,
@@ -655,10 +646,6 @@
 				{
 					ProductGroup = 6A27556E1BE9281B003B7804 /* Products */;
 					ProjectRef = 6A27556D1BE9281B003B7804 /* csound_4_sine.xcodeproj */;
-				},
-				{
-					ProductGroup = 6A2755711BE9281B003B7804 /* Products */;
-					ProjectRef = 6A2755701BE9281B003B7804 /* csound_5_pms.xcodeproj */;
 				},
 				{
 					ProductGroup = 6A2755751BE9281B003B7804 /* Products */;
@@ -775,13 +762,6 @@
 			remoteRef = 6A2755B41BE9281C003B7804 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6A2755B81BE9281C003B7804 /* csound_5_pms.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = csound_5_pms.app;
-			remoteRef = 6A2755B71BE9281C003B7804 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		6A2755BB1BE9281C003B7804 /* export2RF_1.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -894,6 +874,20 @@
 			remoteRef = 6A2755E71BE9281C003B7804 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		6AA951D01BF5720B00A872F4 /* loadsim_2 copy.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "loadsim_2 copy.app";
+			remoteRef = 6AA951CF1BF5720B00A872F4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6AA951D21BF5720B00A872F4 /* loadsim_2 copy 2.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "loadsim_2 copy 2.app";
+			remoteRef = 6AA951D11BF5720B00A872F4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXTargetDependency section */
@@ -926,11 +920,6 @@
 			isa = PBXTargetDependency;
 			name = csound_4_sine;
 			targetProxy = 6A2755F31BE9285B003B7804 /* PBXContainerItemProxy */;
-		};
-		6A2755F61BE9285B003B7804 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = csound_3_grain;
-			targetProxy = 6A2755F51BE9285B003B7804 /* PBXContainerItemProxy */;
 		};
 		6A2755F81BE9285B003B7804 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

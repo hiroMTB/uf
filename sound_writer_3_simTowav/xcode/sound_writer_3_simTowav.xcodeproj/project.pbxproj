@@ -15,26 +15,16 @@
 		13F4CB1A47D64E98988CAEE5 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* cApp.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		6A2DF1491BEBABB7006CCD91 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* cApp.cpp */; };
-		6A2DF14A1BEBABB7006CCD91 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CD5E1BE7A88200387FFC /* MyCamera.cpp */; };
-		6A2DF14C1BEBABB7006CCD91 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		6A2DF14D1BEBABB7006CCD91 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
-		6A2DF14E1BEBABB7006CCD91 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
-		6A2DF14F1BEBABB7006CCD91 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		6A2DF1501BEBABB7006CCD91 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
-		6A2DF1511BEBABB7006CCD91 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
-		6A2DF1521BEBABB7006CCD91 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
-		6A2DF1531BEBABB7006CCD91 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
-		6A2DF15C1BEBB63C006CCD91 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* cApp.cpp */; };
-		6A2DF15D1BEBB63C006CCD91 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CD5E1BE7A88200387FFC /* MyCamera.cpp */; };
-		6A2DF15F1BEBB63C006CCD91 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		6A2DF1601BEBB63C006CCD91 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
-		6A2DF1611BEBB63C006CCD91 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
-		6A2DF1621BEBB63C006CCD91 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		6A2DF1631BEBB63C006CCD91 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
-		6A2DF1641BEBB63C006CCD91 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
-		6A2DF1651BEBB63C006CCD91 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
-		6A2DF1661BEBB63C006CCD91 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		6A1196211BF301DB00C6C436 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A16AF68948639A699138 /* cApp.cpp */; };
+		6A1196221BF301DB00C6C436 /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CD5E1BE7A88200387FFC /* MyCamera.cpp */; };
+		6A1196241BF301DB00C6C436 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		6A1196251BF301DB00C6C436 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		6A1196261BF301DB00C6C436 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		6A1196271BF301DB00C6C436 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		6A1196281BF301DB00C6C436 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		6A1196291BF301DB00C6C436 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		6A11962A1BF301DB00C6C436 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		6A11962B1BF301DB00C6C436 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		6A99CD651BE7A88200387FFC /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CD5E1BE7A88200387FFC /* MyCamera.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -51,12 +41,10 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		6A11962F1BF301DB00C6C436 /* sound_writer_3_simTowav copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sound_writer_3_simTowav copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A1196301BF301DB00C6C436 /* sound_writer_3_simTowav copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "sound_writer_3_simTowav copy-Info.plist"; path = "/Volumes/StudioRK/unfold/dev/cinder_0.8.6_mac/_uf/sound_writer_3_simTowav/xcode/sound_writer_3_simTowav copy-Info.plist"; sourceTree = "<absolute>"; };
 		6A2756301BE93E54003B7804 /* mtUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mtUtil.h; sourceTree = "<group>"; };
 		6A2BC2331B080B5D0043E8EC /* sound_writer_3_simTowav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sound_writer_3_simTowav.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A2DF1571BEBABB7006CCD91 /* sound_writer_2 copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sound_writer_2 copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A2DF1581BEBABB9006CCD91 /* sound_writer_2 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "sound_writer_2 copy-Info.plist"; path = "/Volumes/StudioRK/unfold/dev/cinder_0.8.6_mac/_uf/sound_writer_3_simTowav/xcode/sound_writer_2 copy-Info.plist"; sourceTree = "<absolute>"; };
-		6A2DF16A1BEBB63C006CCD91 /* sound_writer_2 copy 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sound_writer_2 copy 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A2DF16B1BEBB63F006CCD91 /* sound_writer_2 copy 2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "sound_writer_2 copy 2-Info.plist"; path = "/Volumes/StudioRK/unfold/dev/cinder_0.8.6_mac/_uf/sound_writer_3_simTowav/xcode/sound_writer_2 copy 2-Info.plist"; sourceTree = "<absolute>"; };
 		6A3691051B06B03A0095DF1A /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
 		6A44B88B1BEA8BAF006BA413 /* SimFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimFrame.h; sourceTree = "<group>"; };
 		6A99CD591BE7A88200387FFC /* ConsoleColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
@@ -73,33 +61,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6A2DF14B1BEBABB7006CCD91 /* Frameworks */ = {
+		6A1196231BF301DB00C6C436 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A2DF14C1BEBABB7006CCD91 /* Cocoa.framework in Frameworks */,
-				6A2DF14D1BEBABB7006CCD91 /* OpenGL.framework in Frameworks */,
-				6A2DF14E1BEBABB7006CCD91 /* CoreVideo.framework in Frameworks */,
-				6A2DF14F1BEBABB7006CCD91 /* QTKit.framework in Frameworks */,
-				6A2DF1501BEBABB7006CCD91 /* Accelerate.framework in Frameworks */,
-				6A2DF1511BEBABB7006CCD91 /* AudioToolbox.framework in Frameworks */,
-				6A2DF1521BEBABB7006CCD91 /* AudioUnit.framework in Frameworks */,
-				6A2DF1531BEBABB7006CCD91 /* CoreAudio.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6A2DF15E1BEBB63C006CCD91 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A2DF15F1BEBB63C006CCD91 /* Cocoa.framework in Frameworks */,
-				6A2DF1601BEBB63C006CCD91 /* OpenGL.framework in Frameworks */,
-				6A2DF1611BEBB63C006CCD91 /* CoreVideo.framework in Frameworks */,
-				6A2DF1621BEBB63C006CCD91 /* QTKit.framework in Frameworks */,
-				6A2DF1631BEBB63C006CCD91 /* Accelerate.framework in Frameworks */,
-				6A2DF1641BEBB63C006CCD91 /* AudioToolbox.framework in Frameworks */,
-				6A2DF1651BEBB63C006CCD91 /* AudioUnit.framework in Frameworks */,
-				6A2DF1661BEBB63C006CCD91 /* CoreAudio.framework in Frameworks */,
+				6A1196241BF301DB00C6C436 /* Cocoa.framework in Frameworks */,
+				6A1196251BF301DB00C6C436 /* OpenGL.framework in Frameworks */,
+				6A1196261BF301DB00C6C436 /* CoreVideo.framework in Frameworks */,
+				6A1196271BF301DB00C6C436 /* QTKit.framework in Frameworks */,
+				6A1196281BF301DB00C6C436 /* Accelerate.framework in Frameworks */,
+				6A1196291BF301DB00C6C436 /* AudioToolbox.framework in Frameworks */,
+				6A11962A1BF301DB00C6C436 /* AudioUnit.framework in Frameworks */,
+				6A11962B1BF301DB00C6C436 /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,8 +137,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				6A3691051B06B03A0095DF1A /* bin */,
 				6A2BC2341B080B5D0043E8EC /* Products */,
-				6A2DF1581BEBABB9006CCD91 /* sound_writer_2 copy-Info.plist */,
-				6A2DF16B1BEBB63F006CCD91 /* sound_writer_2 copy 2-Info.plist */,
+				6A1196301BF301DB00C6C436 /* sound_writer_3_simTowav copy-Info.plist */,
 			);
 			name = contour_1;
 			sourceTree = "<group>";
@@ -183,8 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				6A2BC2331B080B5D0043E8EC /* sound_writer_3_simTowav.app */,
-				6A2DF1571BEBABB7006CCD91 /* sound_writer_2 copy.app */,
-				6A2DF16A1BEBB63C006CCD91 /* sound_writer_2 copy 2.app */,
+				6A11962F1BF301DB00C6C436 /* sound_writer_3_simTowav copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,45 +181,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6A2DF1461BEBABB7006CCD91 /* sound_writer_2 copy */ = {
+		6A11961E1BF301DB00C6C436 /* sound_writer_3_simTowav copy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6A2DF1541BEBABB7006CCD91 /* Build configuration list for PBXNativeTarget "sound_writer_2 copy" */;
+			buildConfigurationList = 6A11962C1BF301DB00C6C436 /* Build configuration list for PBXNativeTarget "sound_writer_3_simTowav copy" */;
 			buildPhases = (
-				6A2DF1471BEBABB7006CCD91 /* Resources */,
-				6A2DF1481BEBABB7006CCD91 /* Sources */,
-				6A2DF14B1BEBABB7006CCD91 /* Frameworks */,
+				6A11961F1BF301DB00C6C436 /* Resources */,
+				6A1196201BF301DB00C6C436 /* Sources */,
+				6A1196231BF301DB00C6C436 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "sound_writer_2 copy";
+			name = "sound_writer_3_simTowav copy";
 			productInstallPath = "$(HOME)/Applications";
 			productName = contour_1;
-			productReference = 6A2DF1571BEBABB7006CCD91 /* sound_writer_2 copy.app */;
+			productReference = 6A11962F1BF301DB00C6C436 /* sound_writer_3_simTowav copy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6A2DF1591BEBB63C006CCD91 /* sound_writer_2 copy 2 */ = {
+		8D1107260486CEB800E47090 /* sound_writer_3_simTowav */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6A2DF1671BEBB63C006CCD91 /* Build configuration list for PBXNativeTarget "sound_writer_2 copy 2" */;
-			buildPhases = (
-				6A2DF15A1BEBB63C006CCD91 /* Resources */,
-				6A2DF15B1BEBB63C006CCD91 /* Sources */,
-				6A2DF15E1BEBB63C006CCD91 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "sound_writer_2 copy 2";
-			productInstallPath = "$(HOME)/Applications";
-			productName = contour_1;
-			productReference = 6A2DF16A1BEBB63C006CCD91 /* sound_writer_2 copy 2.app */;
-			productType = "com.apple.product-type.application";
-		};
-		8D1107260486CEB800E47090 /* sound_writer_2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "sound_writer_2" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "sound_writer_3_simTowav" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -258,7 +211,7 @@
 			);
 			dependencies = (
 			);
-			name = sound_writer_2;
+			name = sound_writer_3_simTowav;
 			productInstallPath = "$(HOME)/Applications";
 			productName = contour_1;
 			productReference = 6A2BC2331B080B5D0043E8EC /* sound_writer_3_simTowav.app */;
@@ -286,22 +239,14 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* sound_writer_2 */,
-				6A2DF1461BEBABB7006CCD91 /* sound_writer_2 copy */,
-				6A2DF1591BEBB63C006CCD91 /* sound_writer_2 copy 2 */,
+				8D1107260486CEB800E47090 /* sound_writer_3_simTowav */,
+				6A11961E1BF301DB00C6C436 /* sound_writer_3_simTowav copy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6A2DF1471BEBABB7006CCD91 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6A2DF15A1BEBB63C006CCD91 /* Resources */ = {
+		6A11961F1BF301DB00C6C436 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -318,21 +263,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6A2DF1481BEBABB7006CCD91 /* Sources */ = {
+		6A1196201BF301DB00C6C436 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A2DF1491BEBABB7006CCD91 /* cApp.cpp in Sources */,
-				6A2DF14A1BEBABB7006CCD91 /* MyCamera.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6A2DF15B1BEBB63C006CCD91 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6A2DF15C1BEBB63C006CCD91 /* cApp.cpp in Sources */,
-				6A2DF15D1BEBB63C006CCD91 /* MyCamera.cpp in Sources */,
+				6A1196211BF301DB00C6C436 /* cApp.cpp in Sources */,
+				6A1196221BF301DB00C6C436 /* MyCamera.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +284,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6A2DF1551BEBABB7006CCD91 /* Debug */ = {
+		6A11962D1BF301DB00C6C436 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -365,16 +301,16 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = "sound_writer_2 copy-Info.plist";
+				INFOPLIST_FILE = "sound_writer_3_simTowav copy-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "sound_writer_2 copy";
+				PRODUCT_NAME = "sound_writer_3_simTowav copy";
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		6A2DF1561BEBABB7006CCD91 /* Release */ = {
+		6A11962E1BF301DB00C6C436 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
@@ -392,64 +328,10 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = "sound_writer_2 copy-Info.plist";
+				INFOPLIST_FILE = "sound_writer_3_simTowav copy-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "sound_writer_2 copy";
-				STRIP_INSTALLED_PRODUCT = YES;
-				SYMROOT = ./build;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		6A2DF1681BEBB63C006CCD91 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = "sound_writer_2 copy 2-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "sound_writer_2 copy 2";
-				SYMROOT = ./build;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		6A2DF1691BEBB63C006CCD91 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
-				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"NDEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = "sound_writer_2 copy 2-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "sound_writer_2 copy 2";
+				PRODUCT_NAME = "sound_writer_3_simTowav copy";
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
@@ -547,25 +429,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A2DF1541BEBABB7006CCD91 /* Build configuration list for PBXNativeTarget "sound_writer_2 copy" */ = {
+		6A11962C1BF301DB00C6C436 /* Build configuration list for PBXNativeTarget "sound_writer_3_simTowav copy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6A2DF1551BEBABB7006CCD91 /* Debug */,
-				6A2DF1561BEBABB7006CCD91 /* Release */,
+				6A11962D1BF301DB00C6C436 /* Debug */,
+				6A11962E1BF301DB00C6C436 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6A2DF1671BEBB63C006CCD91 /* Build configuration list for PBXNativeTarget "sound_writer_2 copy 2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6A2DF1681BEBB63C006CCD91 /* Debug */,
-				6A2DF1691BEBB63C006CCD91 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "sound_writer_2" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "sound_writer_3_simTowav" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,

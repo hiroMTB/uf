@@ -1,0 +1,463 @@
+sr     = 48000
+ksmps  = 16
+nchnls = 2
+0dbfs  = 1.000000
+
+    
+        ; instr1
+        instr 1                                     ;triggers notes in instrument 2 with randomised p-fields
+        krate  randomi 0.2,0.4,0.1                  ;rate of note generation
+        ktrig  metro  krate                         ;triggers used by schedkwhen
+        koct   random 5,12                          ;fundemental pitch of synth note
+        kdur   random 15,30                         ;duration of note
+        schedkwhen ktrig,0,0,2,0,kdur   ;,cpsoct(koct)  ;trigger a note in instrument 2
+        endin
+    
+    
+    
+        ; instr2
+        instr 2 ; subtractive synthesis instrument
+        aNoise  pinkish  1                     ;a noise source sound: pink noise
+        kGap    rspline  0.3,0.05,0.2,2        ;time gap between impulses
+        aPulse  mpulse   1, kGap              ;a train of impulses
+        kCFade  rspline  0,1,0.1,1             ;crossfade point between noise and impulses
+        aInput  ntrpol   aPulse,aNoise,kCFade  ;implement crossfade
+
+        ; cutoff frequencies for low and highpass filters
+        ;kLPF_CF  rspline  13,8,0.1,0.4
+        ;kHPF_CF  rspline  5,10,0.1,0.4
+
+        ; filter input sound with low and highpass filters in series -
+        ; - done twice per filter in order to sharpen cutoff slopes
+        ;aInput    butlp    aInput, cpsoct(kLPF_CF)
+        ;aInput    butlp    aInput, cpsoct(kLPF_CF)
+        ;aInput    buthp    aInput, cpsoct(kHPF_CF)
+        ;aInput    buthp    aInput, cpsoct(kHPF_CF)
+    
+        aInput = aInput * 0.1
+        ;kcf     rspline  p4*1.05,p4*0.95,0.01,0.1 ; fundemental
+    
+    
+kamp1 chnget "camp1"
+kamp2 chnget "camp2"
+kamp3 chnget "camp3"
+kamp4 chnget "camp4"
+kamp5 chnget "camp5"
+kamp6 chnget "camp6"
+kamp7 chnget "camp7"
+kamp8 chnget "camp8"
+kamp9 chnget "camp9"
+kamp10 chnget "camp10"
+kamp11 chnget "camp11"
+kamp12 chnget "camp12"
+kamp13 chnget "camp13"
+kamp14 chnget "camp14"
+kamp15 chnget "camp15"
+kamp16 chnget "camp16"
+kamp17 chnget "camp17"
+kamp18 chnget "camp18"
+kamp19 chnget "camp19"
+kamp20 chnget "camp20"
+kamp21 chnget "camp21"
+kamp22 chnget "camp22"
+kamp23 chnget "camp23"
+kamp24 chnget "camp24"
+kamp25 chnget "camp25"
+kamp26 chnget "camp26"
+kamp27 chnget "camp27"
+kamp28 chnget "camp28"
+kamp29 chnget "camp29"
+kamp30 chnget "camp30"
+kamp31 chnget "camp31"
+kamp32 chnget "camp32"
+kamp33 chnget "camp33"
+kamp34 chnget "camp34"
+kamp35 chnget "camp35"
+kamp36 chnget "camp36"
+kamp37 chnget "camp37"
+kamp38 chnget "camp38"
+kamp39 chnget "camp39"
+kamp40 chnget "camp40"
+kamp41 chnget "camp41"
+kamp42 chnget "camp42"
+kamp43 chnget "camp43"
+kamp44 chnget "camp44"
+kamp45 chnget "camp45"
+kamp46 chnget "camp46"
+kamp47 chnget "camp47"
+kamp48 chnget "camp48"
+kamp49 chnget "camp49"
+kamp50 chnget "camp50"
+kamp51 chnget "camp51"
+kamp52 chnget "camp52"
+kamp53 chnget "camp53"
+kamp54 chnget "camp54"
+kamp55 chnget "camp55"
+kamp56 chnget "camp56"
+kamp57 chnget "camp57"
+kamp58 chnget "camp58"
+kamp59 chnget "camp59"
+kamp60 chnget "camp60"
+kamp61 chnget "camp61"
+kamp62 chnget "camp62"
+kamp63 chnget "camp63"
+kamp64 chnget "camp64"
+kamp65 chnget "camp65"
+kamp66 chnget "camp66"
+kamp67 chnget "camp67"
+kamp68 chnget "camp68"
+kamp69 chnget "camp69"
+kamp70 chnget "camp70"
+kamp71 chnget "camp71"
+kamp72 chnget "camp72"
+kamp73 chnget "camp73"
+kamp74 chnget "camp74"
+kamp75 chnget "camp75"
+kamp76 chnget "camp76"
+kamp77 chnget "camp77"
+kamp78 chnget "camp78"
+kamp79 chnget "camp79"
+kamp80 chnget "camp80"
+kamp81 chnget "camp81"
+kamp82 chnget "camp82"
+kamp83 chnget "camp83"
+kamp84 chnget "camp84"
+kamp85 chnget "camp85"
+kamp86 chnget "camp86"
+kamp87 chnget "camp87"
+kamp88 chnget "camp88"
+kamp89 chnget "camp89"
+kamp90 chnget "camp90"
+kamp91 chnget "camp91"
+kamp92 chnget "camp92"
+kamp93 chnget "camp93"
+kamp94 chnget "camp94"
+kamp95 chnget "camp95"
+kamp96 chnget "camp96"
+kamp97 chnget "camp97"
+kamp98 chnget "camp98"
+kamp99 chnget "camp99"
+kamp100 chnget "camp100"
+
+kcf1 chnget "ccf1"
+kcf2 chnget "ccf2"
+kcf3 chnget "ccf3"
+kcf4 chnget "ccf4"
+kcf5 chnget "ccf5"
+kcf6 chnget "ccf6"
+kcf7 chnget "ccf7"
+kcf8 chnget "ccf8"
+kcf9 chnget "ccf9"
+kcf10 chnget "ccf10"
+kcf11 chnget "ccf11"
+kcf12 chnget "ccf12"
+kcf13 chnget "ccf13"
+kcf14 chnget "ccf14"
+kcf15 chnget "ccf15"
+kcf16 chnget "ccf16"
+kcf17 chnget "ccf17"
+kcf18 chnget "ccf18"
+kcf19 chnget "ccf19"
+kcf20 chnget "ccf20"
+kcf21 chnget "ccf21"
+kcf22 chnget "ccf22"
+kcf23 chnget "ccf23"
+kcf24 chnget "ccf24"
+kcf25 chnget "ccf25"
+kcf26 chnget "ccf26"
+kcf27 chnget "ccf27"
+kcf28 chnget "ccf28"
+kcf29 chnget "ccf29"
+kcf30 chnget "ccf30"
+kcf31 chnget "ccf31"
+kcf32 chnget "ccf32"
+kcf33 chnget "ccf33"
+kcf34 chnget "ccf34"
+kcf35 chnget "ccf35"
+kcf36 chnget "ccf36"
+kcf37 chnget "ccf37"
+kcf38 chnget "ccf38"
+kcf39 chnget "ccf39"
+kcf40 chnget "ccf40"
+kcf41 chnget "ccf41"
+kcf42 chnget "ccf42"
+kcf43 chnget "ccf43"
+kcf44 chnget "ccf44"
+kcf45 chnget "ccf45"
+kcf46 chnget "ccf46"
+kcf47 chnget "ccf47"
+kcf48 chnget "ccf48"
+kcf49 chnget "ccf49"
+kcf50 chnget "ccf50"
+kcf51 chnget "ccf51"
+kcf52 chnget "ccf52"
+kcf53 chnget "ccf53"
+kcf54 chnget "ccf54"
+kcf55 chnget "ccf55"
+kcf56 chnget "ccf56"
+kcf57 chnget "ccf57"
+kcf58 chnget "ccf58"
+kcf59 chnget "ccf59"
+kcf60 chnget "ccf60"
+kcf61 chnget "ccf61"
+kcf62 chnget "ccf62"
+kcf63 chnget "ccf63"
+kcf64 chnget "ccf64"
+kcf65 chnget "ccf65"
+kcf66 chnget "ccf66"
+kcf67 chnget "ccf67"
+kcf68 chnget "ccf68"
+kcf69 chnget "ccf69"
+kcf70 chnget "ccf70"
+kcf71 chnget "ccf71"
+kcf72 chnget "ccf72"
+kcf73 chnget "ccf73"
+kcf74 chnget "ccf74"
+kcf75 chnget "ccf75"
+kcf76 chnget "ccf76"
+kcf77 chnget "ccf77"
+kcf78 chnget "ccf78"
+kcf79 chnget "ccf79"
+kcf80 chnget "ccf80"
+kcf81 chnget "ccf81"
+kcf82 chnget "ccf82"
+kcf83 chnget "ccf83"
+kcf84 chnget "ccf84"
+kcf85 chnget "ccf85"
+kcf86 chnget "ccf86"
+kcf87 chnget "ccf87"
+kcf88 chnget "ccf88"
+kcf89 chnget "ccf89"
+kcf90 chnget "ccf90"
+kcf91 chnget "ccf91"
+kcf92 chnget "ccf92"
+kcf93 chnget "ccf93"
+kcf94 chnget "ccf94"
+kcf95 chnget "ccf95"
+kcf96 chnget "ccf96"
+kcf97 chnget "ccf97"
+kcf98 chnget "ccf98"
+kcf99 chnget "ccf99"
+kcf100 chnget "ccf100"
+
+kbw1 chnget "cbw1"
+kbw2 chnget "cbw2"
+kbw3 chnget "cbw3"
+kbw4 chnget "cbw4"
+kbw5 chnget "cbw5"
+kbw6 chnget "cbw6"
+kbw7 chnget "cbw7"
+kbw8 chnget "cbw8"
+kbw9 chnget "cbw9"
+kbw10 chnget "cbw10"
+kbw11 chnget "cbw11"
+kbw12 chnget "cbw12"
+kbw13 chnget "cbw13"
+kbw14 chnget "cbw14"
+kbw15 chnget "cbw15"
+kbw16 chnget "cbw16"
+kbw17 chnget "cbw17"
+kbw18 chnget "cbw18"
+kbw19 chnget "cbw19"
+kbw20 chnget "cbw20"
+kbw21 chnget "cbw21"
+kbw22 chnget "cbw22"
+kbw23 chnget "cbw23"
+kbw24 chnget "cbw24"
+kbw25 chnget "cbw25"
+kbw26 chnget "cbw26"
+kbw27 chnget "cbw27"
+kbw28 chnget "cbw28"
+kbw29 chnget "cbw29"
+kbw30 chnget "cbw30"
+kbw31 chnget "cbw31"
+kbw32 chnget "cbw32"
+kbw33 chnget "cbw33"
+kbw34 chnget "cbw34"
+kbw35 chnget "cbw35"
+kbw36 chnget "cbw36"
+kbw37 chnget "cbw37"
+kbw38 chnget "cbw38"
+kbw39 chnget "cbw39"
+kbw40 chnget "cbw40"
+kbw41 chnget "cbw41"
+kbw42 chnget "cbw42"
+kbw43 chnget "cbw43"
+kbw44 chnget "cbw44"
+kbw45 chnget "cbw45"
+kbw46 chnget "cbw46"
+kbw47 chnget "cbw47"
+kbw48 chnget "cbw48"
+kbw49 chnget "cbw49"
+kbw50 chnget "cbw50"
+kbw51 chnget "cbw51"
+kbw52 chnget "cbw52"
+kbw53 chnget "cbw53"
+kbw54 chnget "cbw54"
+kbw55 chnget "cbw55"
+kbw56 chnget "cbw56"
+kbw57 chnget "cbw57"
+kbw58 chnget "cbw58"
+kbw59 chnget "cbw59"
+kbw60 chnget "cbw60"
+kbw61 chnget "cbw61"
+kbw62 chnget "cbw62"
+kbw63 chnget "cbw63"
+kbw64 chnget "cbw64"
+kbw65 chnget "cbw65"
+kbw66 chnget "cbw66"
+kbw67 chnget "cbw67"
+kbw68 chnget "cbw68"
+kbw69 chnget "cbw69"
+kbw70 chnget "cbw70"
+kbw71 chnget "cbw71"
+kbw72 chnget "cbw72"
+kbw73 chnget "cbw73"
+kbw74 chnget "cbw74"
+kbw75 chnget "cbw75"
+kbw76 chnget "cbw76"
+kbw77 chnget "cbw77"
+kbw78 chnget "cbw78"
+kbw79 chnget "cbw79"
+kbw80 chnget "cbw80"
+kbw81 chnget "cbw81"
+kbw82 chnget "cbw82"
+kbw83 chnget "cbw83"
+kbw84 chnget "cbw84"
+kbw85 chnget "cbw85"
+kbw86 chnget "cbw86"
+kbw87 chnget "cbw87"
+kbw88 chnget "cbw88"
+kbw89 chnget "cbw89"
+kbw90 chnget "cbw90"
+kbw91 chnget "cbw91"
+kbw92 chnget "cbw92"
+kbw93 chnget "cbw93"
+kbw94 chnget "cbw94"
+kbw95 chnget "cbw95"
+kbw96 chnget "cbw96"
+kbw97 chnget "cbw97"
+kbw98 chnget "cbw98"
+kbw99 chnget "cbw99"
+kbw100 chnget "cbw100"
+
+imode = 0
+a1 reson aInput, kcf1, kbw1, imode
+a2 reson aInput, kcf2, kbw2, imode
+a3 reson aInput, kcf3, kbw3, imode
+a4 reson aInput, kcf4, kbw4, imode
+a5 reson aInput, kcf5, kbw5, imode
+a6 reson aInput, kcf6, kbw6, imode
+a7 reson aInput, kcf7, kbw7, imode
+a8 reson aInput, kcf8, kbw8, imode
+a9 reson aInput, kcf9, kbw9, imode
+a10 reson aInput, kcf10, kbw10, imode
+a11 reson aInput, kcf11, kbw11, imode
+a12 reson aInput, kcf12, kbw12, imode
+a13 reson aInput, kcf13, kbw13, imode
+a14 reson aInput, kcf14, kbw14, imode
+a15 reson aInput, kcf15, kbw15, imode
+a16 reson aInput, kcf16, kbw16, imode
+a17 reson aInput, kcf17, kbw17, imode
+a18 reson aInput, kcf18, kbw18, imode
+a19 reson aInput, kcf19, kbw19, imode
+a20 reson aInput, kcf20, kbw20, imode
+a21 reson aInput, kcf21, kbw21, imode
+a22 reson aInput, kcf22, kbw22, imode
+a23 reson aInput, kcf23, kbw23, imode
+a24 reson aInput, kcf24, kbw24, imode
+a25 reson aInput, kcf25, kbw25, imode
+a26 reson aInput, kcf26, kbw26, imode
+a27 reson aInput, kcf27, kbw27, imode
+a28 reson aInput, kcf28, kbw28, imode
+a29 reson aInput, kcf29, kbw29, imode
+a30 reson aInput, kcf30, kbw30, imode
+a31 reson aInput, kcf31, kbw31, imode
+a32 reson aInput, kcf32, kbw32, imode
+a33 reson aInput, kcf33, kbw33, imode
+a34 reson aInput, kcf34, kbw34, imode
+a35 reson aInput, kcf35, kbw35, imode
+a36 reson aInput, kcf36, kbw36, imode
+a37 reson aInput, kcf37, kbw37, imode
+a38 reson aInput, kcf38, kbw38, imode
+a39 reson aInput, kcf39, kbw39, imode
+a40 reson aInput, kcf40, kbw40, imode
+a41 reson aInput, kcf41, kbw41, imode
+a42 reson aInput, kcf42, kbw42, imode
+a43 reson aInput, kcf43, kbw43, imode
+a44 reson aInput, kcf44, kbw44, imode
+a45 reson aInput, kcf45, kbw45, imode
+a46 reson aInput, kcf46, kbw46, imode
+a47 reson aInput, kcf47, kbw47, imode
+a48 reson aInput, kcf48, kbw48, imode
+a49 reson aInput, kcf49, kbw49, imode
+a50 reson aInput, kcf50, kbw50, imode
+a51 reson aInput, kcf51, kbw51, imode
+a52 reson aInput, kcf52, kbw52, imode
+a53 reson aInput, kcf53, kbw53, imode
+a54 reson aInput, kcf54, kbw54, imode
+a55 reson aInput, kcf55, kbw55, imode
+a56 reson aInput, kcf56, kbw56, imode
+a57 reson aInput, kcf57, kbw57, imode
+a58 reson aInput, kcf58, kbw58, imode
+a59 reson aInput, kcf59, kbw59, imode
+a60 reson aInput, kcf60, kbw60, imode
+a61 reson aInput, kcf61, kbw61, imode
+a62 reson aInput, kcf62, kbw62, imode
+a63 reson aInput, kcf63, kbw63, imode
+a64 reson aInput, kcf64, kbw64, imode
+a65 reson aInput, kcf65, kbw65, imode
+a66 reson aInput, kcf66, kbw66, imode
+a67 reson aInput, kcf67, kbw67, imode
+a68 reson aInput, kcf68, kbw68, imode
+a69 reson aInput, kcf69, kbw69, imode
+a70 reson aInput, kcf70, kbw70, imode
+a71 reson aInput, kcf71, kbw71, imode
+a72 reson aInput, kcf72, kbw72, imode
+a73 reson aInput, kcf73, kbw73, imode
+a74 reson aInput, kcf74, kbw74, imode
+a75 reson aInput, kcf75, kbw75, imode
+a76 reson aInput, kcf76, kbw76, imode
+a77 reson aInput, kcf77, kbw77, imode
+a78 reson aInput, kcf78, kbw78, imode
+a79 reson aInput, kcf79, kbw79, imode
+a80 reson aInput, kcf80, kbw80, imode
+a81 reson aInput, kcf81, kbw81, imode
+a82 reson aInput, kcf82, kbw82, imode
+a83 reson aInput, kcf83, kbw83, imode
+a84 reson aInput, kcf84, kbw84, imode
+a85 reson aInput, kcf85, kbw85, imode
+a86 reson aInput, kcf86, kbw86, imode
+a87 reson aInput, kcf87, kbw87, imode
+a88 reson aInput, kcf88, kbw88, imode
+a89 reson aInput, kcf89, kbw89, imode
+a90 reson aInput, kcf90, kbw90, imode
+a91 reson aInput, kcf91, kbw91, imode
+a92 reson aInput, kcf92, kbw92, imode
+a93 reson aInput, kcf93, kbw93, imode
+a94 reson aInput, kcf94, kbw94, imode
+a95 reson aInput, kcf95, kbw95, imode
+a96 reson aInput, kcf96, kbw96, imode
+a97 reson aInput, kcf97, kbw97, imode
+a98 reson aInput, kcf98, kbw98, imode
+a99 reson aInput, kcf99, kbw99, imode
+a100 reson aInput, kcf100, kbw100, imode
+
+aMixL  sum a1*kamp1,a3*kamp3,a5*kamp5,a7*kamp7,a9*kamp9,a11*kamp11,a13*kamp13,a15*kamp15,a17*kamp17,a19*kamp19,a21*kamp21,a23*kamp23,a25*kamp25,a27*kamp27,a29*kamp29,a31*kamp31,a33*kamp33,a35*kamp35,a37*kamp37,a39*kamp39,a41*kamp41,a43*kamp43,a45*kamp45,a47*kamp47,a49*kamp49,a51*kamp51,a53*kamp53,a55*kamp55,a57*kamp57,a59*kamp59,a61*kamp61,a63*kamp63,a65*kamp65,a67*kamp67,a69*kamp69,a71*kamp71,a73*kamp73,a75*kamp75,a77*kamp77,a79*kamp79,a81*kamp81,a83*kamp83,a85*kamp85,a87*kamp87,a89*kamp89,a91*kamp91,a93*kamp93,a95*kamp95,a97*kamp97,a99*kamp99
+aMixR  sum a2*kamp2,a4*kamp4,a6*kamp6,a8*kamp8,a10*kamp10,a12*kamp12,a14*kamp14,a16*kamp16,a18*kamp18,a20*kamp20,a22*kamp22,a24*kamp24,a26*kamp26,a28*kamp28,a30*kamp30,a32*kamp32,a34*kamp34,a36*kamp36,a38*kamp38,a40*kamp40,a42*kamp42,a44*kamp44,a46*kamp46,a48*kamp48,a50*kamp50,a52*kamp52,a54*kamp54,a56*kamp56,a58*kamp58,a60*kamp60,a62*kamp62,a64*kamp64,a66*kamp66,a68*kamp68,a70*kamp70,a72*kamp72,a74*kamp74,a76*kamp76,a78*kamp78,a80*kamp80,a82*kamp82,a84*kamp84,a86*kamp86,a88*kamp88,a90*kamp90,a92*kamp92,a94*kamp94,a96*kamp96,a98*kamp98,a100*kamp100
+
+    
+    ;kEnv     linseg   0, p3*0.5, 1,p3*0.5,0,1,0       ; global amplitude envelope
+
+    ;aMixL  = aMixL * kEnv
+    ;aMixR  = aMixR * kEnv
+    aMixL  = aMixL * 0.0008
+    aMixR  = aMixR * 0.0008
+    
+    outs   aMixL,aMixR
+    ;outs   aNoise,  aNoise
+    ;outs   aPulse, aPulse
+    ;outs   aInput, aInput
+    endin
+
+    
