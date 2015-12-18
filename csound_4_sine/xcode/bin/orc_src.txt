@@ -1,0 +1,149 @@
+sr     = 48000
+ksmps  = 16
+nchnls = 2
+0dbfs  = 1.000000
+
+    
+        giSine    ftgen     0, 0, 2^12, 10, 1
+    
+    
+    
+        instr 1
+        ifrq  = p4
+        print ifrq
+    
+        iFis  = ifrq * 1.414214
+        iGis  = ifrq * 1.587401
+        iA    = ifrq * 1.681773
+        iCis  = ifrq * 1.059463
+    
+    kamp1 chnget "camp1"
+kamp2 chnget "camp2"
+kamp3 chnget "camp3"
+kamp4 chnget "camp4"
+kamp5 chnget "camp5"
+kamp6 chnget "camp6"
+kamp7 chnget "camp7"
+kamp8 chnget "camp8"
+kamp9 chnget "camp9"
+kamp10 chnget "camp10"
+kamp11 chnget "camp11"
+kamp12 chnget "camp12"
+kamp13 chnget "camp13"
+kamp14 chnget "camp14"
+kamp15 chnget "camp15"
+kamp16 chnget "camp16"
+kamp17 chnget "camp17"
+kamp18 chnget "camp18"
+kamp19 chnget "camp19"
+kamp20 chnget "camp20"
+kamp21 chnget "camp21"
+kamp22 chnget "camp22"
+kamp23 chnget "camp23"
+kamp24 chnget "camp24"
+kamp25 chnget "camp25"
+kamp26 chnget "camp26"
+kamp27 chnget "camp27"
+kamp28 chnget "camp28"
+kamp29 chnget "camp29"
+kamp30 chnget "camp30"
+kamp31 chnget "camp31"
+kamp32 chnget "camp32"
+kamp33 chnget "camp33"
+kamp34 chnget "camp34"
+kamp35 chnget "camp35"
+kamp36 chnget "camp36"
+kamp37 chnget "camp37"
+kamp38 chnget "camp38"
+kamp39 chnget "camp39"
+kamp40 chnget "camp40"
+kamp41 chnget "camp41"
+kamp42 chnget "camp42"
+kamp43 chnget "camp43"
+kamp44 chnget "camp44"
+kamp45 chnget "camp45"
+kamp46 chnget "camp46"
+kamp47 chnget "camp47"
+kamp48 chnget "camp48"
+kamp49 chnget "camp49"
+kamp50 chnget "camp50"
+kamp51 chnget "camp51"
+kamp52 chnget "camp52"
+kamp53 chnget "camp53"
+kamp54 chnget "camp54"
+kamp55 chnget "camp55"
+kamp56 chnget "camp56"
+kamp57 chnget "camp57"
+kamp58 chnget "camp58"
+kamp59 chnget "camp59"
+kamp60 chnget "camp60"
+
+aOsc1 poscil kamp1*0.999847, iGis*1.000000, giSine
+aOsc2 poscil kamp2*0.999847, iA*1.000000, giSine
+aOsc3 poscil kamp3*0.999847, iCis*1.000000, giSine
+aOsc4 poscil kamp4*0.999847, iFis*1.000000, giSine
+aOsc5 poscil kamp5*0.999695, iGis*2.000000, giSine
+aOsc6 poscil kamp6*0.999695, iA*2.000000, giSine
+aOsc7 poscil kamp7*0.999695, iCis*2.000000, giSine
+aOsc8 poscil kamp8*0.999695, iFis*2.000000, giSine
+aOsc9 poscil kamp9*0.999390, iGis*4.000000, giSine
+aOsc10 poscil kamp10*0.999390, iA*4.000000, giSine
+aOsc11 poscil kamp11*0.999390, iCis*4.000000, giSine
+aOsc12 poscil kamp12*0.999390, iFis*4.000000, giSine
+aOsc13 poscil kamp13*0.998780, iGis*8.000000, giSine
+aOsc14 poscil kamp14*0.998780, iA*8.000000, giSine
+aOsc15 poscil kamp15*0.998780, iCis*8.000000, giSine
+aOsc16 poscil kamp16*0.998780, iFis*8.000000, giSine
+aOsc17 poscil kamp17*0.997561, iGis*16.000000, giSine
+aOsc18 poscil kamp18*0.997561, iA*16.000000, giSine
+aOsc19 poscil kamp19*0.997561, iCis*16.000000, giSine
+aOsc20 poscil kamp20*0.997561, iFis*16.000000, giSine
+aOsc21 poscil kamp21*0.995127, iGis*32.000000, giSine
+aOsc22 poscil kamp22*0.995127, iA*32.000000, giSine
+aOsc23 poscil kamp23*0.995127, iCis*32.000000, giSine
+aOsc24 poscil kamp24*0.995127, iFis*32.000000, giSine
+aOsc25 poscil kamp25*0.990272, iGis*64.000000, giSine
+aOsc26 poscil kamp26*0.990272, iA*64.000000, giSine
+aOsc27 poscil kamp27*0.990272, iCis*64.000000, giSine
+aOsc28 poscil kamp28*0.990272, iFis*64.000000, giSine
+aOsc29 poscil kamp29*0.980621, iGis*128.000000, giSine
+aOsc30 poscil kamp30*0.980621, iA*128.000000, giSine
+aOsc31 poscil kamp31*0.980621, iCis*128.000000, giSine
+aOsc32 poscil kamp32*0.980621, iFis*128.000000, giSine
+aOsc33 poscil kamp33*0.961543, iGis*256.000000, giSine
+aOsc34 poscil kamp34*0.961543, iA*256.000000, giSine
+aOsc35 poscil kamp35*0.961543, iCis*256.000000, giSine
+aOsc36 poscil kamp36*0.961543, iFis*256.000000, giSine
+aOsc37 poscil kamp37*0.924279, iGis*512.000000, giSine
+aOsc38 poscil kamp38*0.924279, iA*512.000000, giSine
+aOsc39 poscil kamp39*0.924279, iCis*512.000000, giSine
+aOsc40 poscil kamp40*0.924279, iFis*512.000000, giSine
+aOsc41 poscil kamp41*0.853215, iGis*1024.000000, giSine
+aOsc42 poscil kamp42*0.853215, iA*1024.000000, giSine
+aOsc43 poscil kamp43*0.853215, iCis*1024.000000, giSine
+aOsc44 poscil kamp44*0.853215, iFis*1024.000000, giSine
+aOsc45 poscil kamp45*0.724196, iGis*2048.000000, giSine
+aOsc46 poscil kamp46*0.724196, iA*2048.000000, giSine
+aOsc47 poscil kamp47*0.724196, iCis*2048.000000, giSine
+aOsc48 poscil kamp48*0.724196, iFis*2048.000000, giSine
+aOsc49 poscil kamp49*0.512909, iGis*4096.000000, giSine
+aOsc50 poscil kamp50*0.512909, iA*4096.000000, giSine
+aOsc51 poscil kamp51*0.512909, iCis*4096.000000, giSine
+aOsc52 poscil kamp52*0.512909, iFis*4096.000000, giSine
+aOsc53 poscil kamp53*0.237305, iGis*8192.000000, giSine
+aOsc54 poscil kamp54*0.237305, iA*8192.000000, giSine
+aOsc55 poscil kamp55*0.237305, iCis*8192.000000, giSine
+aOsc56 poscil kamp56*0.237305, iFis*8192.000000, giSine
+aOsc57 poscil kamp57*0.031250, iGis*16384.000000, giSine
+aOsc58 poscil kamp58*0.031250, iA*16384.000000, giSine
+aOsc59 poscil kamp59*0.031250, iCis*16384.000000, giSine
+aOsc60 poscil kamp60*0.031250, iFis*16384.000000, giSine
+
+aL  sum aOsc1,aOsc3,aOsc5,aOsc7,aOsc9,aOsc11,aOsc13,aOsc15,aOsc17,aOsc19,aOsc21,aOsc23,aOsc25,aOsc27,aOsc29,aOsc31,aOsc33,aOsc35,aOsc37,aOsc39,aOsc41,aOsc43,aOsc45,aOsc47,aOsc49,aOsc51,aOsc53,aOsc55,aOsc57,aOsc59
+aR  sum aOsc2,aOsc4,aOsc6,aOsc8,aOsc10,aOsc12,aOsc14,aOsc16,aOsc18,aOsc20,aOsc22,aOsc24,aOsc26,aOsc28,aOsc30,aOsc32,aOsc34,aOsc36,aOsc38,aOsc40,aOsc42,aOsc44,aOsc46,aOsc48,aOsc50,aOsc52,aOsc54,aOsc56,aOsc58,aOsc60
+
+
+        outs   aL, aR
+        endin
+    
+    

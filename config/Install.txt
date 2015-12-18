@@ -24,7 +24,6 @@ No need for Cinder project but useful for checking examples.
 //
 library to write sound file in various format
 No need to install
-Everything is inside of myBlocks
 
 
 

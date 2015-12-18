@@ -45,7 +45,7 @@ public:
     vector<DataGroup> mDataGroup;
     
     gl::VboMesh bridge;
-    unsigned int idump = 24;
+    unsigned int idump = 66;
 };
 
 void cApp::setup(){

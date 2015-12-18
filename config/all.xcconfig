@@ -6,12 +6,15 @@
 // CINDER
 CINDER_PATH = ../../..
 HEADER_CINDER = $(CINDER_PATH)/include
-LIB_PATH_CINDER = $(CINDER_PATH)/lib
+LIB_PATH_CINDER = $(CINDER_PATH)/lib $(CINDER_PATH)/lib/macosx
 LDFLAG_CINDER_D = -lcinder_d
 LDFLAG_CINDER_R = -lcinder
 
 // boost
 HEADER_BOOST = $(CINDER_PATH)/boost
+
+// boost iostream
+LDFLAG_BOOST_IOSTREAMS = -lboost_iostreams
 
 // Cairo
 HEADER_CAIRO = $(CINDER_PATH)/blocks/Cairo/include/macosx $(CINDER_PATH)/blocks/Cairo/include

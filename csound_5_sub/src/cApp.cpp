@@ -291,7 +291,7 @@ void cApp::startCsound( string orc, string sco ){
         ccout::r("Score file compile Failed");
     }
     
-    csound->ReadScore(sco.c_str());
+    //csound->ReadScore(sco.c_str());
     csound->Start();
 }
 
