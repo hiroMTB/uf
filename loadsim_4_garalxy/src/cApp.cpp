@@ -28,7 +28,7 @@ public:
     void loadSimData_gzip( fs::path path, vector<vector<float>> & array );
 #endif
     void convert2bin( fs::path renderTopDir, string frameName, vector<vector<float>> &array );
-        
+    
     void loadingSpeedTest();
     
 };
