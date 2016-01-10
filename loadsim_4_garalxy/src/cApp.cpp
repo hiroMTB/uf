@@ -8,7 +8,7 @@
 #include <fstream>
 #include <stdio.h>
 
-//#define USE_GZIP
+#define USE_GZIP
 #ifdef USE_GZIP
 #include <boost/iostreams/filtering_stream.hpp>
 #include <boost/iostreams/filter/gzip.hpp>
@@ -28,7 +28,7 @@ public:
     void loadSimData_gzip( fs::path path, vector<vector<float>> & array );
 #endif
     void convert2bin( fs::path renderTopDir, string frameName, vector<vector<float>> &array );
-        
+    
     void loadingSpeedTest();
     
 };
