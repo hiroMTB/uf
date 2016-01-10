@@ -56,9 +56,9 @@ void cApp::setup(){
     mExp.setup( 1080*3, 1920, 3000, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp cam( 1080*3, 1920, 25/*39.6f*/, 1, 100000 );
-    cam.lookAt( Vec3f(0,0, 3300), Vec3f(0,0,0), Vec3f(1,0,0) );
+    cam.lookAt( Vec3f(0,0, 3300), Vec3f(0,0,0), Vec3f(0,1,0) );
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
-    cam.setLensShift( 0, 1 );
+    //cam.setLensShift( 0, 1 );
     
     camUi.setCurrentCam( cam );
     
@@ -70,22 +70,22 @@ void cApp::setup(){
     
     {
         // make point from intensity
-        Surface32f sIntensity( loadImage( assetPath/"img/04/THY_Bfort 031_blk_x3.png" ) );
+        Surface32f sIntensity( loadImage( assetPath/"img"/"04"/"THY_Bfort 031_blk_x5.png" ) );
         intensityW = sIntensity.getWidth();
         intensityH = sIntensity.getHeight();
         
         Surface32f::Iter itr = sIntensity.getIter();
-        float threashold = 0.4;
+        float threashold = 0.2;
         float extrusion = 1000;
         
         while ( itr.line() ) {
             while( itr.pixel() ){
-                float gray = itr.r();
+                float yellow = (itr.r() + itr.g())*0.5f;
                 
-                if( threashold < gray ){
+                if( threashold < yellow ){
                     Vec2i pos = itr.getPos();
-                    Vec3f v( pos.x, pos.y, gray*extrusion );
-                    Vec3f noise = mPln.dfBm( Vec3f(pos.x, pos.y, gray) ) * 5.0;
+                    Vec3f v( pos.x-intensityW/2, pos.y-intensityH/2, yellow*extrusion- extrusion/2 );
+                    Vec3f noise = mPln.dfBm( Vec3f(pos.x, pos.y, yellow) ) * 5.0;
                     ps.push_back( v + noise );
 
                     pos *= 1.9f;
@@ -95,7 +95,7 @@ void cApp::setup(){
                     float r = *colorMap.getDataRed( pos ) + noise.x*0.5;
                     float g = *colorMap.getDataGreen( pos )+ noise.y*0.5;
                     float b = *colorMap.getDataBlue( pos ) + noise.z*0.5;
-                    float a = lmap(gray, 0.0f, 1.0f, 0.01f, 0.5f);
+                    float a = lmap(yellow, 0.0f, 1.0f, 0.01f, 0.5f);
                     cs.push_back( ColorAf(r, g, b, a) );
                 }
             }
@@ -111,7 +111,7 @@ void cApp::setup(){
     }
 
     
-    {
+    if( 0 ){
         // Spline
         int num = 10000;
         Ray center( Vec3f(intensityW/2, intensityH/2, 0), Vec3f(0,1,0) );
@@ -186,7 +186,7 @@ void cApp::draw(){
             mt::drawCoordinate( 100 );
         }
         
-        gl::translate( -intensityW/2, -intensityH/2 );
+        //gl::translate( -intensityW/2, -intensityH/2 );
         
         
         for( int i=0; i<bspls.size(); i++ ){
