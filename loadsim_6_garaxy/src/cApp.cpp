@@ -57,11 +57,19 @@ public:
      */
     vector<Gdata> v_gd{
         Gdata( "pos",        vector<float>(), fmax, fmin, 0.0f, 1.0f, VboSet(),     0),
+<<<<<<< HEAD
         Gdata( "vel_length", vector<float>(), fmax, fmin, 0.31f, 0.9f, VboSet(),     1),
         Gdata( "rho",        vector<float>(), fmax, fmin, 0.08f, 1.0f, VboSet(),     2),
         Gdata( "N",          vector<float>(), fmax, fmin, 0.0f, 1.0f, VboSet(),     3),
         Gdata( "mass",       vector<float>(), fmax, fmin, 0.28f, 1.0f, VboSet(),     4),
         Gdata( "K",          vector<float>(), fmax, fmin, 1.0f, 1.0f, VboSet(),     5)
+=======
+        Gdata( "vel_length", vector<float>(), fmax, fmin, 0.31f, 0.9f, VboSet(),    1),
+        Gdata( "rho",        vector<float>(), fmax, fmin, 0.0001f, 1.0f, VboSet(),  2),
+        Gdata( "N",          vector<float>(), fmax, fmin, 0.0f, 1.0f, VboSet(),     3),
+        Gdata( "mass",       vector<float>(), fmax, fmin, 0.4f, 1.0f, VboSet(),     4),
+        Gdata( "K",          vector<float>(), fmax, fmin, 0.3f, 1.0f, VboSet(),     5)
+>>>>>>> master
     };
     
     bool bStart = false;
@@ -73,8 +81,13 @@ void cApp::setup(){
     setWindowSize( 1920*0.4, 1080*3*0.4 );
     mExp.setup( 1920, 1080*3, 1000, GL_RGB, mt::getRenderPath(), 0);
     
+<<<<<<< HEAD
     CameraPersp cam( 1920, 1080*3, 54.4f, 0.1, 10000 ); //35mm
     cam.lookAt( Vec3f(0,0,50), Vec3f(0,0,0) );
+=======
+    CameraPersp cam( 1920, 1080*3, 54.4f, 1, 1000 ); //35mm
+    cam.lookAt( Vec3f(0,30,0), Vec3f(0,0,0) );
+>>>>>>> master
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
     camUi.setCurrentCam( cam );
     
@@ -118,7 +131,11 @@ void cApp::prepare(){
     makeVbo( v_gd[1] ); // 1 : vel_length
     makeVbo( v_gd[2] ); // 2 : rho
     makeVbo( v_gd[4] ); // 4 : mass
+<<<<<<< HEAD
     makeVbo( v_gd[5] ); // 5 : K
+=======
+    //makeVbo( v_gd[5] ); // 5 : K
+>>>>>>> master
 }
 
 void cApp::loadXml( fs::path path ){
@@ -167,6 +184,7 @@ void cApp::makeVbo( Gdata & gd ){
     float out = std::get<5>(gd);
     VboSet & vs = std::get<6>(gd);
     int id = std::get<7>(gd);
+<<<<<<< HEAD
     printf("\nprmName   : %s\nmin-max   : %e - %e\nin-out    : %e - %e\n", prmName.c_str(), min, max, in, out );
     
     for( int i=0; i<data.size(); i++ ) {
@@ -188,14 +206,51 @@ void cApp::makeVbo( Gdata & gd ){
                 case 2: c = ColorAf( 0.2, log+0.1, 1.0f-log*0.7, alpha );            break;
                 case 4: c = ColorAf( 0.4, 0.8f-log*1.2, 0.1+map*10, alpha );           break;
                 case 5: c = ColorAf( log*0.4, map*0.5, 0.1f, alpha );                  break;
+=======
+    printf("\nprmName   : %s\nmin-max   : %e - %e\nin-out(log): %0.4f - %0.4f\n", prmName.c_str(), min, max, in, out );
+    
+    for( int i=0; i<data.size(); i++ ) {
+        float d = data[i] - min;
+        float log = lmap( log10(1+d), 0.0f, log10(1+max-min), 0.0f, 1.0f );
+        float map = lmap( d, 0.0f, max-min, 0.0f, 1.0f );
+        float alpha = 0.8f;
+        float N = std::get<1>(v_gd[3])[i];
+        N = lmap(N, std::get<2>(v_gd[3]), std::get<3>(v_gd[3]), 0.0f, 1.0f);
+        N = 1.0f - N;
+        if( 0.7 <= N) continue;
+        
+        if( in<=log && log<=out ){
+
+            Vec3f p( posdata[i*3+0], posdata[i*3+1], posdata[i*3+2] );
+            p *= 0.5;
+            Vec3f n = mPln.dfBm( p*0.5 ) * N * 0.1;
+            p += n;
+            vs.addPos( p );
+            
+            float rlog = lmap(log, in, out, 0.0f, 1.0f);
+            rlog *= 8;
+            
+            ColorAf c(1,1,1,1);
+            switch ( id ) {
+                case 1: c = ColorAf( CM_HSV, MIN(1.0f, 0.5f+rlog), MIN(1.0f, 0.3f+rlog), 0.6f, alpha );            break;
+                case 2: c = ColorAf( CM_HSV, MIN(1.0f, 0.3f+rlog), MIN(1.0f, 0.3f+rlog*0.7f), 0.5f, alpha );        break;
+                case 4: c = ColorAf( CM_HSV, MIN(1.0f, 0.1f+rlog*0.1), MIN(1.0f, 0.4f+rlog), 0.7f, alpha );           break;
+                case 5: c = ColorAf( log, log, log, alpha );             break;
+>>>>>>> master
             }
             vs.addCol( c );
         }
     }
     
+<<<<<<< HEAD
     vs.init( false, false, true, GL_POINTS );
 
     int nVerts = vs.vbo->getNumVertices();
+=======
+    vs.init( true, true, true, GL_POINTS );
+
+    int nVerts = vs.getPos().size();
+>>>>>>> master
     printf("add %d vertices, %0.4f %% visible\n", nVerts, (float)nVerts/data.size()*100.0f);
 
 }
@@ -214,16 +269,24 @@ void cApp::draw(){
         glLineWidth( 1 );
         glPointSize( 1 );
         
+<<<<<<< HEAD
         for( auto & gd : v_gd ){
             VboSet & vs = std::get<6>( gd );
+=======
+        for( int i=0; i<v_gd.size(); i++ ){
+            VboSet & vs = std::get<6>( v_gd[i] );
+>>>>>>> master
             if( vs.vbo ){
                 gl::draw( vs.vbo );
             }
         }
         
+<<<<<<< HEAD
         glColor3f(0,0,1);
         //gl::drawCube( Vec3f(0,0,0), Vec3f(10,10,10) );
         
+=======
+>>>>>>> master
         glPushMatrix();
         gl::setMatricesWindow(mExp.mFbo.getWidth(), mExp.mFbo.getHeight() );
         glLineWidth(3);

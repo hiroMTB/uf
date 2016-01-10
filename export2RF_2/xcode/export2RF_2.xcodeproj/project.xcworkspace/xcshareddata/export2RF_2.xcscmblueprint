@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "14D49ED21F3BE3D961CE5CF75B660925394E4D66",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FBDCD2DA136AEE10751BC908DB34D1F2295B8684" : 0,
+    "14D49ED21F3BE3D961CE5CF75B660925394E4D66" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "960FA6B6-B704-4BBA-B7EA-B56C82724C41",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FBDCD2DA136AEE10751BC908DB34D1F2295B8684" : "blocks\/libmtb",
+    "14D49ED21F3BE3D961CE5CF75B660925394E4D66" : "uf"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "export2RF_2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "export2RF_2\/xcode\/export2RF_2.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hiroMTB\/uf.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "14D49ED21F3BE3D961CE5CF75B660925394E4D66"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/stdmtb\/libmtb.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FBDCD2DA136AEE10751BC908DB34D1F2295B8684"
+    }
+  ]
+}

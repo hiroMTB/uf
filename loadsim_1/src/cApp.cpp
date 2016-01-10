@@ -29,7 +29,6 @@ public:
     void mouseDown( MouseEvent event );
     void mouseDrag( MouseEvent event );
     void keyDown( KeyEvent event );
-    void resize();
     void loadSimulationData( string fileName );
     
     int mWin_w = 1920;
@@ -59,7 +58,7 @@ void cApp::setup(){
     
     boxelx = boxely = boxelz = 400;
     
-    if( 1 ) loadSimulationData( "sim/Heracles/044/044f_u.bin" );
+    if( 1 ) loadSimulationData( "sim/Heracles/simu_mach4_split/u/u_044.bin" );
 }
 
 void cApp::loadSimulationData(string fileName){
@@ -133,10 +132,10 @@ void cApp::loadSimulationData(string fileName){
                         if( rhof>visible_thresh ){
                             rhof = lmap( rhof, visible_thresh, 1.0f, 0.001f, 0.7f);
                             
-                            Vec3f noise = mPln.dfBm(k, j, i);
+                            //Vec3f noise = mPln.dfBm(k, j, i);
                             
                             ColorAf color(1,1,1,rhof);
-                            points.push_back( Vec3f(k-200, j-200, i-200) + noise );
+                            points.push_back( Vec3f(k-200, j-200, i-200) /*+ noise*/ );
                             colors.push_back( color );
                         }
                         break;
@@ -163,9 +162,9 @@ void cApp::loadSimulationData(string fileName){
                         if( ulenf>visible_thresh ){
                             ulenf = lmap( ulenf, visible_thresh, 1.0f, 0.000001f, 0.2f);
                             
-                            Vec3f noise = mPln.dfBm(k, j, i) * 1.5;
+                            //Vec3f noise = mPln.dfBm(k, j, i) * 1.5;
                             ColorAf color( xf, yf, zf, ulenf);
-                            points.push_back( Vec3f(k-200, j-200, i-200) + noise );
+                            points.push_back( Vec3f(k-200, j-200, i-200) /*+ noise*/ );
                             colors.push_back( color );
                         }
                         break;
@@ -217,6 +216,9 @@ void cApp::draw(){
             if(vbo){
                 glPointSize(1);
                 gl::draw(vbo);
+                
+                //glTranslatef(0.6, 0.6, 0.6);
+                //gl::draw(vbo);
             }
         }
         
@@ -243,12 +245,6 @@ void cApp::mouseDown( MouseEvent event ){
 
 void cApp::mouseDrag( MouseEvent event ){
     camUi.mouseDrag( event.getPos(), event.isLeftDown(), event.isMiddleDown(), event.isRightDown() );
-}
-
-void cApp::resize(){
-//    CameraPersp cam = camUi.getCamera();
-//    cam.setAspectRatio( getWindowAspectRatio() );
-//    camUi.setCurrentCam( cam );
 }
 
 CINDER_APP_NATIVE( cApp, RendererGl(0) )
