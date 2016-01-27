@@ -14,9 +14,6 @@
 		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
-		6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EFB181B06111200E7ECF9 /* Cairo.cpp */; };
-		6A99CCE61BE7A83900387FFC /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCDC1BE7A83900387FFC /* ContourMap.cpp */; };
-		6A99CCE71BE7A83900387FFC /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCE01BE7A83900387FFC /* MyCamera.cpp */; };
 		6AAB06DA1B125DE200AC8B49 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB06D91B125DE200AC8B49 /* cApp.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -30,20 +27,29 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4DD4EFC51C5807BC00F544D1 /* AudioOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioOutput.h; sourceTree = "<group>"; };
+		4DD4EFC61C5807BC00F544D1 /* Axis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Axis.h; sourceTree = "<group>"; };
+		4DD4EFC71C5807BC00F544D1 /* ConsoleColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
+		4DD4EFC91C5807BC00F544D1 /* ContourMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
+		4DD4EFCA1C5807BC00F544D1 /* CsoundOp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CsoundOp.h; sourceTree = "<group>"; };
+		4DD4EFCB1C5807BC00F544D1 /* DataGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataGroup.h; sourceTree = "<group>"; };
+		4DD4EFCC1C5807BC00F544D1 /* Exporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
+		4DD4EFCD1C5807BC00F544D1 /* FftWaveWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FftWaveWriter.h; sourceTree = "<group>"; };
+		4DD4EFCE1C5807BC00F544D1 /* MonitorNodeNL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MonitorNodeNL.cpp; sourceTree = "<group>"; };
+		4DD4EFCF1C5807BC00F544D1 /* MonitorNodeNL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonitorNodeNL.h; sourceTree = "<group>"; };
+		4DD4EFD01C5807BC00F544D1 /* mtSvg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mtSvg.h; sourceTree = "<group>"; };
+		4DD4EFD11C5807BC00F544D1 /* mtUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mtUtil.h; sourceTree = "<group>"; };
+		4DD4EFD21C5807BC00F544D1 /* MyCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
+		4DD4EFD31C5807BC00F544D1 /* MyCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
+		4DD4EFD41C5807BC00F544D1 /* RfExporterBin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RfExporterBin.h; sourceTree = "<group>"; };
+		4DD4EFD51C5807BC00F544D1 /* RfImporterBin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RfImporterBin.h; sourceTree = "<group>"; };
+		4DD4EFD61C5807BC00F544D1 /* RfImporterRpc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RfImporterRpc.h; sourceTree = "<group>"; };
+		4DD4EFD71C5807BC00F544D1 /* SimFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimFrame.h; sourceTree = "<group>"; };
+		4DD4EFD81C5807BC00F544D1 /* SoundWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundWriter.h; sourceTree = "<group>"; };
+		4DD4EFD91C5807BC00F544D1 /* TbbNpFinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TbbNpFinder.h; sourceTree = "<group>"; };
+		4DD4EFDA1C5807BC00F544D1 /* VboSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VboSet.h; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
-		6A7EFB181B06111200E7ECF9 /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
-		6A99CCDB1BE7A83900387FFC /* ConsoleColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
-		6A99CCDC1BE7A83900387FFC /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
-		6A99CCDD1BE7A83900387FFC /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
-		6A99CCDE1BE7A83900387FFC /* CsoundOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsoundOp.h; sourceTree = "<group>"; };
-		6A99CCDF1BE7A83900387FFC /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
-		6A99CCE01BE7A83900387FFC /* MyCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCamera.cpp; sourceTree = "<group>"; };
-		6A99CCE11BE7A83900387FFC /* MyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCamera.h; sourceTree = "<group>"; };
-		6A99CCE21BE7A83900387FFC /* RfExporterBin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RfExporterBin.h; sourceTree = "<group>"; };
-		6A99CCE31BE7A83900387FFC /* RfImporterBin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RfImporterBin.h; sourceTree = "<group>"; };
-		6A99CCE41BE7A83900387FFC /* SoundWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundWriter.h; sourceTree = "<group>"; };
-		6A99CCE51BE7A83900387FFC /* ufUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ufUtil.h; sourceTree = "<group>"; };
 		6AAB06D91B125DE200AC8B49 /* cApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cApp.cpp; path = ../src/cApp.cpp; sourceTree = "<group>"; };
 		6AAB06DB1B125DF100AC8B49 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = config/debug.xcconfig; sourceTree = "<group>"; };
 		6AAB06DC1B125DF100AC8B49 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = release.xcconfig; path = config/release.xcconfig; sourceTree = "<group>"; };
@@ -73,8 +79,6 @@
 		01B97315FEAEA392516A2CEA /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				6A99CCDA1BE7A83900387FFC /* libmtb */,
-				6AA336581B060EB100C7B4E2 /* Cairo */,
 			);
 			name = Blocks;
 			sourceTree = "<group>";
@@ -129,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				6AAB06D91B125DE200AC8B49 /* cApp.cpp */,
+				4DD4EFC31C5807BC00F544D1 /* libmtb */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -142,31 +147,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6A99CCDA1BE7A83900387FFC /* libmtb */ = {
+		4DD4EFC31C5807BC00F544D1 /* libmtb */ = {
 			isa = PBXGroup;
 			children = (
-				6A99CCDB1BE7A83900387FFC /* ConsoleColor.h */,
-				6A99CCDC1BE7A83900387FFC /* ContourMap.cpp */,
-				6A99CCDD1BE7A83900387FFC /* ContourMap.h */,
-				6A99CCDE1BE7A83900387FFC /* CsoundOp.h */,
-				6A99CCDF1BE7A83900387FFC /* Exporter.h */,
-				6A99CCE01BE7A83900387FFC /* MyCamera.cpp */,
-				6A99CCE11BE7A83900387FFC /* MyCamera.h */,
-				6A99CCE21BE7A83900387FFC /* RfExporterBin.h */,
-				6A99CCE31BE7A83900387FFC /* RfImporterBin.h */,
-				6A99CCE41BE7A83900387FFC /* SoundWriter.h */,
-				6A99CCE51BE7A83900387FFC /* ufUtil.h */,
+				4DD4EFC51C5807BC00F544D1 /* AudioOutput.h */,
+				4DD4EFC61C5807BC00F544D1 /* Axis.h */,
+				4DD4EFC71C5807BC00F544D1 /* ConsoleColor.h */,
+				4DD4EFC91C5807BC00F544D1 /* ContourMap.h */,
+				4DD4EFCA1C5807BC00F544D1 /* CsoundOp.h */,
+				4DD4EFCB1C5807BC00F544D1 /* DataGroup.h */,
+				4DD4EFCC1C5807BC00F544D1 /* Exporter.h */,
+				4DD4EFCD1C5807BC00F544D1 /* FftWaveWriter.h */,
+				4DD4EFCE1C5807BC00F544D1 /* MonitorNodeNL.cpp */,
+				4DD4EFCF1C5807BC00F544D1 /* MonitorNodeNL.h */,
+				4DD4EFD01C5807BC00F544D1 /* mtSvg.h */,
+				4DD4EFD11C5807BC00F544D1 /* mtUtil.h */,
+				4DD4EFD21C5807BC00F544D1 /* MyCamera.cpp */,
+				4DD4EFD31C5807BC00F544D1 /* MyCamera.h */,
+				4DD4EFD41C5807BC00F544D1 /* RfExporterBin.h */,
+				4DD4EFD51C5807BC00F544D1 /* RfImporterBin.h */,
+				4DD4EFD61C5807BC00F544D1 /* RfImporterRpc.h */,
+				4DD4EFD71C5807BC00F544D1 /* SimFrame.h */,
+				4DD4EFD81C5807BC00F544D1 /* SoundWriter.h */,
+				4DD4EFD91C5807BC00F544D1 /* TbbNpFinder.h */,
+				4DD4EFDA1C5807BC00F544D1 /* VboSet.h */,
 			);
 			name = libmtb;
 			path = ../../../blocks/libmtb;
-			sourceTree = "<group>";
-		};
-		6AA336581B060EB100C7B4E2 /* Cairo */ = {
-			isa = PBXGroup;
-			children = (
-				6A7EFB181B06111200E7ECF9 /* Cairo.cpp */,
-			);
-			name = Cairo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,10 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A99CCE71BE7A83900387FFC /* MyCamera.cpp in Sources */,
 				6AAB06DA1B125DE200AC8B49 /* cApp.cpp in Sources */,
-				6A99CCE61BE7A83900387FFC /* ContourMap.cpp in Sources */,
-				6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +280,7 @@
 				GCC_FAST_MATH = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
