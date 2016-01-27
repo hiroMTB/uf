@@ -12,7 +12,6 @@
 
 #include "mtUtil.h"
 #include "Exporter.h"
-#include "MyCamera.h"
 #include "ContourMap.h"
 
 //#define RENDER
@@ -25,10 +24,14 @@ class cApp : public AppNative {
     
 public:
     void setup();
-    void keyDown( KeyEvent event );
     void update();
     void draw();
-  	void resize();
+    void drawScan();
+    void drawAll();
+    
+    void keyDown( KeyEvent event );
+    void mouseDown( MouseEvent event );
+    void mouseDrag( MouseEvent event );
     
     int mWin_w = 1920;
     int mWin_h = 1080;
@@ -39,8 +42,11 @@ public:
     Quatf mObjOrientation;
     Perlin mPln;
     vector<ContourMap> mCMaps;
-    MyCamera mCam;
+    MayaCamUI mCamUi;
     Exporter mExp;
+    vector<fs::path> imgPaths;
+    bool bStart = true;
+    int frame = 0;
 };
 
 void cApp::setup(){
@@ -51,25 +57,29 @@ void cApp::setup(){
     n_threshold = 0;
     setWindowPos( 0, 0 );
     setWindowSize( mWin_w, mWin_h );
-    mExp.setup( mWin_w, mWin_h, 3001, GL_RGB, mt::getRenderPath(), 0 );
+    mExp.setup( mWin_w, mWin_h, 0, 3001, GL_RGB, mt::getRenderPath(), 0 );
 
     fs::path assetPath = mt::getAssetPath();
 
     // load image
-    vector<Surface32f> surs;
-//    surs.push_back( Surface32f( loadImage((assetPath/("vela_orient_blue_pac70_signal.tiff")))) );
-    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_orient_red_pacs160_signal_full.tiff")))) );
-    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_orient_red_pacs160_signal.tiff")))) );
-    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_scana_spire250_signal.tiff")))) );
-    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_scana_spire350_signal.tiff")))) );
-    surs.push_back( Surface32f( loadImage((assetPath/("img/01/vela_scana_spire500_signal.tiff")))) );
+    //imgPaths.push_back( assetPath/"img"/"01"/"vela_orient_red_pacs160_signal_full.tiff");
+    imgPaths.push_back( assetPath/"img"/"01"/"BLAST-vela-250um.tiff");
+    //imgPaths.push_back( assetPath/"img"/"01"/"vela_orient_red_pacs160_signal.tiff");
+    //imgPaths.push_back( assetPath/"img"/"01"/"vela_scana_spire250_signal.tiff");
+    //imgPaths.push_back( assetPath/"img"/"01"/"vela_scana_spire350_signal.tiff");
+    //imgPaths.push_back( assetPath/"img"/"01"/"vela_scana_spire500_signal.tiff");
 
-    for ( auto & s : surs ) {
+    for ( auto & path : imgPaths ) {
+        Surface32f sur = Surface32f( loadImage(path) );
         ContourMap cm;
-        cm.setImage( s, true, cv::Size(1,1) );
+        cm.setImage( sur, true, cv::Size(1,1) );
         mCMaps.push_back( cm );
     }
     
+    for( int i=0; i<20; i++)
+        mCMaps[0].addContour( 0.25f+i*0.02f, randInt(0,3) );
+    
+    /*
     mCMaps[0].addContour( 0.05, randInt(0,3) );
     mCMaps[0].addContour( 0.08, randInt(0,3) );
     mCMaps[0].addContour( 0.10, randInt(0,3) );
@@ -101,22 +111,13 @@ void cApp::setup(){
     mCMaps[4].addContour( 0.30, randInt(0,3) );
     mCMaps[4].addContour( 0.33, randInt(0,3) );
     mCMaps[4].addContour( 0.40, randInt(0,3) );
-
-    
-    surs.clear();
-
+    */
+     
     // Camera
-    mCam.setFov( 54 );
-   	mCam.lookAt( Vec3f( 0, 0, 4200 ), Vec3f::zero() );
-    mCam.setNearClip(1);
-    mCam.setFarClip(100000);
-
-    mCam.setup();
-    
-    // Interface
-    mParams = params::InterfaceGl::create("params", toPixels( Vec2i(250, 250) ) );
-    mParams->setOptions ( "", "position=`210 10` valueswidth=150" );
-    mParams->addParam("rotation", &mObjOrientation);
+    CameraPersp cam;
+    cam.setPerspective(60, mWin_w/(float)mWin_h, 1, 10000);
+   	cam.lookAt( Vec3f( 0, 0, 1700 ), Vec3f::zero() );
+    mCamUi.setCurrentCam( cam );
     
 #ifdef RENDER
     mExp.startRender();
@@ -127,102 +128,144 @@ void cApp::update(){
 }
 
 void cApp::draw(){
-    gl::clear();
     gl::enableAlphaBlending();
-    mExp.begin(); {
-        gl::clear();
-        gl::setMatrices( mCam );
-        gl::pushMatrices();
-        gl::rotate( mObjOrientation );
-        gl::translate( -5200, 0 ,0 );
-        
-        int mapId = -1;
-
-//        for( auto & map : mCMaps ){
-//            mapId++;
-//            gl::translate( 1500, 0, 0 );
-//            for( int i=0; i<map.mCMapData.size(); i++ ){
-//                gl::pushMatrices();
-//                gl::translate( 0, 0, i*3 );
-//                gl::color(mapId*0.2, 0.5+i*0.02, i*0.05);
-//                map.drawContourGroup(i);
-//                gl::popMatrices();
-//            }
-//        }
-        
-#define SCAN
-#ifdef SCAN
-        float frame = getElapsedFrames();
-        float scanSpeed = 5;
-        
-        for( auto & map : mCMaps ){
-            mapId++;
-            gl::translate( 1480, 0, 0 );
-            for( int i=0; i<map.mCMapData.size(); i++ ){
-                
-                ContourMap::ContourGroup &cg = map.mCMapData[i];
-                int nVertex = 0;
-                int totalVerts = 0;
-                Vec2f scanPoint;
-                bool scanFinish = false;
-                for( int j=0; j<cg.size(); j++ ){
-                    totalVerts += cg[j].size();
-                }
-                
-                for( int j=0; j<cg.size(); j++ ){
-
-                    ContourMap::Contour & c = cg[j];
-
-                    glPointSize(1);
-                    glBegin( GL_POINTS );
-                    for( int k=0; k<c.size(); k++ ){
-                        scanFinish = (j==cg.size()-1) && (k==c.size()-1);
-                        
-                        if( ++nVertex < frame*scanSpeed){
-                            cv::Point2f & p = c[k];
-                            glColor4f( 0.2+i*0.2+mPln.noise(j)*0.1, 0.8-i*0.1+mapId*0.01, i*0.1+j*0.01+mPln.noise(i)*0.02, k*0.06 );
-                            gl::vertex( fromOcv(p) );
-                            if( !scanFinish ){
-                                scanPoint = fromOcv(p);
-                            }
-                            
-                            if( frame > 300 ){
-                                p.x += mPln.fBm( mapId*0.5, i*0.5, frame*0.005 )*7.0;
-                                p.y += mPln.fBm( mapId*0.5, j*0.5, frame*0.005 )*5.0;
-                            }
-                        }else{
-                            break;
-                        }
-                    }
-                    glEnd();
-                }
-                
-                if( scanFinish ){
-                    int scanId = (int)(frame*scanSpeed) % totalVerts;
-                    //scanPoint = fromOcv( *cg[0][scanId] );
-                }
-            
-                //if( !scanFinish ){
-                    glLineWidth( 1 );
-                    glBegin( GL_LINES );
-                    gl::vertex( scanPoint );
-                    scanPoint.y = -10000;
-                    gl::vertex( scanPoint );
-                    glEnd();
-                //}
-            }
-        }
-#endif
-        gl::popMatrices();
-        
-    } mExp.end();
+    glPointSize(1);
+    glLineWidth(1);
     
-    gl::color( Colorf::white() );
-    mExp.draw();
+    mExp.begin( mCamUi.getCamera() ); {
+        gl::clear();
+        gl::translate(0, 300);
+        //drawAll();
+        drawScan();
+    }mExp.end();
 
+    mExp.draw();
     mt::drawScreenGuide();
-    mParams->draw();
-    mCam.drawParam();
+
+    if(bStart) frame++;
+}
+
+
+void cApp::drawAll(){
+    for(int j=0; j<mCMaps.size(); j++){
+        gl::pushMatrices();
+        gl::translate( 2000*(j-2), 0, 0 );
+        for( int i=0; i<mCMaps[j].mCMapData.size(); i++ ){
+            gl::color(j*0.2, 0.5+i*0.02, i*0.05);
+            mCMaps[j].drawContourGroup(i);
+        }
+        gl::popMatrices();
+    }
+}
+
+void cApp::drawScan(){
+    
+    float scanSpeed = 40;
+    
+    int mapId = -1;
+    
+    for( auto & map : mCMaps ){
+        mapId++;
+        gl::translate( 1480, 0, 0 );
+        for( int i=0; i<map.mCMapData.size(); i++ ){
+            
+            gl::translate(0,0,50);
+            
+            ContourMap::ContourGroup &cg = map.mCMapData[i];
+            int nVertex = 0;
+            int totalVerts = 0;
+            Vec2f scanPoint;
+            bool scanFinish = false;
+            for( int j=0; j<cg.size(); j++ ){
+                totalVerts += cg[j].size();
+            }
+            
+            for( int j=0; j<cg.size(); j++ ){
+                
+                ContourMap::Contour & c = cg[j];
+
+                gl::enableAlphaBlending();
+                
+                switch (j) {
+                    case 0:
+                    case 1:
+                        glDisable( GL_BLEND );
+                        break;
+                        
+                    case 2:
+                        glEnable( GL_BLEND );
+                        glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+                        break;
+                    case 3:
+                        glEnable( GL_BLEND );
+                        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+                        break;
+
+                    case 4:
+                    case 5:
+                        gl::enableAlphaBlending();
+                        break;
+
+                    case 6:
+                        glEnable( GL_BLEND );
+                        glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
+                        break;
+                    
+                    case 7:
+                        glEnable( GL_BLEND );
+                        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
+                        break;
+
+                    case 8:
+                        glEnable( GL_BLEND );
+                        glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ONE_MINUS_SRC_COLOR);
+                        break;
+
+                    default:
+                        //gl::enableAlphaBlending();
+                        break;
+                }
+                
+                glPointSize(1);
+                glBegin( GL_POINTS );
+                for( int k=0; k<c.size(); k++ ){
+                    scanFinish = (j==cg.size()-1) && (k==c.size()-1);
+                    
+                    if( ++nVertex < frame*scanSpeed){
+                        cv::Point2f & p = c[k];
+                        glColor4f( 0.2+i*0.05+mPln.noise(j)*0.3, 0.8-i*0.1+mapId*0.01, i*0.1+j*0.01+mPln.noise(i)*0.02, 0.1+MAX(k*0.005f,0.4f) );
+                        gl::vertex( fromOcv(p) );
+                        if( !scanFinish ){
+                            scanPoint = fromOcv(p);
+                        }
+                        
+                        if( frame > 600 ){
+                            p.x += mPln.fBm( mapId*0.5, i*0.5, frame*0.005 )*7.0;
+                            p.y += mPln.fBm( mapId*0.5, j*0.5, frame*0.005 )*5.0;
+                        }
+                    }else{
+                        break;
+                    }
+                }
+                glEnd();
+            }
+            
+            if( scanFinish ){
+                int scanId = (int)(frame*scanSpeed) % totalVerts;
+                //scanPoint = fromOcv( *cg[0][scanId] );
+            }
+            
+            //if( !scanFinish ){
+            glLineWidth( 1 );
+            glBegin( GL_LINES );
+            gl::vertex( scanPoint );
+            scanPoint.y = -10000;
+            gl::vertex( scanPoint );
+            glEnd();
+            //}
+        }
+    }
 }
 
 void cApp::keyDown( KeyEvent event ) {
@@ -239,17 +282,27 @@ void cApp::keyDown( KeyEvent event ) {
             n_threshold++;
             n_threshold %= 8;
             break;
+         
+        case ' ':
+            bStart = !bStart;
+            break;
             
         case 'e':
             string epsPath = "../../out/eps/";
             createDirectories( epsPath );
-            mCMaps[0].exportContour( epsPath+"contour", "eps" );
+            for( int i=0; i<mCMaps.size(); i++){
+                mCMaps[i].exportContour( epsPath+imgPaths[i].filename().string(), "eps" );
+            }
             break;
         }
 }
 
-void cApp::resize(){
-    mCam.setAspectRatio( getWindowAspectRatio() );
+void cApp::mouseDown( MouseEvent event ){
+    mCamUi.mouseDown( event.getPos() );
+}
+
+void cApp::mouseDrag( MouseEvent event ){
+    mCamUi.mouseDrag( event.getPos(), event.isLeftDown(), event.isMiddleDown(), event.isRightDown() );
 }
 
 CINDER_APP_NATIVE( cApp, RendererGl(0) )

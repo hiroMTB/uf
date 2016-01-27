@@ -24,7 +24,7 @@ LDFLAG_CAIRO = -lcairo -lpixman-1 -lpng16
 // OpenCV
 HEADER_CV = $(CINDER_PATH)/blocks/OpenCV/include/opencv2 $(CINDER_PATH)/blocks/OpenCV/include
 LIB_PATH_CV = $(CINDER_PATH)/blocks/OpenCV/lib/macosx/
-LDFLAG_CV = -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_nonfree -lopencv_objdetect -opencv_ocl -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab
+LDFLAG_CV = -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_nonfree -lopencv_objdetect -opencv_ocl -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab -lz
 
 // CSound
 HEADER_CSOUND = /Library/Frameworks/CsoundLib64.framework/Headers

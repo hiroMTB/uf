@@ -47,15 +47,20 @@ void cApp::setup(){
     
     
     // CONTOUR
-    // loadAsset search parent directry, on up 5 level
     fs::path assetPath = mt::getAssetPath();
-    Surface32f sur( loadImage( assetPath/"img/01/vela_orient_red_pacs160_signal_full.tiff") );
+    //string filename = "vela_orient_red_pacs160_signal_full.tiff";
+    string filename = "vela_orient_blue_pac70_signal.tiff";
+    //string filename = "vela_orient_red_pacs160_signal_full.tiff";
+    //string filename = "vela_orient_red_pacs160_signal_full.tiff";
+    
+    Surface32f sur( loadImage( assetPath/"img"/"01"/filename) );
     gl::Texture mTex = gl::Texture( sur );
     input = toOcv( sur );
     cv::cvtColor( input, input, CV_RGB2GRAY );
     //cv::blur( input, input, cv::Size(2,2) );
 
     float threshold = 0;
+
     for( int j=0; j<40; j++ ){
         ContourGroup cg;
         vector<cv::Vec4i> hierarchy;
@@ -71,55 +76,58 @@ void cApp::setup(){
         // store
         contourMap.push_back( cg );
         hierarchyMap.push_back( hierarchy );
+    }
+
+    if( 1 ){
+        fs::path outdir( mt::getRenderPath()/"out/" );
+        createDirectories( outdir );
+        cairo::Context ctx;
+        fs::path filepath = outdir/(filename+".svg");
+        ctx = cairo::Context( cairo::SurfaceSvg( filepath, 3000, 3000 ) );
+        cout << filepath.string() << endl;
+        ctx.setLineWidth( 1 );
+        ctx.setSource( ColorAf(1,1,1,1) );
+        ctx.paint();
+        ctx.stroke();
         
-        // Export eps
-        if( 0 ){
-            cairo::Context ctx;
-            fs::path outpath( "../../out" );
-            createDirectories( outpath );
-            ctx = cairo::Context( cairo::SurfaceSvg( fs::path("../../out/contour_" + to_string(threshold) + ".svg"), 3000, 3000 ) );
-            //ctx = cairo::Context( cairo::SurfacePdf( fs::path("../../../out/contour_" + to_string(threshold) + ".pdf"), 3000, 3000 ) );
+        ctx.setSource( ColorAf(0,0,0,1) );
+        ctx.setLineWidth(1);
+
+        for( int j=0; j<contourMap.size(); j++){
+            ContourGroup & cg = contourMap[j];
             
-            ctx.setLineWidth( 1 );
-            ctx.setSource( ColorAf(0,0,1,1) );
-            ctx.rectangle( 10, 10, 3000-20, 3000-20 );
-            ctx.stroke();
-            
-            ctx.setSource( ColorAf(0,0,0,1) );
-            ctx.newPath();
             for( int i=0; i<cg.size(); i++ ){
                 if( i%2==1 )  continue;
-//                bool haveParent = hierarchy[i][2] < 0;
-//                bool haveChild = hierarchy[i][3] < 0;
-//                
-//                if( haveParent && haveChild )
-//                    ctx.setSource( Colorf(0.5,0.5,0.5) );
-//                else if( haveParent && !haveChild ){
-//                    ctx.setSource( Colorf(1,0,0) );
-//                    //continue;
-//                }else if( !haveParent && haveChild ){
-//                    ctx.setSource( Colorf(0,0,1) );
-//                    //continue;
-//                }else if( !haveParent && !haveChild ){
-//                    ctx.setSource( Colorf(0,0,0) );
-//                }else {
-//                    ctx.setSource( Colorf(1,0,0.3) );
-//                }
+                // bool haveParent = hierarchy[i][2] < 0;
+                // bool haveChild = hierarchy[i][3] < 0;
+                //
+                // if( haveParent && haveChild )
+                //  ctx.setSource( Colorf(0.5,0.5,0.5) );
+                // else if( haveParent && !haveChild ){
+                //  ctx.setSource( Colorf(1,0,0) );
+                //  //continue;
+                // }else if( !haveParent && haveChild ){
+                //  ctx.setSource( Colorf(0,0,1) );
+                //  //continue;
+                // }else if( !haveParent && !haveChild ){
+                //  ctx.setSource( Colorf(0,0,0) );
+                // }else {
+                //  ctx.setSource( Colorf(1,0,0.3) );
+                // }
                 
-                ctx.newSubPath();
+                ctx.newPath();
                 if( cg[i].size() >=5 ){
                     for( auto & p : cg[i] ){
                         ctx.lineTo( p.x, p.y );
                     }
                 }
                 ctx.closePath();
-                //ctx.stroke();
-                
+                ctx.stroke();
             }
-            ctx.stroke();
         }
     }
 }
+
 
 void cApp::update(){
 }
