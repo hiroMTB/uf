@@ -1,4 +1,4 @@
-#define RENDER
+//#define RENDER
 
 #include "cinder/app/AppNative.h"
 #include "cinder/Rand.h"
@@ -10,16 +10,17 @@
 #include "cinder/MayaCamUI.h"
 #include "cinder/Perlin.h"
 #include "cinder/params/Params.h"
+
 #include "mtUtil.h"
 #include "ConsoleColor.h"
 #include "Exporter.h"
+#include "Ramses.h"
 
-#include <iostream>
-#include <fstream>
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+
 
 class cApp : public AppNative {
     
@@ -30,49 +31,87 @@ public:
     void mouseDown( MouseEvent event );
     void mouseDrag( MouseEvent event );
     void keyDown( KeyEvent event );
-    void resize();
-
-    void loadPlotData( string fileName );
-    void loadSimulationData( string fileName );
     
-    int mWin_w = 1920;
-    int mWin_h = 1080;
-
-    gl::VboMesh vbo;
     MayaCamUI camUi;
     Perlin mPln;
-    
     Exporter mExp;
-    int boxelx, boxely, boxelz;
     
-    vector<double> pR, pTheta;
+    vector<Ramses> rms;
+    bool bStart = false;
+    bool bOrtho = false;
     
     int frame = 100;
 
-    string simType = "simu_1";
-    string log = "log";
-    string prm = "rho";
-
+    params::InterfaceGlRef gui;
 };
 
 void cApp::setup(){
     setWindowPos( 0, 0 );
-    setWindowSize( 1080*3*0.5, 1920*0.5 );
-    mExp.setup( 1080*3, 1920, 0, 3000, GL_RGB, mt::getRenderPath(), 0);
     
-    CameraPersp cam(1080*3, 1920, 60.0f, 1, 100000 );
-    cam.lookAt( Vec3f(0,0,200), Vec3f(0,0,0) );
+    //float w = 1080*3;
+    //float h = 1920;
+
+    float w = 1920;
+    float h = 1080;
+    
+    setWindowSize( w, h );
+    mExp.setup( w, h, 0, 3000, GL_RGB, mt::getRenderPath(), 0);
+    
+    CameraPersp cam(w, h, 60.0f, 0.1, 1000000 );
+    cam.lookAt( Vec3f(0,0,650), Vec3f(0,0,0) );
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
     camUi.setCurrentCam( cam );
     
     mPln.setSeed(123);
     mPln.setOctaves(4);
     
-    loadPlotData( "sim/supernova/plot/" + simType);
+    int eSimType = 0;
+    gui = params::InterfaceGl::create( getWindow(), Ramses::simType[eSimType], Vec2i(300, getWindowHeight()) );
+    gui->setOptions( "", "position=`0 0` valueswidth=100" );
+
+    for( int i=0; i<6; i++){
+        Ramses r(eSimType,i);
+        rms.push_back( r );
+    }
     
-    boxelx = pR.size();
-    boxely = pTheta.size();
-    boxelz = 1;
+    gui->addText( "main" );
+    gui->addParam("start", &bStart, false );
+    gui->addParam("frame", &frame, false );
+    gui->addParam("ortho", &bOrtho, false );
+    gui->addParam("r(x) resolution", &Ramses::boxelx, true );
+    gui->addParam("theta(y) resolution", &Ramses::boxely, true );
+
+    gui->addSeparator();
+    
+    for( int i=0; i<6; i++){
+        string p = Ramses::prm[i];
+        //gui->addText( p );
+        
+        function<void(void)> up = bind(&Ramses::updateVbo, &rms[i]);
+        
+        gui->addParam(p+" show", &rms[i].bShow, false ).group(p);
+        gui->addParam(p+" Auto Min Max", &rms[i].bAutoMinMax, false ).group(p).updateFn(up);
+        gui->addParam(p+" in min", &rms[i].in_min, false ).step(0.01f).group(p).updateFn(up);
+        gui->addParam(p+" in max", &rms[i].in_max, false ).step(0.01f).group(p).updateFn(up);
+
+        gui->addParam(p+" z extrude", &rms[i].extrude, false ).step(1.0f).group(p).updateFn(up);
+        gui->addParam(p+" z offset", &rms[i].zoffset, false ).step(1.0f).group(p).updateFn(up);
+
+        gui->addParam(p+" xy scale", &rms[i].scale, false ).step(1.0f).group(p).updateFn(up);
+        //gui->addParam(p+" visible thresh", &rms[i].visible_thresh, false ).step(0.005f).min(0.0f).max(1.0f).group(p).updateFn(up);
+        gui->addParam(p+" log", &rms[i].eStretch, false ).step(1).min(0).max(1).group(p).updateFn(up);
+
+        // read only
+        gui->addParam(p+" visible rate(%)", &rms[i].visible_rate, true ).group(p);
+        gui->addParam(p+" num particle", &rms[i].nParticle, true).group(p);
+
+        gui->addSeparator();
+    }
+    
+    for( int i=0; i<rms.size(); i++){
+        rms[i].loadSimData( frame );
+        rms[i].updateVbo();
+    }
     
 #ifdef RENDER
     mExp.startRender();
@@ -80,176 +119,59 @@ void cApp::setup(){
     
 }
 
-void cApp::loadPlotData(string simu_name){
-    
-    // load .r, .thata
-    vector<string> exts = { ".r", ".theta"};
-    for( auto & ext : exts ){
-    
-        fs::path assetPath = mt::getAssetPath();
-        string path = (assetPath/(simu_name + ext)).string();
-        cout << "start loading " << ext << " file : " << path << "...";
-        std::ifstream is( path, std::ios::binary );
-        if(is){ cout << " done" << endl;
-        }else{ cout << " ERROR" << endl; quit(); }
-        
-        is.seekg (0, is.end);
-        int fileSize = is.tellg();
-        is.seekg (0, is.beg);
-        int arraySize = arraySize = fileSize / sizeof(double);
-
-        vector<double> & vec = (ext == ".r")? pR : pTheta;
-        vec.clear();
-        vec.assign(arraySize, double(0));
-        is.read(reinterpret_cast<char*>(&vec[0]), fileSize);
-        is.close();
-        
-        printf( "arraySize %d, %e~%e\n\n", (int)vec.size(), vec[0], vec[vec.size()-1]);
-    }
-    
-    
-}
-
-
-void cApp::loadSimulationData(string fileName){
-
-    fs::path assetPath = mt::getAssetPath();
-    string path = (assetPath/fileName).string();
-    //cout << "start loading binary file : " << path << "...";
-    std::ifstream is( path, std::ios::binary );
-    if(is){
-       // cout << " done" << endl;
-    }else{
-        cout << " ERROR" << endl;
-        quit();
-    }
-    
-    // get length of file:
-    is.seekg (0, is.end);
-    int fileSize = is.tellg();
-    is.seekg (0, is.beg);
-    
-    int arraySize = arraySize = fileSize / sizeof(double);
-    //cout << "arraySize : " << arraySize << endl;
-    
-    vector<double> rho;
-    rho.assign(arraySize, double(0));
-    is.read(reinterpret_cast<char*>(&rho[0]), fileSize);
-    is.close();
-    
-    //cout << "Making point data... " << endl;
-    
-    double in_min =  numeric_limits<double>::max();
-    double in_max =  numeric_limits<double>::min();
-    
-    for( auto r : rho ){
-        in_min = MIN( in_min, r);
-        in_max = MAX( in_max, r);
-    }
-    
-    vector<Vec3f> points;
-    vector<ColorAf> colors;
-    
-    double scale = 600.0;
-    double extrude = 900.0;
-    for( int j=0; j<boxely; j++ ){
-        for( int i=0; i<boxelx; i++ ){
-            
-            int index = j + i*boxely;
-            
-            double rho_raw = rho[index];
-            float rho_map = lmap(rho_raw, in_min, in_max, 0.0, 1.0);
-            float visible_thresh = 0.2f;
-            
-            if( visible_thresh<rho_map && rho_map <1.00 ){
-                rho_map = lmap( rho_map, visible_thresh, 1.0f, 0.8f, 0.0f);
-                ColorAf color(CM_HSV, rho_map, 0.8f, 0.8);
-                
-                bool polar = true;
-                if( polar ){
-                    double r = pR[i];
-                    double theta = pTheta[j];
-                    double x = r * cos( theta );
-                    double y = r * sin( theta );
-                    
-                    points.push_back( Vec3f( x*scale, y*scale, -rho_map*extrude) );
-                }else{
-                    points.push_back( Vec3f(i, j, 0) * scale);
-                }
-                colors.push_back( color );
-            }
-        }
-    }
-
-
-    gl::VboMesh::Layout layout;
-    layout.setStaticColorsRGBA();
-    layout.setStaticPositions();
-
-    vbo.reset();
-    vbo = gl::VboMesh(points.size(), 0, layout, GL_POINTS);
-    vbo.bufferPositions(points);
-    vbo.bufferColorsRGBA(colors);
-    
-    //cout << "create VBO : " << vbo.getNumVertices() << " verts" << endl;
-    cout << "Visible particle rate : " << vbo.getNumVertices()/(float)arraySize*100.0 << " %" << endl;
-    
-}
 
 void cApp::update(){
-    
-    fs::path p("sim");
-    p = p/"supernova"/simType/log/prm/(simType + "_polar_" +log+ "_" + prm + "_00" + to_string(frame) + ".bin");
-    loadSimulationData(  p.string() );
-
+    if( bStart ){
+        for( int i=0; i<rms.size(); i++){
+            rms[i].loadSimData( frame );
+            rms[i].updateVbo();
+        }
+    }
 }
 
 void cApp::draw(){
-
     
     gl::enableAlphaBlending();
-    gl::enableDepthRead();
-    gl::enableDepthWrite();
     glPointSize(1);
     glLineWidth(1);
     
     
-    //mExp.begin( camUi.getCamera() );{
-    mExp.beginOrtho();{
+    bOrtho ? mExp.beginOrtho( true ) : mExp.begin( camUi.getCamera() );
+    {
         
-        gl::clear( ColorA(0,0,0,1) );
+        gl::clear();    
+        gl::enableDepthRead();
+        gl::enableDepthWrite();
         
-        //gl::translate(mExp.mFbo.getWidth()/2, mExp.mFbo.getHeight()/2);
-        gl::rotate(Vec3f(-90,0,0));
-        
-        if( !mExp.bSnap && !mExp.bRender )
-            mt::drawCoordinate(1000);
-        
-        if(vbo){
-            gl::draw(vbo);
-            gl::translate(0.5f, 0.5f);
-            gl::draw(vbo);
+        if( !mExp.bRender && !mExp.bSnap ){
+            mt::drawCoordinate(10);
+            gl::color(1, 0, 0);
+            gl::drawStrokedCircle( Vec2i(0,0), 20);
         }
         
-
+        for( int i=0; i<rms.size(); i++){
+            //gl::translate(0,0,500);
+            rms[i].draw();
+        }
     }mExp.end();
     
     mExp.draw();
     
-    gl::pushMatrices();
-    gl::setMatricesWindow(getWindowSize() );
-    gl::drawSolidRect(Rectf(Vec2i(0,0), Vec2i(120,50)));
-    gl::color(1, 1, 1);
-    gl::drawString("frame " + to_string(frame), Vec2f(20,20));
-    gl::popMatrices();
+    //gl::disableDepthRead();
+    //gl::disableDepthWrite();
     
-    frame++;
+    if(gui) gui->draw();
+
+    if( bStart)frame++;
 }
 
 void cApp::keyDown( KeyEvent event ) {
     char key = event.getChar();
     switch (key) {
-        case 'S': mExp.snapShot();  break;
+        case 'S': mExp.startRender();  break;
+        case 'T': mExp.stopRender();  break;
+        case 's': mExp.snapShot();  break;
+        case ' ': bStart = !bStart; break;
     }
 }
 
@@ -259,12 +181,6 @@ void cApp::mouseDown( MouseEvent event ){
 
 void cApp::mouseDrag( MouseEvent event ){
     camUi.mouseDrag( event.getPos(), event.isLeftDown(), event.isMiddleDown(), event.isRightDown() );
-}
-
-void cApp::resize(){
-//    CameraPersp cam = camUi.getCamera();
-//    cam.setAspectRatio( getWindowAspectRatio() );
-//    camUi.setCurrentCam( cam );
 }
 
 CINDER_APP_NATIVE( cApp, RendererGl(0) )

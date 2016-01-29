@@ -27,6 +27,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4D4AEDC41C5AA9CD001F9FC1 /* Ramses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ramses.h; path = ../src/Ramses.h; sourceTree = "<group>"; };
 		4DD4EFC51C5807BC00F544D1 /* AudioOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioOutput.h; sourceTree = "<group>"; };
 		4DD4EFC61C5807BC00F544D1 /* Axis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Axis.h; sourceTree = "<group>"; };
 		4DD4EFC71C5807BC00F544D1 /* ConsoleColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				6AAB06D91B125DE200AC8B49 /* cApp.cpp */,
+				4D4AEDC41C5AA9CD001F9FC1 /* Ramses.h */,
 				4DD4EFC31C5807BC00F544D1 /* libmtb */,
 			);
 			name = src;
