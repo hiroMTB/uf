@@ -39,7 +39,7 @@ public:
     vector<Ramses> rms;
     bool bStart = false;
     bool bOrtho = false;
-    
+    int eSimType = 0;
     int frame = 100;
 
     params::InterfaceGlRef gui;
@@ -65,7 +65,6 @@ void cApp::setup(){
     mPln.setSeed(123);
     mPln.setOctaves(4);
     
-    int eSimType = 0;
     gui = params::InterfaceGl::create( getWindow(), Ramses::simType[eSimType], Vec2i(300, getWindowHeight()) );
     gui->setOptions( "", "position=`0 0` valueswidth=100" );
 
@@ -74,10 +73,15 @@ void cApp::setup(){
         rms.push_back( r );
     }
     
+    function<void(void)> update = [&](){
+        for( int i=0; i<rms.size(); i++){ rms[i].updateVbo(); }
+    };
+    
     gui->addText( "main" );
-    gui->addParam("start", &bStart, false );
-    gui->addParam("frame", &frame, false );
-    gui->addParam("ortho", &bOrtho, false );
+    gui->addParam("start", &bStart );
+    gui->addParam("frame", &frame ).updateFn(update);
+    gui->addParam("ortho", &bOrtho );
+    gui->addParam("xyz global scale", &Ramses::globalScale ).step(0.01).updateFn(update);
     gui->addParam("r(x) resolution", &Ramses::boxelx, true );
     gui->addParam("theta(y) resolution", &Ramses::boxely, true );
 
@@ -87,30 +91,33 @@ void cApp::setup(){
         string p = Ramses::prm[i];
         //gui->addText( p );
         
-        function<void(void)> up = bind(&Ramses::updateVbo, &rms[i]);
+        //function<void(void)> up = bind(&Ramses::updateVbo, &rms[i]);
+        function<void(void)> up = [i, this](){
+            rms[i].updateVbo();
+        };
         
-        gui->addParam(p+" show", &rms[i].bShow, false ).group(p);
-        gui->addParam(p+" Auto Min Max", &rms[i].bAutoMinMax, false ).group(p).updateFn(up);
-        gui->addParam(p+" in min", &rms[i].in_min, false ).step(0.01f).group(p).updateFn(up);
-        gui->addParam(p+" in max", &rms[i].in_max, false ).step(0.01f).group(p).updateFn(up);
+        function<void(void)> up2 = [i, this](){
+            rms[i].loadSimData(this->frame);
+            rms[i].updateVbo();
+        };
+        
+        gui->addParam(p+" show", &rms[i].bShow ).group(p).updateFn(up2);
+        gui->addParam(p+" Auto Min Max", &rms[i].bAutoMinMax ).group(p).updateFn(up);
+        gui->addParam(p+" in min", &rms[i].in_min).step(0.05f).group(p).updateFn(up);
+        gui->addParam(p+" in max", &rms[i].in_max).step(0.05f).group(p).updateFn(up);
 
-        gui->addParam(p+" z extrude", &rms[i].extrude, false ).step(1.0f).group(p).updateFn(up);
-        gui->addParam(p+" z offset", &rms[i].zoffset, false ).step(1.0f).group(p).updateFn(up);
+        gui->addParam(p+" z extrude", &rms[i].extrude).step(1.0f).group(p).updateFn(up);
+        gui->addParam(p+" z offset", &rms[i].zoffset).step(1.0f).group(p).updateFn(up);
 
-        gui->addParam(p+" xy scale", &rms[i].scale, false ).step(1.0f).group(p).updateFn(up);
-        //gui->addParam(p+" visible thresh", &rms[i].visible_thresh, false ).step(0.005f).min(0.0f).max(1.0f).group(p).updateFn(up);
-        gui->addParam(p+" log", &rms[i].eStretch, false ).step(1).min(0).max(1).group(p).updateFn(up);
+        gui->addParam(p+" xy scale", &rms[i].scale).step(1.0f).group(p).updateFn(up);
+        //gui->addParam(p+" visible thresh", &rms[i].visible_thresh).step(0.005f).min(0.0f).max(1.0f).group(p).updateFn(up);
+        gui->addParam(p+" log", &rms[i].eStretch).step(1).min(0).max(1).group(p).updateFn(up2);
 
         // read only
         gui->addParam(p+" visible rate(%)", &rms[i].visible_rate, true ).group(p);
         gui->addParam(p+" num particle", &rms[i].nParticle, true).group(p);
 
         gui->addSeparator();
-    }
-    
-    for( int i=0; i<rms.size(); i++){
-        rms[i].loadSimData( frame );
-        rms[i].updateVbo();
     }
     
 #ifdef RENDER
@@ -123,8 +130,10 @@ void cApp::setup(){
 void cApp::update(){
     if( bStart ){
         for( int i=0; i<rms.size(); i++){
-            rms[i].loadSimData( frame );
-            rms[i].updateVbo();
+            if( rms[i].bShow ){
+                rms[i].loadSimData( frame );
+                rms[i].updateVbo();
+            }
         }
     }
 }
@@ -134,7 +143,6 @@ void cApp::draw(){
     gl::enableAlphaBlending();
     glPointSize(1);
     glLineWidth(1);
-    
     
     bOrtho ? mExp.beginOrtho( true ) : mExp.begin( camUi.getCamera() );
     {
@@ -150,15 +158,11 @@ void cApp::draw(){
         }
         
         for( int i=0; i<rms.size(); i++){
-            //gl::translate(0,0,500);
             rms[i].draw();
         }
     }mExp.end();
     
     mExp.draw();
-    
-    //gl::disableDepthRead();
-    //gl::disableDepthWrite();
     
     if(gui) gui->draw();
 

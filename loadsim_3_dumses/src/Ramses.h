@@ -94,6 +94,7 @@ public:
     }
     
     void updateVbo(){
+        if(data.size()==0)return;
         
         if( bAutoMinMax ){
             in_min = numeric_limits<double>::max();
@@ -128,12 +129,12 @@ public:
                         double y = r * sin( theta );
 
                         //rho_map -= in_min;
-                        points.push_back( Vec3f( x*scale, y*scale, rho_map*extrude + zoffset) );
+                        points.push_back( Vec3f( x*scale, y*scale, rho_map*extrude + zoffset) * globalScale );
                     }else{
                         points.push_back( Vec3f(i, j, 0) * scale);
                     }
                     
-                    ColorAf color(CM_HSV, hue, 0.8f, 0.8);
+                    ColorAf color(CM_HSV, hue, 0.8f, 0.7f);
                     colors.push_back( color );
                 }
             }
@@ -179,24 +180,27 @@ public:
     float visible_rate;
     int arraySize;
     
-    static vector<double> pR, pTheta;
     gl::VboMeshRef vbo;
     
     const fs::path simRootDir = mt::getAssetPath()/fs::path("sim/supernova");
     static vector<string> simType;
     static vector<string> stretch;
     static vector<string> prm;
-    const vector<int> endFrame = { 650, 350, 453-1,515-1, 750 };
+    static vector<int> endFrame;
+
+    static vector<double> pR, pTheta;
     static int boxelx, boxely;
-    
+    static float globalScale;
 };
 
-vector<string> Ramses::simType = {"simu_1", "simu_2", "simu_3","simu_4","simu_5" };
-vector<string> Ramses::stretch = {"log", "linear" };
-vector<string> Ramses::prm = {"rho", "vx", "vy", "S", "P", "c"};
-vector<double> Ramses::pR;
-vector<double> Ramses::pTheta;
 
-int Ramses::boxelx = -123;
-int Ramses::boxely = -123;
+vector<string>  Ramses::simType = {"simu_1", "simu_2", "simu_3","simu_4","simu_5" };
+vector<string>  Ramses::stretch = { "linear", "log" };
+vector<string>  Ramses::prm = {"rho", "vx", "vy", "S", "P", "c"};
+vector<double>  Ramses::pR;
+vector<double>  Ramses::pTheta;
+vector<int>     Ramses::endFrame = { 650, 350, 452, 514, 750 };
+int             Ramses::boxelx = -123;
+int             Ramses::boxely = -123;
+float           Ramses::globalScale = 1.0f;
 
