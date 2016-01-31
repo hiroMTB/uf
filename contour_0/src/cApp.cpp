@@ -49,8 +49,8 @@ void cApp::setup(){
     // CONTOUR
     fs::path assetPath = mt::getAssetPath();
     //string filename = "vela_orient_red_pacs160_signal_full.tiff";
-    string filename = "vela_orient_blue_pac70_signal.tiff";
-    //string filename = "vela_orient_red_pacs160_signal_full.tiff";
+    //string filename = "vela_orient_blue_pac70_signal.tiff";
+    string filename = "vela_orient_red_pacs160_signal_full.tiff";
     //string filename = "vela_orient_red_pacs160_signal_full.tiff";
     
     Surface32f sur( loadImage( assetPath/"img"/"01"/filename) );
@@ -95,25 +95,26 @@ void cApp::setup(){
 
         for( int j=0; j<contourMap.size(); j++){
             ContourGroup & cg = contourMap[j];
+            vector<cv::Vec4i> &hierarchy = hierarchyMap[j];
             
             for( int i=0; i<cg.size(); i++ ){
                 if( i%2==1 )  continue;
-                // bool haveParent = hierarchy[i][2] < 0;
-                // bool haveChild = hierarchy[i][3] < 0;
-                //
-                // if( haveParent && haveChild )
-                //  ctx.setSource( Colorf(0.5,0.5,0.5) );
-                // else if( haveParent && !haveChild ){
-                //  ctx.setSource( Colorf(1,0,0) );
-                //  //continue;
-                // }else if( !haveParent && haveChild ){
-                //  ctx.setSource( Colorf(0,0,1) );
-                //  //continue;
-                // }else if( !haveParent && !haveChild ){
-                //  ctx.setSource( Colorf(0,0,0) );
-                // }else {
-                //  ctx.setSource( Colorf(1,0,0.3) );
-                // }
+                 bool haveParent = hierarchy[i][2] < 0;
+                 bool haveChild = hierarchy[i][3] < 0;
+                
+                 if( haveParent && haveChild )
+                  ctx.setSource( Colorf(0.5,0.5,0.5) );
+                 else if( haveParent && !haveChild ){
+                  ctx.setSource( Colorf(1,0,0) );
+                  //continue;
+                 }else if( !haveParent && haveChild ){
+                  ctx.setSource( Colorf(0,0,1) );
+                  //continue;
+                 }else if( !haveParent && !haveChild ){
+                  ctx.setSource( Colorf(0,0,0) );
+                 }else {
+                  ctx.setSource( Colorf(1,0,0.3) );
+                 }
                 
                 ctx.newPath();
                 if( cg[i].size() >=5 ){
