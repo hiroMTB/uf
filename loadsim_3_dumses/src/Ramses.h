@@ -23,7 +23,7 @@ public:
         in_max = 3.0;
         visible_thresh = 0.1f;
         eStretch = 1;
-        zoffset = 0;
+        xoffset = yoffset = zoffset = 0;
         loadPlotData();
         
     }
@@ -129,7 +129,7 @@ public:
                         double y = r * sin( theta );
 
                         //rho_map -= in_min;
-                        points.push_back( Vec3f( x*scale, y*scale, rho_map*extrude + zoffset) * globalScale );
+                        points.push_back( Vec3f( x*scale+xoffset, y*scale+yoffset, rho_map*extrude + zoffset) * globalScale );
                     }else{
                         points.push_back( Vec3f(i, j, 0) * scale);
                     }
@@ -168,6 +168,9 @@ public:
     bool bShow;
     bool bAutoMinMax;
     float extrude;
+
+    float xoffset;
+    float yoffset;
     float zoffset;
     float scale;
     double in_min;
