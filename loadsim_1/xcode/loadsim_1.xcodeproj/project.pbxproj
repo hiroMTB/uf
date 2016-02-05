@@ -15,7 +15,6 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EFB181B06111200E7ECF9 /* Cairo.cpp */; };
-		6A99CD021BE7A84C00387FFC /* ContourMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCF81BE7A84C00387FFC /* ContourMap.cpp */; };
 		6A99CD031BE7A84C00387FFC /* MyCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A99CCFC1BE7A84C00387FFC /* MyCamera.cpp */; };
 		6AAB06DA1B125DE200AC8B49 /* cApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AAB06D91B125DE200AC8B49 /* cApp.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -34,7 +33,6 @@
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		6A7EFB181B06111200E7ECF9 /* Cairo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cairo.cpp; path = ../../../blocks/Cairo/src/Cairo.cpp; sourceTree = "<group>"; };
 		6A99CCF71BE7A84C00387FFC /* ConsoleColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleColor.h; sourceTree = "<group>"; };
-		6A99CCF81BE7A84C00387FFC /* ContourMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContourMap.cpp; sourceTree = "<group>"; };
 		6A99CCF91BE7A84C00387FFC /* ContourMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContourMap.h; sourceTree = "<group>"; };
 		6A99CCFA1BE7A84C00387FFC /* CsoundOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsoundOp.h; sourceTree = "<group>"; };
 		6A99CCFB1BE7A84C00387FFC /* Exporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exporter.h; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				6A99CCF71BE7A84C00387FFC /* ConsoleColor.h */,
-				6A99CCF81BE7A84C00387FFC /* ContourMap.cpp */,
 				6A99CCF91BE7A84C00387FFC /* ContourMap.h */,
 				6A99CCFA1BE7A84C00387FFC /* CsoundOp.h */,
 				6A99CCFB1BE7A84C00387FFC /* Exporter.h */,
@@ -233,7 +230,6 @@
 			files = (
 				6A99CD031BE7A84C00387FFC /* MyCamera.cpp in Sources */,
 				6AAB06DA1B125DE200AC8B49 /* cApp.cpp in Sources */,
-				6A99CD021BE7A84C00387FFC /* ContourMap.cpp in Sources */,
 				6A7EFB191B06111200E7ECF9 /* Cairo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,4 +1,4 @@
-#define RENDER
+//#define RENDER
 
 #include "cinder/app/AppNative.h"
 #include "cinder/Rand.h"
@@ -35,6 +35,8 @@ public:
     void keyDown( KeyEvent event );
     void resize();
     void loadSimulationData( int idump );
+    void setupGui();
+    void updateRotation();
     
     int boxelx, boxely, boxelz;
     
@@ -45,48 +47,96 @@ public:
     vector<DataGroup> mDataGroup;
     
     gl::VboMesh bridge;
-    unsigned int idump = 66;
+    unsigned int idump = 24;
+    
+    bool bStart = false;
+
+    float angle1 = 40;
+    float angle2 = 40;
+    float angleSpd1 = 0;
+    float angleSpd2 = 0.5f;
+    Vec3f axis1 = Vec3f(-0.42, -0.84, 0.34);
+    Vec3f axis2 = Vec3f(-0.52, -0.83, -0.18);
+    
+    int rotateStartFrame = 25 + 50;
+    
+    params::InterfaceGlRef gui;
+    
 };
 
 void cApp::setup(){
     setWindowPos( 0, 0 );
-    setWindowSize( 1080*3*0.5, 1920*0.5 );
-    mExp.setup( 1080*3, 1920, 100, GL_RGB, mt::getRenderPath(), 0);
+    setWindowSize( 1920, 1080 );
+    mExp.setup( 1920, 1080, 0, 1000, GL_RGB, mt::getRenderPath(), 0);
     
-    CameraPersp cam(1080*3, 1920, 54.4f, 1, 1000000 );
-    cam.lookAt( Vec3f(0,0,600), Vec3f(0,0,0) );
+    CameraPersp cam(1080*3, 1920, 50, 1, 1000000 );
+    cam.lookAt( Vec3f(0,0,1600), Vec3f(0,0,0) );
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
     //cam.setPerspective( 54.4f, getWindowAspectRatio(), 1, 100000 );     // 35mm
     camUi.setCurrentCam( cam );
+    
+    setupGui();
     
     mPln.setSeed(123);
     mPln.setOctaves(4);
     
     boxelx = boxely = boxelz = 400;
     
+    //loadSimulationData( idump );
+    
 #ifdef RENDER
     mExp.startRender();
 #endif
 }
 
-void cApp::update(){
+void cApp::setupGui(){
+
+    gui = params::InterfaceGl::create( getWindow(), "settings", Vec2i(300,400) );
     
-    for( auto dg : mDataGroup )
-    dg.clear();
-    mDataGroup.clear();
+    gui->addText("main");
+    gui->addParam("idum", &idump);
+    gui->addParam("start", &bStart);
+
+    gui->addText("Rotation1");
+    gui->addParam("axis1", &axis1);
+    gui->addParam("angle1", &angle1);
+    gui->addParam("angleSpeed1", &angleSpd1);
     
-    idump++;
-    loadSimulationData( idump );
-    
+    gui->addText("Rotation2");
+    gui->addParam("axis2", &axis2);
+    gui->addParam("angle2", &angle2);
+    gui->addParam("angleSpeed2", &angleSpd2);
+
 }
 
+void cApp::update(){
+   
+    if( bStart ){
+        for( auto dg : mDataGroup )
+            dg.clear();
+    
+        mDataGroup.clear();
+        
+        idump++;
+        loadSimulationData( idump );
+    }
+    
+    updateRotation();
+}
+
+void cApp::updateRotation(){
+
+    angle2 = angleSpd2*idump;
+
+}
 
 void cApp::loadSimulationData( int idump){
     
-    string fileName = "sim/Heracles/simu_mach4_split/rho/rho_0" + to_string(idump) + ".bin";
+    stringstream fileName;
+    fileName << "sim/Heracles/simu_mach4_split/rho/rho_" << setw(3) << setfill('0') << idump << + ".bin";
     
     fs::path assetPath = mt::getAssetPath();
-    string path = ( assetPath/fileName ).string();
+    string path = ( assetPath/fileName.str() ).string();
     cout << "loading binary file : " << path << endl;
     std::ifstream is( path, std::ios::binary );
     if(is){
@@ -99,7 +149,7 @@ void cApp::loadSimulationData( int idump){
     // get length of file:
     is.seekg (0, is.end);
     int fileSize = is.tellg();
-    cout << "length : " << fileSize << " byte" << endl;
+    //cout << "length : " << fileSize << " byte" << endl;
     is.seekg (0, is.beg);
     
     int arraySize = arraySize = fileSize / sizeof(double);      // 400*400*400 = 64,000,000
@@ -109,9 +159,6 @@ void cApp::loadSimulationData( int idump){
     is.read(reinterpret_cast<char*>(&rho[0]), fileSize);
     is.close();
     
-    cout << "close binary file " << endl;
-    cout << "Making point data... " << endl;
-    
     double in_min = std::numeric_limits<double>::max();
     double in_max = std::numeric_limits<double>::min();
     
@@ -120,6 +167,7 @@ void cApp::loadSimulationData( int idump){
         in_max = MAX( in_max, r);
     }
     
+    //float alpha = 0.56f;
     vector< tuple<float, float, ColorAf> > thresholds = {
         { 0.000645,   0.00066,    ColorAf( 0.7, 0.2, 0.6, 1) },
         { 0.00067,  0.00072,    ColorAf( 0.7, 0.6, 0.1, 1) },
@@ -158,14 +206,8 @@ void cApp::loadSimulationData( int idump){
                     
                     if( low<=rhof && rhof<high ){
                         
-                        Vec3f noise = mPln.dfBm(k, j, i);
-                        Vec3f weight(0, 0, 0);
-                        
-                        //rhof = lmap( rhof, visible_thresh, 1.0f, 0.005f, 0.4f);
-                        weight.x = -t * getElapsedFrames() + 200;
-                        
-                        Vec3f v = Vec3f(k-200, j-200, i-200) + noise + weight;
-//                        v.rotate( Vec3f(1,0,0), t*90 );
+                        Vec3f noise = mPln.dfBm(k, j, i)*0.3f;
+                        Vec3f v = Vec3f(k, j, i) + Vec3f(-200,-200,-200) + noise;
                         points[t].push_back( v );
                         
                         ColorAf c = std::get<2>(thresholds[t]);
@@ -186,7 +228,7 @@ void cApp::loadSimulationData( int idump){
         
         DataGroup dg = DataGroup();
         dg.createDot( points[i], colors[i], std::get<0>(thresholds[i]) );
-        dg.createLine( points[i], colors[i] );
+        //dg.createLine( points[i], colors[i] );
         
         mDataGroup.push_back( dg );
         totalPoints += points[i].size();
@@ -195,97 +237,111 @@ void cApp::loadSimulationData( int idump){
     cout << "Visible Rate           : " << (float)totalPoints/arraySize*100.0f << endl;
     
     
-    
     // make bridge
-    vector<Vec3f> bv;
-    vector<ColorAf> bc;
-    for( int i=0; i<points.size()-1; i++ ){
-    
-        int num_try = MIN(points[i].size(),points[i+1].size()) * 0.02;
-        
-        for( int j=0; j<num_try; j++ ){
-            int id1 = randInt(0, points[i].size() );
-            int id2 = randInt(0, points[i+1].size() );
-            Vec3f v1 = points[i][id1];
-            Vec3f v2 = points[i+1][id2];
+    if( 0 ){
+        vector<Vec3f> bv;
+        vector<ColorAf> bc;
+        for( int i=0; i<points.size()-1; i++ ){
             
-            float dist = v1.distance(v2);
-            if( 20<dist && dist<1000 ){
+            int num_try = MIN(points[i].size(),points[i+1].size()) * 0.02;
+            
+            for( int j=0; j<num_try; j++ ){
+                int id1 = randInt(0, points[i].size() );
+                int id2 = randInt(0, points[i+1].size() );
+                Vec3f v1 = points[i][id1];
+                Vec3f v2 = points[i+1][id2];
                 
-                bv.push_back( v1 );
-                bv.push_back( v2 );
-                
-                ColorAf &c1 = colors[i][id1];
-                ColorAf &c2 = colors[i+1][id2];
-                ColorAf c = (c1 + c2)*0.3;
-                bc.push_back( c );
-                bc.push_back( c );
+                float dist = v1.distance(v2);
+                if( 20<dist && dist<1000 ){
+                    
+                    bv.push_back( v1 );
+                    bv.push_back( v2 );
+                    
+                    ColorAf &c1 = colors[i][id1];
+                    ColorAf &c2 = colors[i+1][id2];
+                    ColorAf c = (c1 + c2)*0.3;
+                    bc.push_back( c );
+                    bc.push_back( c );
+                }
             }
+            
+            points[i].clear();
         }
         
-        points[i].clear();
+        gl::VboMesh::Layout layout;
+        layout.setStaticIndices();
+        layout.setDynamicColorsRGBA();
+        layout.setDynamicPositions();
+        
+        bridge = gl::VboMesh( bv.size(), 0, layout, GL_LINES );
+        gl::VboMesh::VertexIter itr( bridge );
+        for( int i=0; i<bridge.getNumVertices(); i++ ){
+            itr.setPosition( bv[i] );
+            itr.setColorRGBA( bc[i] );
+            ++itr;
+        }
+        
+        char m[255];
+        sprintf(m, "create Bridge : %10lu lines", bridge.getNumVertices()/2 );
+        cout << m << endl;
     }
-    
-    gl::VboMesh::Layout layout;
-    layout.setStaticIndices();
-    layout.setDynamicColorsRGBA();
-    layout.setDynamicPositions();
-    
-    bridge = gl::VboMesh( bv.size(), 0, layout, GL_LINES );
-    gl::VboMesh::VertexIter itr( bridge );
-    for( int i=0; i<bridge.getNumVertices(); i++ ){
-        itr.setPosition( bv[i] );
-        itr.setColorRGBA( bc[i] );
-        ++itr;
-    }
-    
-    char m[255];
-    sprintf(m, "create Bridge : %10lu lines", bridge.getNumVertices()/2 );
-    cout << m << endl;
 }
-
 
 void cApp::draw(){
     
     mExp.begin( camUi.getCamera() );{
-        gl::clear( ColorA(0,0,0,1) );
+    
+        
+        //gl::clear( ColorA(0,0,0,1) );
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+
         gl::enableAlphaBlending();
         gl::enableDepthRead();
         gl::enableDepthWrite();
         
+        gl::rotate(Quaternion<float>(axis1, toRadians(angle1)) );
+        gl::rotate(Quaternion<float>(axis2, toRadians(angle2)) );
+
         if( !mExp.bSnap && !mExp.bRender ){
-            // Guide
-            mt::drawCoordinate( 10 );
+            mt::drawCoordinate( 200 );
         }
         
         // data
-        glLineWidth( 1 );
-        gl::draw( bridge );
-        
-        glLineWidth( 1 );
-        for( int i=0; i<mDataGroup.size(); i++){
-            gl::draw( mDataGroup[i].mLine );
-        }
+//        if(bridge){
+//            glLineWidth( 1 );
+//            gl::draw( bridge );
+//        }
 
-        glPointSize( 2 );
+        glLineWidth( 1 );
+//        for( int i=0; i<mDataGroup.size(); i++){
+//            if(mDataGroup[i].mLine) gl::draw( mDataGroup[i].mLine );
+//        }
+
+        glPointSize( 1 );
         for( int i=0; i<mDataGroup.size(); i++){
-            gl::draw( mDataGroup[i].mDot );
+            gl::draw( mDataGroup[i].mDot );            
         }
         
-        
+        glFrontFace(GL_CCW);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        gl::color(1, 1, 1);
+        mt::drawCube( 400 );
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        glDisable(GL_CULL_FACE);
+
     }mExp.end();
-    
-    gl::clear( ColorA(1,1,1,1) );
-    gl::color( Color::white() );
     mExp.draw();
+    
+    gui->draw();
 }
 
 void cApp::keyDown( KeyEvent event ) {
     char key = event.getChar();
     switch (key) {
-        case 'S':
-            mExp.snapShot();
-            break;
+        case 's': mExp.snapShot(); break;
+        case ' ': bStart = !bStart; break;
     }
 }
 
@@ -298,9 +354,9 @@ void cApp::mouseDrag( MouseEvent event ){
 }
 
 void cApp::resize(){
-    //    CameraPersp cam = camUi.getCamera();
-    //    cam.setAspectRatio( getWindowAspectRatio() );
-    //    camUi.setCurrentCam( cam );
+    CameraPersp cam = camUi.getCamera();
+    cam.setAspectRatio( getWindowAspectRatio() );
+    camUi.setCurrentCam( cam );
 }
 
 CINDER_APP_NATIVE( cApp, RendererGl(0) )

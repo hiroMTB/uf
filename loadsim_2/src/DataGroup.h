@@ -17,6 +17,12 @@ public:
     
     void createDot( const vector<Vec3f> &v, const vector<ColorAf> &c, float aThreshold ){
         
+        posRef = make_shared<vector<Vec3f>>(v);
+        colRef = make_shared<vector<ColorAf>>(c);
+
+        //posRef = std::move(v);
+        //colRef = std::make(c);
+
         mThreshold = aThreshold;
         
         gl::VboMesh::Layout layout;
@@ -33,6 +39,8 @@ public:
             itr.setColorRGBA( c[i] );
             ++itr;
         }
+        
+        mDot.unbindBuffers();
         
         char m[255];
         sprintf(m, "create vbo DOT    threshold %0.4f  %10zu verts", mThreshold, mDot.getNumVertices() );
@@ -90,6 +98,18 @@ public:
 
     }
     
+    
+    void draw_imediate(){
+        gl::begin( GL_POINTS );
+        for(int i=0; i<posRef->size(); i++){
+            ColorAf & c = colRef->at(i);
+            Vec3f & v = posRef->at(i);
+            gl::color( c );
+            gl::vertex( v );
+        }
+        gl::end();
+    }
+    
     void clear(){
         mDot.reset();
         mLine.reset();
@@ -97,6 +117,9 @@ public:
     
     gl::VboMesh mDot;
     gl::VboMesh mLine;
+    std::shared_ptr<vector<Vec3f>> posRef;
+    std::shared_ptr<vector<ColorAf>> colRef;
+    
     float       mThreshold;
     
 };

@@ -45,7 +45,7 @@ public:
 void cApp::setup(){
     setWindowPos( 0, 0 );
     setWindowSize( 1080*3*0.5, 1920*0.5 );
-    mExp.setup( 1080*3, 1920, 1, GL_RGB, mt::getRenderPath(), 0);
+    mExp.setup( 1080*3, 1920, 1, 1000, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp cam(1080*3, 1920, 54.4f, 1, 100000 );
     cam.lookAt( Vec3f(0,0,600), Vec3f(0,0,0) );
@@ -58,7 +58,8 @@ void cApp::setup(){
     
     boxelx = boxely = boxelz = 400;
     
-    if( 1 ) loadSimulationData( "sim/Heracles/simu_mach4_split/u/u_044.bin" );
+    loadSimulationData( "sim/Heracles/simu_mach4_split/rho/rho_044.bin" );
+    
 }
 
 void cApp::loadSimulationData(string fileName){
@@ -111,7 +112,7 @@ void cApp::loadSimulationData(string fileName){
                 
                 int index = i + j*boxely + k*boxelz*boxely;
 
-                int dimension = 3;
+                int dimension = 1;
                 switch ( dimension) {
                     case 1:
                     {
