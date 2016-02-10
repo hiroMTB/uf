@@ -52,7 +52,7 @@ void cApp::setup(){
     for( int j=0; j<prmNames.size(); j++ ){
         simFilePathList.push_back( vector<fs::path>()) ;
                                   
-        for( int i=24; i<95; i++  ){
+        for( int i=25; i<95; i++  ){
             string dumpName ="0"+to_string(i);
             fs::path prmDir = simDir/prmNames[j];
             simFilePathList[j].push_back( prmDir/(prmNames[j] + "_"+ dumpName + ".bin") );
@@ -150,8 +150,11 @@ void cApp::writeWavFromSim( fs::path simFilePath, fs::path renderDir, double set
         
         // Write Sound
         unsigned int frameNum = simf.grid_size;
-        fs::path path_snd = renderDirSnd / (fileName+".wav");
-        SoundWriter::writeWav32f(data, nCh, samplingRate, frameNum/nCh, path_snd.string() );
+
+        if(0){
+            fs::path path_snd = renderDirSnd / (fileName+".wav");
+            SoundWriter::writeWav32f(data, nCh, samplingRate, frameNum/nCh, path_snd.string() );
+        }
         
         screen_w = frameNum * xScale;
         
@@ -159,7 +162,7 @@ void cApp::writeWavFromSim( fs::path simFilePath, fs::path renderDir, double set
         Exporter mExp;
         setWindowPos(0, 0);
         setWindowSize( (screen_w+ margin*2)/10, (screen_h+margin*2)/10);
-        mExp.setup(screen_w+margin*2, screen_h+margin*2, 1, GL_RGB, "", 0);
+        mExp.setup(screen_w+margin*2, screen_h+margin*2, 0, 2, GL_RGB, "", 0);
         
         fs::path renderImgPath = renderDirImg / (fileName+ ".png");
         mExp.snapShot( renderImgPath.string() );
@@ -167,7 +170,7 @@ void cApp::writeWavFromSim( fs::path simFilePath, fs::path renderDir, double set
         gl::enableAlphaBlending();
         gl::clear();
         
-        mExp.begin();{
+        mExp.beginPersp();{
             gl::clear( Colorf(0,0,0) );
             glPointSize(1);
             gl::color(1,1,1,0.5);

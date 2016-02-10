@@ -27,8 +27,8 @@ public:
     double          screen_w        = -123;        // depends on sound sample length
     const double    screen_h        = 1000;
     const double    xScale          = 0.001;
-    const double    yScale          = screen_h/2;
-    const double    margin          = 40;
+    const double    yScale          = screen_h;
+    const double    margin          = 0;
 };
 
 void cApp::setup(){
@@ -91,8 +91,10 @@ void cApp::writeWavFromImg( fs::path srcPath, fs::path render_dir, int nCh=1, in
 
     
     // Write Sound
-    fs::path path_snd = dir_snd / (fileName+".wav");
-    SoundWriter::writeWav32f(data, nCh, samplingRate, data.size()/nCh, path_snd.string() );
+    if(0){
+        fs::path path_snd = dir_snd / (fileName+".wav");
+        SoundWriter::writeWav32f(data, nCh, samplingRate, data.size()/nCh, path_snd.string() );
+    }
     
     screen_w = data.size() * xScale;
 
@@ -100,7 +102,7 @@ void cApp::writeWavFromImg( fs::path srcPath, fs::path render_dir, int nCh=1, in
     Exporter mExp;
     setWindowPos(0, 0);
     setWindowSize( (screen_w+ margin*2)/10, (screen_h+margin*2)/10);
-    mExp.setup(screen_w+margin*2, screen_h+margin*2, 1, GL_RGB, "", 0);
+    mExp.setup(screen_w+margin*2, screen_h+margin*2, 0, 2, GL_RGB, "", 0);
 
     fs::path path_img = dir_img / (fileName+ ".png");
     mExp.snapShot( path_img.string() );
@@ -108,11 +110,11 @@ void cApp::writeWavFromImg( fs::path srcPath, fs::path render_dir, int nCh=1, in
     gl::enableAlphaBlending();
     gl::clear();
     
-    mExp.begin();{
+    mExp.beginPersp();{
         gl::clear( Colorf(0,0,0) );
         glPointSize(1);
         gl::color(1,1,1,0.5);
-        gl::translate( Vec2f(margin, margin+mExp.mFbo.getHeight()/2) );
+        gl::translate( Vec2f(margin, margin+mExp.mFbo.getHeight()) );
         
         glBegin( GL_POINTS );
         for( int i=0; i<data.size(); i++ ){
