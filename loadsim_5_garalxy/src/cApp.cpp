@@ -59,7 +59,7 @@ public:
 void cApp::setup(){
     setWindowPos( 0, 0 );
     setWindowSize( 1920*0.4, 1080*3*0.4 );
-    mExp.setup( 1920, 1080*3, 1000, GL_RGB, mt::getRenderPath(), 0);
+    mExp.setup( 1920, 1080*3, 0, 1000, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp cam( 1920, 1080*3, 54.4f, 0.1, 10000 ); //35mm
     cam.lookAt( Vec3f(0,50,0), Vec3f(0,0,0) );
@@ -78,7 +78,7 @@ void cApp::setup(){
     dataCol.assign(4, vector<ColorAf>() );
     
     string frame[] = {"00468", "01027", "01398"};
-    loadSimData( assetDir/"sim"/"garaxy"/"bin"/("rdr_"+frame[2]+"_l17.hydro.bin"), array );
+    loadSimData( assetDir/"sim"/"garaxy"/"bin"/"rho"/("rdr_"+frame[2]+"_l17.hydro_rho.bin"), array );
     makeVboPt( array );
     makeVboLn();
     makeVboBrd();

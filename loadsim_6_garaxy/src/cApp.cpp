@@ -22,7 +22,7 @@ using namespace std;
 
 class cApp : public AppNative {
     
-    typedef tuple<string, vector<float>, float, float, float, float, VboSet, int> Gdata;
+    typedef tuple<string, vector<float>, float, float, float, float, VboSet, bool, int> Gdata;
 
 public:
     void setup();
@@ -35,6 +35,7 @@ public:
     void prepare();
     void loadXml( fs::path path );
     void loadBin( fs::path path, vector<float> & array );
+    void resize();
     
     void makeVbo( Gdata & gd);
     void updateVbo();
@@ -47,6 +48,8 @@ public:
     float fmax = numeric_limits<float>::max();
     float fmin = numeric_limits<float>::min();
     
+    vector<bool> bShowPrm = { false, true, false, false, false, false};
+    
     /*
          0 : prmNam
          1 : data
@@ -56,26 +59,29 @@ public:
          5 : range out
      */
     vector<Gdata> v_gd{
-        Gdata( "pos",        vector<float>(), fmax, fmin, 0.0f, 1.0f, VboSet(),     0),
-        Gdata( "vel_length", vector<float>(), fmax, fmin, 0.31f, 0.9f, VboSet(),    1),
-        Gdata( "rho",        vector<float>(), fmax, fmin, 0.0001f, 1.0f, VboSet(),  2),
-        Gdata( "N",          vector<float>(), fmax, fmin, 0.0f, 1.0f, VboSet(),     3),
-        Gdata( "mass",       vector<float>(), fmax, fmin, 0.4f, 1.0f, VboSet(),     4),
-        Gdata( "K",          vector<float>(), fmax, fmin, 0.3f, 1.0f, VboSet(),     5)
+        Gdata( "pos",        vector<float>(), fmax, fmin, 0.0f, 1.0f, VboSet(),   false,  0),
+        Gdata( "vel_length", vector<float>(), fmax, fmin, 0.51f, 1.0f, VboSet(),  true,   1),
+        Gdata( "rho",        vector<float>(), fmax, fmin, 0.3f, 1.0f, VboSet(),true,  2),
+        Gdata( "N",          vector<float>(), fmax, fmin, 0.0f, 1.0f, VboSet(),   false,  3),
+        Gdata( "mass",       vector<float>(), fmax, fmin, 0.5f, 1.0f, VboSet(),   true,   4),
+        Gdata( "K",          vector<float>(), fmax, fmin, 0.8f, 1.0f, VboSet(),   true,   5)
     };
     
     bool bStart = false;
+    bool bShowStats = false;
     int frame = 0;
+    
+    vector<VboSet> stats;
 };
 
 void cApp::setup(){
     setWindowPos( 0, 0 );
-    setWindowSize( 1920*0.4, 1080*3*0.4 );
-    mExp.setup( 1920, 1080*3, 1000, GL_RGB, mt::getRenderPath(), 0);
+    setWindowSize( 1080*3*0.5, 1920*0.5 );
+    mExp.setup( 1080*3, 1920, 0, 1000, GL_RGB, mt::getRenderPath(), 0);
     
-    CameraPersp cam( 1920, 1080*3, 54.4f, 1, 1000 ); //35mm
-    cam.lookAt( Vec3f(0,30,0), Vec3f(0,0,0) );
-    cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
+    CameraPersp cam = camUi.getCamera();
+    cam.setPerspective(54.5f, 1080.0f*3/1920.0f, 1.0f, 100000.0f);
+    cam.lookAt( Vec3f(0,0,-2000), Vec3f(0,0,0) );
     camUi.setCurrentCam( cam );
     
     mPln.setSeed(123);
@@ -93,14 +99,19 @@ void cApp::setup(){
 
 void cApp::prepare(){
     
-    string frameName = "rdr_00468_l17.hydro";
+    //string frameName = "rdr_00468_l17.hydro";
+    //string frameName = "rdr_01027_l17.hydro";
+    string frameName = "rdr_01398_l17.hydro";
+    
     
     /*
             XML
      */
-    printf(")\nstart loading XML file\n");
-    loadXml(assetDir/"sim"/"garaxy"/"bin"/"_settings"/(frameName+".settings.xml") );
-
+    if(1){
+        printf(")\nstart loading XML file\n");
+        loadXml(assetDir/"sim"/"garaxy"/"bin"/"_settings"/(frameName+".settings.xml") );
+    }
+    
     /*
             Bin
      */
@@ -109,7 +120,23 @@ void cApp::prepare(){
         string & prmName = std::get<0>(gd);
         vector<float> & data = std::get<1>(gd);
         loadBin(assetDir/"sim"/"garaxy"/"bin"/prmName/(frameName+"_"+ prmName + ".bin"), data );
+        
+        // min & max
+        if(0){
+            float min = numeric_limits<float>::max();
+            float max = numeric_limits<float>::min();
+            for( int i=0; i<data.size(); i++ ) {
+                min = MIN(min, data[i]);
+                max = MAX(max, data[i]);
+                std::get<2>(gd) = min;
+                std::get<3>(gd) = max;
+            }
+            printf("%-10s  : %e - %e\n", prmName.c_str(), min, max );
+        }
     }
+    
+    
+    stats.assign(6, VboSet());
     
     /*
             Vbo
@@ -118,7 +145,8 @@ void cApp::prepare(){
     makeVbo( v_gd[1] ); // 1 : vel_length
     makeVbo( v_gd[2] ); // 2 : rho
     makeVbo( v_gd[4] ); // 4 : mass
-    //makeVbo( v_gd[5] ); // 5 : K
+    makeVbo( v_gd[5] ); // 5 : K
+    
 }
 
 void cApp::loadXml( fs::path path ){
@@ -155,6 +183,7 @@ void cApp::loadBin( fs::path path, vector<float> & array ){
     array.assign(arraySize, float(0) );
     is.read(reinterpret_cast<char*>(&array[0]), fileSize);
     is.close();
+
 }
 
 void cApp::makeVbo( Gdata & gd ){
@@ -166,46 +195,96 @@ void cApp::makeVbo( Gdata & gd ){
     float in  = std::get<4>(gd);
     float out = std::get<5>(gd);
     VboSet & vs = std::get<6>(gd);
-    int id = std::get<7>(gd);
+    bool logalizm = std::get<7>(gd);
+    int id = std::get<8>(gd);
     printf("\nprmName   : %s\nmin-max   : %e - %e\nin-out(log): %0.4f - %0.4f\n", prmName.c_str(), min, max, in, out );
     
+    vector<float> result;
+
     for( int i=0; i<data.size(); i++ ) {
-        float d = data[i] - min;
-        float log = lmap( log10(1+d), 0.0f, log10(1+max-min), 0.0f, 1.0f );
-        float map = lmap( d, 0.0f, max-min, 0.0f, 1.0f );
-        float alpha = 0.8f;
+
+        //
+        //  N
+        //  AMR(adaptive mesh refinement) level of the cell,
+        //  200/N kpc
+        //
         float N = std::get<1>(v_gd[3])[i];
+
+        int res = 1+(N-10)/2;
+
+        if( 10 <= N && i%res!=0) continue;
+        
         N = lmap(N, std::get<2>(v_gd[3]), std::get<3>(v_gd[3]), 0.0f, 1.0f);
         N = 1.0f - N;
-        if( 0.7 <= N) continue;
-        
-        if( in<=log && log<=out ){
+        if( 0.8 <= N) continue;
+
+        float val;
+        float d = data[i];
+
+        if( logalizm){
+            float p = 10.0f;
+            float map;
+            
+            if( id==5 ){
+                map = lmap( d, 0.0f, max*0.8f, 10.0f, pow(10.0f, p) );
+            }else{
+                map = lmap( d, min, max, 10.0f, pow(10.0f, p) );
+            }
+            
+            float log = log10(map) / p;
+            val = log;
+        }else{
+            float map = lmap( d, min, max, 0.0f, 1.0f);
+            val = map;
+        }
+ 
+        if( in<=val && val<=out ){
 
             Vec3f p( posdata[i*3+0], posdata[i*3+1], posdata[i*3+2] );
-            p *= 0.5;
-            Vec3f n = mPln.dfBm( p*0.5 ) * N * 0.1;
-            p += n;
-            vs.addPos( p );
+            //Vec3f n = mPln.dfBm( p*0.5 ) * N * 0.1;
+            //p += n;
+            p.rotateZ(90);
+            vs.addPos( p * 1000.0f );
             
-            float rlog = lmap(log, in, out, 0.0f, 1.0f);
-            rlog *= 8;
+            float remap = lmap(val, in, out, 0.3f, 0.7f);
+            result.push_back( remap );
             
-            ColorAf c(1,1,1,1);
-            switch ( id ) {
-                case 1: c = ColorAf( CM_HSV, MIN(1.0f, 0.5f+rlog), MIN(1.0f, 0.3f+rlog), 0.6f, alpha );            break;
-                case 2: c = ColorAf( CM_HSV, MIN(1.0f, 0.3f+rlog), MIN(1.0f, 0.3f+rlog*0.7f), 0.5f, alpha );        break;
-                case 4: c = ColorAf( CM_HSV, MIN(1.0f, 0.1f+rlog*0.1), MIN(1.0f, 0.4f+rlog), 0.7f, alpha );           break;
-                case 5: c = ColorAf( log, log, log, alpha );             break;
+            ColorAf c;
+            //ColorAf c( CM_HSV, 0.4+remap*0.5, 0.8f, 0.8f, 0.5f );
+            if(id!=2){
+                remap *= 0.7f;
+                c = ColorAf( remap, remap, remap, remap);
             }
+            else{
+                remap *= 1.5f;
+                c = ColorAf( remap, remap, remap, remap );
+            }
+            
             vs.addCol( c );
         }
     }
     
-    vs.init( true, true, true, GL_POINTS );
+    vs.init( GL_POINTS );
 
     int nVerts = vs.getPos().size();
     printf("add %d vertices, %0.4f %% visible\n", nVerts, (float)nVerts/data.size()*100.0f);
-
+    
+    
+    if( result.size() !=0 ){
+        std::sort(result.begin(), result.end() );
+        int size = result.size();
+        float min = result[0];
+        float max = result[size-1];
+        float median = result[size/2];
+        printf("RESULT %-10s  : %e - %e, median %e\n", prmName.c_str(), min, max, median );
+        
+        for( int i=0; i<result.size(); i++){
+            stats[id].addPos( Vec3f( i, result[i], 0 ));
+            stats[id].addCol(ColorAf(0,0,1,1));
+        }
+        
+        stats[id].init(GL_POINTS);
+    }
 }
 
 void cApp::update(){
@@ -215,42 +294,57 @@ void cApp::update(){
 
 void cApp::draw(){
     
-    mExp.begin( camUi.getCamera() );{
-        gl::clear( ColorA(0,0,0,1) );
-        gl::enableAlphaBlending();
-        
-        glLineWidth( 1 );
-        glPointSize( 1 );
-        
-        for( int i=0; i<v_gd.size(); i++ ){
-            VboSet & vs = std::get<6>( v_gd[i] );
-            if( vs.vbo ){
-                gl::draw( vs.vbo );
-            }
-        }
-        
-        glPushMatrix();
-        gl::setMatricesWindow(mExp.mFbo.getWidth(), mExp.mFbo.getHeight() );
-        glLineWidth(3);
-        glColor3f(1, 0, 0);
-        gl::drawLine( Vec2f(0, 1080), Vec2f(1920, 1080) );
-        gl::drawLine( Vec2f(0, 1080*2), Vec2f(1920, 1080*2) );
-        //gl::drawLine( Vec2f(1920/2, 0), Vec2f(1920/2, 1080*3) );
-        glPopMatrix();
-
-    }mExp.end();
     
-    gl::clear( ColorA(1,1,1,1) );
-    glColor3f( 1,1,1 );
-    mExp.draw();
+    if( !bShowStats ){
+        mExp.begin( camUi.getCamera() );{
+            gl::clear( ColorA(0,0,0,1) );
+            gl::enableAlphaBlending();
+            //gl::enableAdditiveBlending();
+            gl::enableDepthRead();
+            gl::enableDepthWrite();
+            gl::lineWidth( 1 );
+            glPointSize( 1 );
+            
+            if(!mExp.bRender && !mExp.bSnap)
+                mt::drawCoordinate(1000);
+            
+            for( int i=0; i<v_gd.size(); i++ ){
+                if( bShowPrm[i]){
+                    VboSet & vs = std::get<6>( v_gd[i] );
+                    
+                    if( vs.vbo )
+                        gl::draw( vs.vbo );
+                }
+            }
+        }mExp.end();
+        
+        mExp.draw();
 
+    }else{
+        
+        gl::pushMatrices();
+        mt::setMatricesWindow(getWindowWidth(), getWindowHeight(), false);
+        glTranslatef(10, 10, 0);
+        for( int i=0; i<stats.size(); i++){
+            stats[i].draw();
+        }
+        gl::popMatrices();
+
+    }
 }
 
 void cApp::keyDown( KeyEvent event ) {
     switch ( event.getChar() ) {
         case 'S': mExp.startRender();       break;
         case 's': mExp.snapShot();          break;
-        case ' ': bStart = !bStart;         break;
+        case 't': bShowStats = !bShowStats; break;
+
+        case '0': bShowPrm[0]=!bShowPrm[0]; break;  // pos, no vbo
+        case '1': bShowPrm[1]=!bShowPrm[1]; break;  // vel
+        case '2': bShowPrm[2]=!bShowPrm[2]; break;  // rho
+        case '3': bShowPrm[3]=!bShowPrm[3]; break;  // N,   no vbo
+        case '4': bShowPrm[4]=!bShowPrm[4]; break;  // mass
+        case '5': bShowPrm[5]=!bShowPrm[5]; break;  // K
     }
 }
 
@@ -262,4 +356,11 @@ void cApp::mouseDrag( MouseEvent event ){
     camUi.mouseDrag( event.getPos(), event.isLeftDown(), event.isMiddleDown(), event.isRightDown() );
 }
 
+void cApp::resize(){
+    CameraPersp cam = camUi.getCamera();
+    cam.setAspectRatio( getWindowAspectRatio() );
+    camUi.setCurrentCam( cam );
+}
+
 CINDER_APP_NATIVE( cApp, RendererGl(0) )
+
