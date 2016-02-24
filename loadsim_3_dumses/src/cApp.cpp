@@ -53,13 +53,13 @@ public:
 void cApp::setup(){
     setWindowPos( 0, 0 );
     
-    //float w = 1080*3;
-    //float h = 1920;
+    float w = 1080*3;
+    float h = 1920;
 
-    float w = 1920;
-    float h = 1080;
+    //float w = 1920;
+    //float h = 1080;
     
-    setWindowSize( w, h );
+    setWindowSize( w/2, h/2 );
     mExp.setup( w, h, 0, 3000, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp cam(w, h, 55.0f, 0.1, 1000000 );
