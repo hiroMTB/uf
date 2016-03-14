@@ -1,3 +1,4 @@
+//#define RENDER
 #include "cinder/app/AppNative.h"
 #include "cinder/Rand.h"
 #include "cinder/Utilities.h"
@@ -63,12 +64,13 @@ void cApp::setup(){
     
     setWindowPos( 0, 0 );
     setWindowSize( 1080*3*0.5, 1920*0.5 );
-    mExp.setup( 1080*3, 1920, 3000, GL_RGB, mt::getRenderPath(), 0);
+    mExp.setup( 1080*3, 1920, 0, 3000, GL_RGB, mt::getRenderPath(), 0);
     
     CameraPersp cam( 1080*3, 1920, 39.6f, 1, 100000 );
     cam.lookAt( Vec3f(0,0, -3300), Vec3f(0,0,0), Vec3f(0,1,0) );
     cam.setCenterOfInterestPoint( Vec3f(0,0,0) );
     //cam.setLensShift( 0, 1 );
+ 
     
     camUi.setCurrentCam( cam );
     
@@ -121,7 +123,7 @@ void cApp::setup(){
         }
         
         printf("w: %d, h:%d\n", imgW, imgH);
-        vboOrig.init(true, true, true, GL_POINTS);
+        vboOrig.init(GL_POINTS);
         
         float wRange = imgW*0.3;
         float hRange = imgH*0.7;
@@ -216,7 +218,7 @@ void cApp::addIndicesRectMesh( VboSet & vboset, VboSet & ret, float threthold, i
             }
         }
     }
-    ret.init(true, true, true, GL_LINES);
+    ret.init(GL_LINES);
 }
 
 void cApp::addIndicesLineHorizontal(VboSet & vboset, VboSet & ret, float threthold, int w, int h, Area area){
@@ -237,7 +239,7 @@ void cApp::addIndicesLineHorizontal(VboSet & vboset, VboSet & ret, float thretho
         }
     }
     
-    ret.init(true, true, true, GL_LINES);
+    ret.init(GL_LINES);
 }
 
 void cApp::addIndicesLineVertical( VboSet & vboset, VboSet & ret, float threthold, int w, int h, Area area){
@@ -259,7 +261,7 @@ void cApp::addIndicesLineVertical( VboSet & vboset, VboSet & ret, float threthol
             }
         }
     }
-    ret.init(true, true, true, GL_LINES);
+    ret.init( GL_LINES);
 }
 
 void cApp::addIndicesTriMesh(VboSet & vboset, VboSet & ret, float threthold, int w, int h, Area area){
@@ -291,7 +293,7 @@ void cApp::addIndicesTriMesh(VboSet & vboset, VboSet & ret, float threthold, int
         }
     }
     
-    ret.init(true, true, true, GL_TRIANGLES);
+    ret.init(GL_TRIANGLES);
 }
 
 void cApp::addIndiceSpline(VboSet & vboset, VboSet & ret,  float threthold, int w, int h, Area area){
@@ -345,7 +347,7 @@ void cApp::addIndiceSpline(VboSet & vboset, VboSet & ret,  float threthold, int 
         }
     }
     
-    ret.init(true, true, true, GL_LINES);
+    ret.init(GL_LINES);
 }
 
 void cApp::addIndicesPoint(VboSet & vboset, VboSet & ret, float threthold, int w, int h, Area area){
@@ -370,7 +372,7 @@ void cApp::addIndicesPoint(VboSet & vboset, VboSet & ret, float threthold, int w
         }
     }
     
-    ret.init(true, true, true, GL_POINTS);
+    ret.init( GL_POINTS );
 }
 
 void cApp::draw(){
@@ -390,7 +392,7 @@ void cApp::draw(){
         
 
         glRotatef(90, 0, 0, 1);
-//        glTranslatef(-imgW/2, -imgH/2, 0);
+        glTranslatef(-imgW/2, -imgH/2, 0);
         //vboOrig.draw();
         
         float i=0.1;
