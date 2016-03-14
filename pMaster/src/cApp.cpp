@@ -21,11 +21,12 @@ class cApp : public AppNative {
     
 public:
     void setup();
-    void update();
     void draw();
+    void sendOsc();
     void keyDown( KeyEvent key );
     void setupMultichannelDevice();
     void setupDefaultChannelDevice();
+    void before_quit();
     
     bool bStart = true;
     int stopFrame = 0;
@@ -35,10 +36,12 @@ public:
     
     osc::Sender sender1, sender2;
     std::string host1 = "localhost";
-    std::string host2 = "localhost";
-    int 		port1 = 1111;
-    int         port2 = 2222;
+    std::string host2 = "10.0.0.2";
+    int 		port1 = 12345;
+    int         port2 = 12345;
     fs::path    path = "cs.wav";
+  
+    std::thread oscThread;
 };
 
 void cApp::setupDefaultChannelDevice(){
@@ -50,7 +53,9 @@ void cApp::setupDefaultChannelDevice(){
 void cApp::setupMultichannelDevice(){
     console() << audio::Device::printDevicesToString();
     
-    audio::DeviceRef device = audio::Device::findDeviceByName("Built-in Output");
+    string rme = "Fireface UCX (23507154)";
+    string def = "Built-in Output";
+    audio::DeviceRef device = audio::Device::findDeviceByName( rme );
     
     console() << endl << "max output channels: " << device->getNumOutputChannels() << endl;
     getWindow()->setTitle( device->getName() );
@@ -63,7 +68,7 @@ void cApp::setupMultichannelDevice(){
 
 void cApp::setup(){
     
-    setFrameRate(40);
+    setFrameRate(120);
     setWindowPos(0, 0);
     setWindowSize(300, 300);
     
@@ -83,17 +88,29 @@ void cApp::setup(){
 
     sender1.setup( host1, port1);
     sender2.setup( host2, port2);
+    
+    oscThread = std::thread( &cApp::sendOsc, this );
+
 }
 
-void cApp::update(){
+void cApp::sendOsc(){
+
+    int oscPerSec = 100;
+    int interval_ms = 1000.0/oscPerSec;
     
-    seconds = player->getReadPositionTime();
-    
-    // send osc
-    cinder::osc::Message mes;
-    mes.addFloatArg( seconds );
-    sender1.sendMessage( mes );
-    sender2.sendMessage( mes );
+    while (1) {
+        seconds = player->getReadPositionTime();
+        cinder::osc::Message mes;
+        mes.addFloatArg( seconds );
+        sender1.sendMessage( mes );
+        sender2.sendMessage( mes );
+        std::this_thread::sleep_for(chrono::milliseconds(interval_ms));
+    }
+}
+
+void cApp::before_quit(){
+    oscThread.join();
+
 }
 
 void cApp::draw(){
@@ -127,9 +144,12 @@ void cApp::keyDown( KeyEvent key ){
         case '5': player->seekToTime(60*5); break;
         case '6': player->seekToTime(60*6); break;
         case '7': player->seekToTime(60*7); break;
-
         case 'h': player->seekToTime( player->getReadPosition()+30); break;
-
+        case 'q':
+            before_quit();
+            quit();
+            break;
+            
         case ' ':
             if(bStart){
                 stopFrame = player->getReadPosition();

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "14D49ED21F3BE3D961CE5CF75B660925394E4D66",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FBDCD2DA136AEE10751BC908DB34D1F2295B8684" : 0,
+    "14D49ED21F3BE3D961CE5CF75B660925394E4D66" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4E10AD65-F3DF-40CC-99F1-609CC3296C4D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FBDCD2DA136AEE10751BC908DB34D1F2295B8684" : "blocks\/libmtb\/",
+    "14D49ED21F3BE3D961CE5CF75B660925394E4D66" : "_uf_0.8.6\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "pMaster",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "pMaster\/xcode\/pMaster.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/stdmtb\/uf_0.8.6.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "14D49ED21F3BE3D961CE5CF75B660925394E4D66"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/stdmtb\/libmtb.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FBDCD2DA136AEE10751BC908DB34D1F2295B8684"
+    }
+  ]
+}

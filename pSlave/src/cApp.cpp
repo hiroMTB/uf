@@ -35,13 +35,13 @@ public:
     qtime::MovieSurfaceRef	mov;
     Surface	sur;
     
-#define CS_1
+//#define CS_1
 #ifdef CS_1
-    const int port = 1111;
+    const int port = 12345;
     const fs::path path = "4444/cs_1.mov";
     string windowName = "cs1";
 #else
-    const int port = 2222;
+    const int port = 12345;
     const fs::path path = "4444/cs_2.mov";
     string windowName = "cs2";
 #endif
@@ -69,6 +69,7 @@ void cApp::setup(){
         cinder::sleep(10);
     }
     
+    mov->setVolume(0);
     //mov->seekToStart();
     //mov->play();
     //mov->stop();
