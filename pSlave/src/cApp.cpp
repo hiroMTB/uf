@@ -124,16 +124,19 @@ void cApp::draw(){
     if(mov)gl::draw( sur );
     
     if(!bFull){
-        int y = 10;
+        int x = 20;
+        int y = 20;
         int yp = 20;
         gl::color(1, 1, 1);
-        gl::drawString( "SLAVE", Vec2i(10,y) ); y+=yp;
-        gl::drawString( "osc port : " + to_string(port), Vec2i(10,y) ); y+=yp;
-        gl::drawString( "frame    : " + to_string(frame), Vec2i(10,y) ); y+=yp;
-        gl::drawString( "seconds  : " + to_string(seconds), Vec2i(10,y) ); y+=yp;
-        gl::drawString( "seconds(mov): " + to_string(mov->getCurrentTime()), Vec2i(10,y) ); y+=yp;
-        gl::drawString( "fps      : " + to_string(getAverageFps()), Vec2i(10,y) ); y+=yp;
-        gl::drawString( "file     : " + path.string(), Vec2i(10,y) ); y+=yp;
+        gl::drawString( "SLAVE", Vec2i(x,y) ); y+=yp;
+        gl::drawString( "osc port : " + to_string(port), Vec2i(x,y) ); y+=yp;
+        gl::drawString( "osc frame    : " + to_string(frame), Vec2i(x,y) ); y+=yp;
+        gl::drawString( "osc seconds  : " + to_string(seconds), Vec2i(x,y) ); y+=yp*2;
+
+        gl::drawString( "mov frame    : " + to_string((int)mov->getCurrentTime()/25.0), Vec2i(x,y) ); y+=yp;
+        gl::drawString( "mov seconds  : " + to_string(mov->getCurrentTime()), Vec2i(x,y) ); y+=yp;
+        gl::drawString( "fps          : " + to_string(getAverageFps()), Vec2i(x,y) ); y+=yp;
+        gl::drawString( "file         : " + path.string(), Vec2i(x,y) ); y+=yp;
     }
 }
 

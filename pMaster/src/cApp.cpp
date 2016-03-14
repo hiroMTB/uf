@@ -42,6 +42,10 @@ public:
     fs::path    path = "cs.wav";
   
     std::thread oscThread;
+    
+    int oscPerSec = 200;
+    int interval_ms = 1000.0/oscPerSec;
+    
 };
 
 void cApp::setupDefaultChannelDevice(){
@@ -68,7 +72,7 @@ void cApp::setupMultichannelDevice(){
 
 void cApp::setup(){
     
-    setFrameRate(120);
+    //setFrameRate(25);
     setWindowPos(0, 0);
     setWindowSize(300, 300);
     
@@ -76,8 +80,7 @@ void cApp::setup(){
 
     auto ctx = audio::master();
     
-    DataSourceRef data = loadAsset(path);
-    audio::SourceFileRef src = audio::load( data , ctx->getSampleRate() );
+    audio::SourceFileRef src = audio::load( loadAsset(path), ctx->getSampleRate() );
     player = ctx->makeNode( new audio::FilePlayerNode(src) );
     player >> ctx->getOutput();
     
@@ -91,12 +94,14 @@ void cApp::setup(){
     
     oscThread = std::thread( &cApp::sendOsc, this );
 
+    
+//    audio::Buffer * buf = player->getInternalBuffer();
+//    float * ch0 = buf->getChannel(0);
+//    float * ch1 = buf->getChannel(1);
+    
 }
 
 void cApp::sendOsc(){
-
-    int oscPerSec = 100;
-    int interval_ms = 1000.0/oscPerSec;
     
     while (1) {
         seconds = player->getReadPositionTime();
@@ -122,6 +127,7 @@ void cApp::draw(){
     int y = 20;
     int yp = 20;
     gl::drawString( "MASTER", Vec2i(x,y) ); y+=yp;
+    gl::drawString( "osc interval : " + to_string(interval_ms) + " ms", Vec2i(x,y) ); y+=yp;
     gl::drawString( "osc1 host : " + host1, Vec2i(x,y) ); y+=yp;
     gl::drawString( "osc1 port : " + to_string(port1), Vec2i(x,y) ); y+=yp;
     gl::drawString( "osc2 host : " + host2, Vec2i(x,y) ); y+=yp;
