@@ -20,39 +20,35 @@ using namespace std;
 class cApp : public AppNative {
     
 public:
+    void prepareSettings( Settings * s );
     void setup();
     void draw();
     void sendOsc();
     void keyDown( KeyEvent key );
     void setupMultichannelDevice();
-    void setupDefaultChannelDevice();
-    void before_quit();
+    void shutdown();
     
-    bool bStart = true;
-    int stopFrame = 0;
+    bool    bStart      = true;
+    int     stopFrame   = 0;
+    double  seconds     = 0;
     
+    // audio
+    fs::path path       = "cs.wav";
     audio::FilePlayerNodeRef player;
-    double seconds;
     
-    osc::Sender sender1, sender2;
-    std::string host1 = "localhost";
-    std::string host2 = "10.0.0.2";
-    int 		port1 = 12345;
-    int         port2 = 12345;
-    fs::path    path = "cs.wav";
-  
+    // osc
+    bool    bSendOsc    = true;
+    int     oscPerSec   = 60;
+    int     interval_ms = 1000.0/oscPerSec;
+    float   oscOffsetSec= 0.005;
     std::thread oscThread;
-    
-    int oscPerSec = 200;
-    int interval_ms = 1000.0/oscPerSec;
-    
-};
+    osc::Sender sender1, sender2;
+    string  host1       = "localhost";
+    string  host2       = "10.0.0.2";
+    int     port1       = 12345;
+    int     port2       = 12345;
 
-void cApp::setupDefaultChannelDevice(){
-    auto ctx = audio::Context::master();
-    audio::DeviceRef device = audio::Device::getDefaultOutput();
-    //ctx->setOutput( device );
-}
+};
 
 void cApp::setupMultichannelDevice(){
     console() << audio::Device::printDevicesToString();
@@ -69,53 +65,43 @@ void cApp::setupMultichannelDevice(){
     ctx->setOutput( multichannelOutputDeviceNode );
 }
 
+void cApp::prepareSettings( Settings *s ){
+    s->setWindowSize(300, 300);
+    s->setWindowPos(0, 0);
+    s->setResizable(false);
+    s->setTitle("Master");
+    s->setFrameRate(25.0f);
+}
 
 void cApp::setup(){
     
-    //setFrameRate(25);
-    setWindowPos(0, 0);
-    setWindowSize(300, 300);
-    
+    // audio
     setupMultichannelDevice();
-
     auto ctx = audio::master();
-    
     audio::SourceFileRef src = audio::load( loadAsset(path), ctx->getSampleRate() );
     player = ctx->makeNode( new audio::FilePlayerNode(src) );
     player >> ctx->getOutput();
-    
     ctx->enable();
-    
     player->setLoopEnabled();
     player->start();
 
+    // osc
     sender1.setup( host1, port1);
     sender2.setup( host2, port2);
-    
     oscThread = std::thread( &cApp::sendOsc, this );
-
-    
-//    audio::Buffer * buf = player->getInternalBuffer();
-//    float * ch0 = buf->getChannel(0);
-//    float * ch1 = buf->getChannel(1);
-    
 }
 
 void cApp::sendOsc(){
-    
-    while (1) {
+
+    while(bSendOsc) {
+        if( !audio::master()->isEnabled() ) return;
         seconds = player->getReadPositionTime();
         cinder::osc::Message mes;
-        mes.addFloatArg( seconds );
+        mes.addFloatArg( seconds + oscOffsetSec );
         sender1.sendMessage( mes );
         sender2.sendMessage( mes );
         std::this_thread::sleep_for(chrono::milliseconds(interval_ms));
     }
-}
-
-void cApp::before_quit(){
-    oscThread.join();
-
 }
 
 void cApp::draw(){
@@ -134,6 +120,7 @@ void cApp::draw(){
     gl::drawString( "osc2 port : " + to_string(port2), Vec2i(x,y) ); y+=yp;
     gl::drawString( "frame     : " + to_string(seconds*25.0f), Vec2i(x,y) ); y+=yp;
     gl::drawString( "seconds   : " + to_string(seconds), Vec2i(x,y) ); y+=yp;
+    gl::drawString( "osc offset sec : " + to_string(oscOffsetSec), Vec2i(x,y) ); y+=yp;
     gl::drawString( "fps       : " + to_string(getAverageFps()), Vec2i(x,y) ); y+=yp;
     gl::drawString( "file      : " + path.string(), Vec2i(x,y) ); y+=yp;
 }
@@ -151,10 +138,7 @@ void cApp::keyDown( KeyEvent key ){
         case '6': player->seekToTime(60*6); break;
         case '7': player->seekToTime(60*7); break;
         case 'h': player->seekToTime( player->getReadPosition()+30); break;
-        case 'q':
-            before_quit();
-            quit();
-            break;
+        case 'q': quit(); break;
             
         case ' ':
             if(bStart){
@@ -168,6 +152,15 @@ void cApp::keyDown( KeyEvent key ){
             bStart = !bStart;
             break;
     }
+}
+
+void cApp::shutdown(){
+    cout << "app will shutdown, stop audio & osc" << endl;
+    player->stop();
+    auto ctx = audio::master();
+    ctx->disconnectAllNodes();
+    bSendOsc = false;
+    oscThread.join();
 }
 
 CINDER_APP_NATIVE( cApp, RendererGl(0) )

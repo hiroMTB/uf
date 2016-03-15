@@ -19,100 +19,80 @@ using namespace std;
 class cApp : public AppNative {
     
 public:
+    void prepareSettings( Settings * s);
     void setup();
     void update();
     void draw();
     void oscCallback( const osc::Message * mes );
     void keyDown( KeyEvent key );
-
-    bool bFull = false;
-    int frame = 0;
-    float seconds;
+    void shutdown();
     
-    osc::Listener listener;
-    int vFrameRate = 25;
+    int  frame      = 0;
+    int  vFrameRate = 25;
+    float seconds   = 0;
     
+    bool bNeedSeek = false;
     qtime::MovieSurfaceRef	mov;
     Surface	sur;
-    
+    osc::Listener listener;
+
 //#define CS_1
 #ifdef CS_1
-    const int port = 12345;
-    const fs::path path = "4444/cs_1.mov";
     string windowName = "cs1";
-#else
+    const fs::path path = "4444/cs_1.mov";
     const int port = 12345;
-    const fs::path path = "4444/cs_2.mov";
+#else
     string windowName = "cs2";
+    const fs::path path = "4444/cs_2.mov";
+    const int port = 12345;
 #endif
     
 };
 
+void cApp::prepareSettings( Settings * s ){
+
+    s->setWindowPos(300,0);
+    s->setWindowSize(1920, 1080);
+    s->setFullScreen(false);
+    s->setTitle(windowName);
+    s->setFrameRate(60);
+    //s->setAlwaysOnTop();
+
+    gl::enableVerticalSync();
+}
 
 void cApp::setup(){
     
-    cout << qtime::getQuickTimeVersionString() << endl;
-    
-//    setFrameRate(25)
-    gl::enableVerticalSync();
-    setWindowPos(0, 0);
-    setWindowSize(1920, 1080);
-    setFullScreen(bFull);
-    
-    getWindow()->setTitle(windowName);
-    listener.setup(port);
-    listener.registerMessageReceived( this, &cApp::oscCallback );
-
+    // Mov
+    cout << "Quicktime Version : " << qtime::getQuickTimeVersionString() << endl;
     mov = qtime::MovieSurface::create( loadAsset(path) );
-
     while( mov->checkPlayable() == false ){
         cinder::sleep(10);
     }
-    
     mov->setVolume(0);
     //mov->seekToStart();
     //mov->play();
     //mov->stop();
+
+    // Osc
+    listener.setup(port);
+    listener.registerMessageReceived( this, &cApp::oscCallback );
 }
 
 void cApp::oscCallback(const osc::Message * mes){
     if(!mov) return;
     
     seconds = mes->getArgAsFloat(0);
+    mov->seekToTime(seconds);
+
     int newFrame = round(seconds * (float)vFrameRate);
-    long diff = newFrame - frame;
-    
-    if( abs(diff) > 25){
-        mov->seekToTime(seconds);
-        frame = seconds*25.0f;
-        cout << "seekToTime" << endl;
-    }else if( diff>0){
-        for( int i=0; i<diff; i++){
-            mov->stepForward();
-        }
-        frame = newFrame;
-    }else if (diff<0){
-        for( int i=0; i<diff; i++){
-            mov->stepBackward();
-        }
-        frame = newFrame;
-    }
 
-//    if( abs(diff) > 25){
-//        mov->seekToTime(seconds);
-//        frame = seconds*25.0f;
-//    }else if( diff>0){
-//        mov->stepCount(diff);
-//        frame = newFrame;
-//    }
-
+    frame = newFrame;
 }
 
 void cApp::update(){
-    if(mov){
-        if(mov->checkNewFrame()){
-            sur = mov->getSurface();
-        }
+    if(mov){        
+        sur = mov->getSurface();
     }
 }
 
@@ -121,9 +101,9 @@ void cApp::draw(){
     mt::setMatricesWindow(1920, 1080, false);
     gl::clear(ColorA(1,0,0));
     gl::color(1, 1, 1);
-    if(mov)gl::draw( sur );
+    if(sur) gl::draw( sur );
     
-    if(!bFull){
+    if(!getWindow()->isFullScreen()){
         int x = 20;
         int y = 20;
         int yp = 20;
@@ -145,13 +125,27 @@ void cApp::keyDown( KeyEvent key){
     int k = key.getCode();
     switch (k) {
         case KeyEvent::KEY_ESCAPE:
-            bFull = !bFull;
-            setFullScreen(bFull);
-            bFull ? hideCursor() : showCursor();
+        {
+            bool f = getWindow()->isFullScreen();
+            setFullScreen(!f);
+            f ? hideCursor() : showCursor();
             break;
-        default:
+        }
+    }
+    
+    char c = key.getChar();
+    switch (c) {
+        case 'q':
+            quit();
             break;
     }
+}
+
+void cApp::shutdown(){
+    listener.shutdown();
+    mov->stop();
+    mov->reset();
+    sur.reset();
 }
 
 CINDER_APP_NATIVE( cApp, RendererGl(0) )
